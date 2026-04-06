@@ -1,0 +1,31 @@
+team_slug,team_name,author_name,attempts,years_covered,team_hits,round_one_player_hits,mean_mock_pick,mean_actual_pick,team_match_rate,round_one_player_rate,team_specific_points,team_specific_max_points,team_specific_score,team_specialist_weight
+arizona-cardinals,Arizona Cardinals,Nick Guarisco,6,5,4,6,13.5,12.333333333333334,0.6666666666666666,1.0,14,18,77.77777777777777,0.7777777777777777
+atlanta-falcons,Atlanta Falcons,Charlie Campbell,6,6,4,6,9.5,11.666666666666666,0.6666666666666666,1.0,14,18,77.77777777777777,0.7777777777777777
+baltimore-ravens,Baltimore Ravens,Steve Serby,6,5,4,5,24.833333333333332,28.5,0.6666666666666666,0.8333333333333334,13,18,72.22222222222223,0.7222222222222223
+buffalo-bills,Buffalo Bills,Charles Davis,5,5,2,3,28.0,32.8,0.4,0.6,7,15,46.666666666666664,0.4666666666666666
+carolina-panthers,Carolina Panthers,Charlie Campbell,5,5,4,5,5.8,7.4,0.8,1.0,13,15,86.66666666666667,0.8666666666666667
+chicago-bears,Chicago Bears,Lance Zierlein,5,4,4,4,9.8,16.2,0.8,0.8,12,15,80.0,0.8
+cincinnati-bengals,Cincinnati Bengals,Steve Serby,5,5,3,5,16.4,12.0,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+dallas-cowboys,Dallas Cowboys,Lance Zierlein,6,6,2,6,18.833333333333332,18.0,0.3333333333333333,1.0,10,18,55.55555555555556,0.5555555555555556
+denver-broncos,Denver Broncos,Cody Benjamin,5,4,2,5,17.6,14.8,0.4,1.0,9,15,60.0,0.6
+detroit-lions,Detroit Lions,Peter King,5,4,3,5,7.6,7.8,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+green-bay-packers,Green Bay Packers,Shane Hallam,5,4,2,4,22.2,24.4,0.4,0.8,8,15,53.333333333333336,0.5333333333333333
+houston-texans,Houston Texans,Ryan Wilson,6,4,2,5,13.666666666666666,14.833333333333334,0.3333333333333333,0.8333333333333334,9,18,50.0,0.5
+indianapolis-colts,Indianapolis Colts,Cody Benjamin,5,5,2,4,16.4,21.4,0.4,0.8,8,15,53.333333333333336,0.5333333333333333
+jacksonville-jaguars,Jacksonville Jaguars,Albert Breer,7,5,4,7,11.857142857142858,13.142857142857142,0.5714285714285714,1.0,15,21,71.42857142857143,0.7142857142857143
+kansas-city-chiefs,Kansas City Chiefs,Matt Youmans,5,4,2,5,30.6,25.4,0.4,1.0,9,15,60.0,0.6
+las-vegas-raiders,Las Vegas Raiders,Charlie Campbell,6,5,2,6,12.166666666666666,14.833333333333334,0.3333333333333333,1.0,10,18,55.55555555555556,0.5555555555555556
+los-angeles-chargers,Los Angeles Chargers,Jason Pruett,7,6,3,7,16.142857142857142,15.428571428571429,0.42857142857142855,1.0,13,21,61.904761904761905,0.6190476190476191
+miami-dolphins,Miami Dolphins,Michael Middlehurst-Schwartz,5,4,3,5,14.6,15.4,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+minnesota-vikings,Minnesota Vikings,Dan Hope,6,5,3,6,19.166666666666668,20.833333333333332,0.5,1.0,12,18,66.66666666666667,0.6666666666666667
+new-england-patriots,New England Patriots,John Daigle,5,5,3,5,11.4,11.4,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+new-orleans-saints,New Orleans Saints,Kyle Stackpole,5,4,3,5,17.4,13.0,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+new-york-giants,New York Giants,Cletis Cutts,5,4,3,5,10.8,10.2,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+new-york-jets,New York Jets,Albert Breer,7,5,5,6,9.571428571428571,16.0,0.7142857142857143,0.8571428571428571,16,21,76.19047619047619,0.7619047619047619
+philadelphia-eagles,Philadelphia Eagles,Hayden Winks,6,5,3,6,17.166666666666668,22.0,0.5,1.0,12,18,66.66666666666667,0.6666666666666667
+pittsburgh-steelers,Pittsburgh Steelers,David Howman,5,4,3,5,22.6,18.8,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+san-francisco-49ers,San Francisco 49ers,Nate Bouda,5,4,3,4,17.8,19.4,0.6,0.8,10,15,66.66666666666667,0.6666666666666667
+seattle-seahawks,Seattle Seahawks,John Daigle,5,4,2,5,13.6,17.2,0.4,1.0,9,15,60.0,0.6
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Ryan Wilson,6,6,3,4,22.833333333333332,29.5,0.5,0.6666666666666666,10,18,55.55555555555556,0.5555555555555556
+tennessee-titans,Tennessee Titans,Rob Rang,5,5,3,5,14.8,12.8,0.6,1.0,11,15,73.33333333333333,0.7333333333333333
+washington-commanders,Washington Commanders,Scotty Payne,5,5,3,5,12.0,11.2,0.6,1.0,11,15,73.33333333333333,0.7333333333333333

@@ -1,0 +1,12 @@
+.vscode/
+__pycache__/
+*.pyc
+
+data/raw/
+data/raw/_debug/
+
+data/processed/**/*.checkpoint.csv
+data/processed/**/*.full_backup.csv
+data/processed/**/*.backup.csv
+data/processed/**/*.final_author_only.csv
+data/processed/**/*progress.json

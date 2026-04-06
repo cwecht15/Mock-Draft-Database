@@ -1,0 +1,218 @@
+team_slug,team_name,player_position,mock_count,unique_players,avg_round,median_round,min_round,max_round,avg_pick,median_pick,min_pick,max_pick
+arizona-cardinals,Arizona Cardinals,EDGE,78,7,1.0128205128205128,1.0,1,2,23.474358974358974,23.0,21,55
+arizona-cardinals,Arizona Cardinals,IOL,56,3,1.0,1.0,1,1,23.0,23.0,23,23
+arizona-cardinals,Arizona Cardinals,CB,54,4,1.0,1.0,1,1,22.944444444444443,23.0,20,23
+arizona-cardinals,Arizona Cardinals,WR,53,7,1.0,1.0,1,1,23.0,23.0,23,23
+arizona-cardinals,Arizona Cardinals,DL,18,4,1.0,1.0,1,1,23.0,23.0,23,23
+arizona-cardinals,Arizona Cardinals,OT,5,3,1.0,1.0,1,1,23.0,23.0,23,23
+arizona-cardinals,Arizona Cardinals,LB,3,2,1.0,1.0,1,1,23.0,23.0,23,23
+arizona-cardinals,Arizona Cardinals,RB,1,1,1.0,1.0,1,1,30.0,30.0,30,30
+atlanta-falcons,Atlanta Falcons,WR,140,6,1.0,1.0,1,1,8.45,8.0,8,32
+atlanta-falcons,Atlanta Falcons,EDGE,64,4,1.0,1.0,1,1,8.46875,8.0,8,26
+atlanta-falcons,Atlanta Falcons,QB,45,5,1.0222222222222221,1.0,1,2,15.333333333333334,8.0,4,40
+atlanta-falcons,Atlanta Falcons,S,13,1,1.0,1.0,1,1,8.0,8.0,8,8
+atlanta-falcons,Atlanta Falcons,CB,12,3,1.0,1.0,1,1,8.0,8.0,8,8
+atlanta-falcons,Atlanta Falcons,OT,8,3,1.0,1.0,1,1,8.0,8.0,8,8
+atlanta-falcons,Atlanta Falcons,DL,4,2,1.0,1.0,1,1,11.5,8.0,8,22
+atlanta-falcons,Atlanta Falcons,LB,2,1,1.0,1.0,1,1,18.5,18.5,8,29
+baltimore-ravens,Baltimore Ravens,DL,120,2,1.0083333333333333,1.0,1,2,14.225,14.0,9,46
+baltimore-ravens,Baltimore Ravens,EDGE,47,4,1.0,1.0,1,1,14.297872340425531,14.0,7,29
+baltimore-ravens,Baltimore Ravens,OT,37,4,1.0,1.0,1,1,14.0,14.0,14,14
+baltimore-ravens,Baltimore Ravens,CB,24,6,1.0,1.0,1,1,14.875,14.0,11,30
+baltimore-ravens,Baltimore Ravens,IOL,23,2,1.0,1.0,1,1,14.608695652173912,14.0,14,28
+baltimore-ravens,Baltimore Ravens,LB,9,2,1.0,1.0,1,1,14.0,14.0,14,14
+baltimore-ravens,Baltimore Ravens,S,5,2,1.0,1.0,1,1,15.6,14.0,14,22
+baltimore-ravens,Baltimore Ravens,WR,5,3,1.0,1.0,1,1,14.0,14.0,14,14
+buffalo-bills,Buffalo Bills,CB,139,7,1.0071942446043165,1.0,1,2,25.12230215827338,25.0,17,57
+buffalo-bills,Buffalo Bills,RB,46,1,1.0,1.0,1,1,25.0,25.0,25,25
+buffalo-bills,Buffalo Bills,WR,21,8,1.0,1.0,1,1,23.952380952380953,25.0,12,28
+buffalo-bills,Buffalo Bills,IOL,20,3,1.0,1.0,1,1,25.0,25.0,25,25
+buffalo-bills,Buffalo Bills,S,19,4,1.0,1.0,1,1,25.263157894736842,25.0,25,30
+buffalo-bills,Buffalo Bills,DL,12,2,1.0,1.0,1,1,25.0,25.0,25,25
+buffalo-bills,Buffalo Bills,LB,4,3,1.0,1.0,1,1,26.75,25.0,25,32
+buffalo-bills,Buffalo Bills,EDGE,3,3,1.0,1.0,1,1,25.0,25.0,25,25
+buffalo-bills,Buffalo Bills,OT,1,1,1.0,1.0,1,1,25.0,25.0,25,25
+carolina-panthers,Carolina Panthers,OT,146,5,1.0,1.0,1,1,6.301369863013699,6.0,5,20
+carolina-panthers,Carolina Panthers,QB,122,5,1.0081967213114753,1.0,1,2,7.967213114754099,6.0,6,38
+carolina-panthers,Carolina Panthers,CB,2,2,1.0,1.0,1,1,8.0,8.0,6,10
+carolina-panthers,Carolina Panthers,LB,2,1,1.0,1.0,1,1,9.0,9.0,6,12
+carolina-panthers,Carolina Panthers,IOL,2,1,1.0,1.0,1,1,13.0,13.0,6,20
+carolina-panthers,Carolina Panthers,EDGE,1,1,1.0,1.0,1,1,6.0,6.0,6,6
+carolina-panthers,Carolina Panthers,S,1,1,1.0,1.0,1,1,6.0,6.0,6,6
+chicago-bears,Chicago Bears,WR,2,2,1.0,1.0,1,1,24.5,24.5,19,30
+cincinnati-bengals,Cincinnati Bengals,CB,88,5,1.0113636363636365,1.0,1,2,31.363636363636363,31.0,31,63
+cincinnati-bengals,Cincinnati Bengals,IOL,79,3,1.0,1.0,1,1,30.873417721518987,31.0,21,31
+cincinnati-bengals,Cincinnati Bengals,DL,26,4,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,S,18,3,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,EDGE,16,5,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,OT,13,2,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,LB,9,2,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,RB,3,2,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,TE,3,1,1.0,1.0,1,1,31.0,31.0,31,31
+cincinnati-bengals,Cincinnati Bengals,QB,1,1,1.0,1.0,1,1,31.0,31.0,31,31
+cleveland-browns,Cleveland Browns,DL,1,1,1.0,1.0,1,1,13.0,13.0,13,13
+dallas-cowboys,Dallas Cowboys,IOL,172,3,1.005813953488372,1.0,1,2,24.186046511627907,24.0,24,56
+dallas-cowboys,Dallas Cowboys,WR,29,5,1.0,1.0,1,1,23.620689655172413,24.0,13,24
+dallas-cowboys,Dallas Cowboys,EDGE,22,4,1.0,1.0,1,1,24.227272727272727,24.0,24,29
+dallas-cowboys,Dallas Cowboys,DL,15,5,1.0,1.0,1,1,23.266666666666666,24.0,13,24
+dallas-cowboys,Dallas Cowboys,OT,13,3,1.0,1.0,1,1,23.46153846153846,24.0,20,24
+dallas-cowboys,Dallas Cowboys,LB,8,3,1.0,1.0,1,1,24.0,24.0,24,24
+dallas-cowboys,Dallas Cowboys,S,5,2,1.0,1.0,1,1,24.0,24.0,24,24
+dallas-cowboys,Dallas Cowboys,CB,2,2,1.0,1.0,1,1,24.0,24.0,24,24
+denver-broncos,Denver Broncos,S,1,1,1.0,1.0,1,1,32.0,32.0,32,32
+detroit-lions,Detroit Lions,EDGE,247,6,1.0040485829959513,1.0,1,2,3.5870445344129553,2.0,2,34
+detroit-lions,Detroit Lions,QB,125,5,1.008,1.0,1,2,26.16,32.0,2,64
+detroit-lions,Detroit Lions,S,54,3,1.0,1.0,1,1,28.11111111111111,32.0,2,32
+detroit-lions,Detroit Lions,LB,52,4,1.0,1.0,1,1,32.0,32.0,32,32
+detroit-lions,Detroit Lions,WR,31,7,1.0,1.0,1,1,31.838709677419356,32.0,27,32
+detroit-lions,Detroit Lions,CB,9,5,1.0,1.0,1,1,15.333333333333334,2.0,2,32
+detroit-lions,Detroit Lions,OT,3,3,1.0,1.0,1,1,9.0,2.0,2,23
+detroit-lions,Detroit Lions,DL,3,2,1.0,1.0,1,1,32.0,32.0,32,32
+detroit-lions,Detroit Lions,IOL,1,1,1.0,1.0,1,1,32.0,32.0,32,32
+detroit-lions,Detroit Lions,P,1,1,1.0,1.0,1,1,32.0,32.0,32,32
+green-bay-packers,Green Bay Packers,WR,257,11,1.0038910505836576,1.0,1,2,22.93774319066148,22.0,8,54
+green-bay-packers,Green Bay Packers,EDGE,97,7,1.0103092783505154,1.0,1,2,26.876288659793815,28.0,22,60
+green-bay-packers,Green Bay Packers,LB,44,3,1.0,1.0,1,1,26.772727272727273,28.0,22,28
+green-bay-packers,Green Bay Packers,DL,41,6,1.0,1.0,1,1,27.121951219512194,28.0,22,28
+green-bay-packers,Green Bay Packers,OT,34,5,1.0,1.0,1,1,26.058823529411764,28.0,22,28
+green-bay-packers,Green Bay Packers,S,31,2,1.0,1.0,1,1,27.225806451612904,28.0,22,28
+green-bay-packers,Green Bay Packers,IOL,19,3,1.0,1.0,1,1,26.105263157894736,28.0,22,28
+green-bay-packers,Green Bay Packers,CB,8,4,1.0,1.0,1,1,23.875,25.0,13,28
+green-bay-packers,Green Bay Packers,TE,1,1,1.0,1.0,1,1,22.0,22.0,22,22
+houston-texans,Houston Texans,OT,150,4,1.0,1.0,1,1,5.4,3.0,3,13
+houston-texans,Houston Texans,CB,118,5,1.0,1.0,1,1,5.610169491525424,3.0,3,24
+houston-texans,Houston Texans,EDGE,102,7,1.0098039215686274,1.0,1,2,7.411764705882353,3.0,3,35
+houston-texans,Houston Texans,WR,68,5,1.0147058823529411,1.0,1,2,13.661764705882353,13.0,9,45
+houston-texans,Houston Texans,S,56,3,1.0,1.0,1,1,12.410714285714286,13.0,3,24
+houston-texans,Houston Texans,DL,27,2,1.0,1.0,1,1,13.962962962962964,13.0,13,22
+houston-texans,Houston Texans,LB,12,3,1.0,1.0,1,1,14.5,13.0,13,20
+houston-texans,Houston Texans,QB,5,3,1.0,1.0,1,1,7.0,3.0,3,13
+houston-texans,Houston Texans,IOL,2,2,1.0,1.0,1,1,13.0,13.0,13,13
+jacksonville-jaguars,Jacksonville Jaguars,EDGE,255,5,1.0,1.0,1,1,1.0901960784313725,1.0,1,24
+jacksonville-jaguars,Jacksonville Jaguars,OT,18,2,1.0555555555555556,1.0,1,2,2.7777777777777777,1.0,1,33
+jacksonville-jaguars,Jacksonville Jaguars,WR,1,1,1.0,1.0,1,1,10.0,10.0,10,10
+jacksonville-jaguars,Jacksonville Jaguars,IOL,1,1,1.0,1.0,1,1,24.0,24.0,24,24
+jacksonville-jaguars,Jacksonville Jaguars,S,1,1,1.0,1.0,1,1,31.0,31.0,31,31
+kansas-city-chiefs,Kansas City Chiefs,WR,199,12,1.0,1.0,1,1,28.55276381909548,29.0,6,30
+kansas-city-chiefs,Kansas City Chiefs,EDGE,130,7,1.0076923076923077,1.0,1,2,29.653846153846153,29.5,21,62
+kansas-city-chiefs,Kansas City Chiefs,CB,76,6,1.0,1.0,1,1,29.55263157894737,30.0,23,30
+kansas-city-chiefs,Kansas City Chiefs,S,76,4,1.013157894736842,1.0,1,2,29.94736842105263,30.0,26,61
+kansas-city-chiefs,Kansas City Chiefs,DL,24,4,1.0,1.0,1,1,29.333333333333332,29.0,29,30
+kansas-city-chiefs,Kansas City Chiefs,LB,11,4,1.0,1.0,1,1,29.727272727272727,30.0,29,30
+kansas-city-chiefs,Kansas City Chiefs,OT,4,3,1.0,1.0,1,1,29.5,29.5,29,30
+kansas-city-chiefs,Kansas City Chiefs,IOL,2,2,1.0,1.0,1,1,29.0,29.0,29,29
+kansas-city-chiefs,Kansas City Chiefs,RB,1,1,1.0,1.0,1,1,30.0,30.0,30,30
+las-vegas-raiders,Las Vegas Raiders,WR,1,1,1.0,1.0,1,1,22.0,22.0,22,22
+los-angeles-chargers,Los Angeles Chargers,OT,93,4,1.0,1.0,1,1,16.677419354838708,17.0,9,22
+los-angeles-chargers,Los Angeles Chargers,DL,51,3,1.0196078431372548,1.0,1,2,17.88235294117647,17.0,17,49
+los-angeles-chargers,Los Angeles Chargers,WR,49,5,1.0,1.0,1,1,17.06122448979592,17.0,17,20
+los-angeles-chargers,Los Angeles Chargers,IOL,32,2,1.0,1.0,1,1,17.0,17.0,17,17
+los-angeles-chargers,Los Angeles Chargers,CB,30,4,1.0,1.0,1,1,17.0,17.0,17,17
+los-angeles-chargers,Los Angeles Chargers,LB,10,2,1.0,1.0,1,1,17.4,17.0,17,21
+los-angeles-chargers,Los Angeles Chargers,EDGE,4,2,1.0,1.0,1,1,17.0,17.0,17,17
+los-angeles-chargers,Los Angeles Chargers,S,2,1,1.0,1.0,1,1,18.5,18.5,17,20
+los-angeles-rams,Los Angeles Rams,DL,1,1,1.0,1.0,1,1,32.0,32.0,32,32
+miami-dolphins,Miami Dolphins,LB,1,1,1.0,1.0,1,1,13.0,13.0,13,13
+miami-dolphins,Miami Dolphins,WR,1,1,1.0,1.0,1,1,15.0,15.0,15,15
+miami-dolphins,Miami Dolphins,OT,1,1,1.0,1.0,1,1,29.0,29.0,29,29
+minnesota-vikings,Minnesota Vikings,CB,147,6,1.0068027210884354,1.0,1,2,12.741496598639456,12.0,6,44
+minnesota-vikings,Minnesota Vikings,S,37,2,1.0,1.0,1,1,12.35135135135135,12.0,12,25
+minnesota-vikings,Minnesota Vikings,EDGE,28,6,1.0,1.0,1,1,12.214285714285714,12.0,12,18
+minnesota-vikings,Minnesota Vikings,DL,27,2,1.0,1.0,1,1,12.296296296296296,12.0,12,20
+minnesota-vikings,Minnesota Vikings,WR,26,4,1.0,1.0,1,1,12.115384615384615,12.0,12,15
+minnesota-vikings,Minnesota Vikings,OT,2,2,1.0,1.0,1,1,12.0,12.0,12,12
+minnesota-vikings,Minnesota Vikings,IOL,2,2,1.0,1.0,1,1,15.5,15.5,12,19
+minnesota-vikings,Minnesota Vikings,QB,1,1,1.0,1.0,1,1,12.0,12.0,12,12
+new-england-patriots,New England Patriots,LB,112,4,1.0,1.0,1,1,21.196428571428573,21.0,18,31
+new-england-patriots,New England Patriots,CB,68,6,1.0,1.0,1,1,20.941176470588236,21.0,17,21
+new-england-patriots,New England Patriots,IOL,36,3,1.0277777777777777,1.0,1,2,21.97222222222222,21.0,21,53
+new-england-patriots,New England Patriots,WR,22,7,1.0,1.0,1,1,21.0,21.0,21,21
+new-england-patriots,New England Patriots,EDGE,11,2,1.0,1.0,1,1,21.818181818181817,21.0,21,30
+new-england-patriots,New England Patriots,S,9,3,1.0,1.0,1,1,21.0,21.0,21,21
+new-england-patriots,New England Patriots,OT,5,3,1.0,1.0,1,1,21.0,21.0,21,21
+new-england-patriots,New England Patriots,DL,4,2,1.0,1.0,1,1,21.0,21.0,21,21
+new-orleans-saints,New Orleans Saints,WR,178,7,1.0056179775280898,1.0,1,2,17.668539325842698,19.0,10,48
+new-orleans-saints,New Orleans Saints,OT,171,8,1.0058479532163742,1.0,1,2,16.660818713450293,16.0,4,51
+new-orleans-saints,New Orleans Saints,QB,119,5,1.0,1.0,1,1,17.243697478991596,16.0,7,32
+new-orleans-saints,New Orleans Saints,S,20,4,1.0,1.0,1,1,18.25,19.0,16,19
+new-orleans-saints,New Orleans Saints,DL,10,2,1.0,1.0,1,1,19.0,19.0,19,19
+new-orleans-saints,New Orleans Saints,LB,10,3,1.0,1.0,1,1,18.7,19.0,16,19
+new-orleans-saints,New Orleans Saints,CB,7,4,1.0,1.0,1,1,19.0,19.0,19,19
+new-orleans-saints,New Orleans Saints,EDGE,6,3,1.0,1.0,1,1,18.0,19.0,16,19
+new-orleans-saints,New Orleans Saints,IOL,5,3,1.0,1.0,1,1,18.4,19.0,16,19
+new-york-giants,New York Giants,OT,250,4,1.004,1.0,1,2,5.488,5.0,5,37
+new-york-giants,New York Giants,CB,135,3,1.0,1.0,1,1,6.925925925925926,7.0,5,20
+new-york-giants,New York Giants,EDGE,123,5,1.0,1.0,1,1,7.252032520325203,7.0,5,26
+new-york-giants,New York Giants,S,19,1,1.0526315789473684,1.0,1,2,8.736842105263158,7.0,5,39
+new-york-giants,New York Giants,WR,11,5,1.0,1.0,1,1,9.363636363636363,7.0,7,19
+new-york-giants,New York Giants,LB,7,2,1.0,1.0,1,1,12.571428571428571,16.0,5,20
+new-york-giants,New York Giants,IOL,6,3,1.0,1.0,1,1,16.0,15.5,7,31
+new-york-giants,New York Giants,QB,2,1,1.0,1.0,1,1,5.0,5.0,5,5
+new-york-jets,New York Jets,WR,182,6,1.0,1.0,1,1,10.373626373626374,10.0,4,31
+new-york-jets,New York Jets,EDGE,151,6,1.0066225165562914,1.0,1,2,5.920529801324503,4.0,1,36
+new-york-jets,New York Jets,CB,104,3,1.0096153846153846,1.0,1,2,5.605769230769231,4.0,4,42
+new-york-jets,New York Jets,OT,79,4,1.0,1.0,1,1,4.936708860759493,4.0,4,10
+new-york-jets,New York Jets,S,25,2,1.0,1.0,1,1,9.2,10.0,4,26
+new-york-jets,New York Jets,DL,4,2,1.0,1.0,1,1,12.25,10.0,10,19
+new-york-jets,New York Jets,IOL,2,1,1.0,1.0,1,1,14.5,14.5,10,19
+new-york-jets,New York Jets,LB,2,2,1.0,1.0,1,1,21.0,21.0,10,32
+philadelphia-eagles,Philadelphia Eagles,WR,179,7,1.005586592178771,1.0,1,2,16.050279329608937,15.0,8,47
+philadelphia-eagles,Philadelphia Eagles,CB,115,6,1.0,1.0,1,1,16.556521739130435,18.0,6,30
+philadelphia-eagles,Philadelphia Eagles,LB,72,3,1.0138888888888888,1.0,1,2,17.86111111111111,18.0,15,50
+philadelphia-eagles,Philadelphia Eagles,EDGE,67,5,1.0,1.0,1,1,16.746268656716417,18.0,6,26
+philadelphia-eagles,Philadelphia Eagles,DL,62,4,1.0,1.0,1,1,16.661290322580644,15.5,13,29
+philadelphia-eagles,Philadelphia Eagles,S,32,4,1.0,1.0,1,1,16.4375,15.0,15,19
+philadelphia-eagles,Philadelphia Eagles,IOL,12,3,1.0,1.0,1,1,17.666666666666668,18.0,15,19
+philadelphia-eagles,Philadelphia Eagles,OT,2,2,1.0,1.0,1,1,15.0,15.0,15,15
+philadelphia-eagles,Philadelphia Eagles,QB,1,1,1.0,1.0,1,1,15.0,15.0,15,15
+pittsburgh-steelers,Pittsburgh Steelers,QB,213,5,1.0046948356807512,1.0,1,2,18.305164319248828,20.0,5,52
+pittsburgh-steelers,Pittsburgh Steelers,OT,14,3,1.0,1.0,1,1,20.0,20.0,20,20
+pittsburgh-steelers,Pittsburgh Steelers,CB,10,4,1.0,1.0,1,1,20.0,20.0,20,20
+pittsburgh-steelers,Pittsburgh Steelers,WR,9,5,1.0,1.0,1,1,20.0,20.0,20,20
+pittsburgh-steelers,Pittsburgh Steelers,DL,7,2,1.0,1.0,1,1,20.0,20.0,20,20
+pittsburgh-steelers,Pittsburgh Steelers,IOL,6,3,1.0,1.0,1,1,20.5,20.0,20,23
+pittsburgh-steelers,Pittsburgh Steelers,S,6,3,1.0,1.0,1,1,20.0,20.0,20,20
+pittsburgh-steelers,Pittsburgh Steelers,EDGE,4,2,1.0,1.0,1,1,20.0,20.0,20,20
+pittsburgh-steelers,Pittsburgh Steelers,LB,1,1,1.0,1.0,1,1,20.0,20.0,20,20
+san-francisco-49ers,San Francisco 49ers,WR,3,3,1.0,1.0,1,1,16.333333333333332,10.0,10,29
+san-francisco-49ers,San Francisco 49ers,S,1,1,1.0,1.0,1,1,16.0,16.0,16,16
+san-francisco-49ers,San Francisco 49ers,IOL,1,1,1.0,1.0,1,1,21.0,21.0,21,21
+seattle-seahawks,Seattle Seahawks,OT,97,4,1.0103092783505154,1.0,1,2,9.824742268041238,9.0,9,41
+seattle-seahawks,Seattle Seahawks,EDGE,72,4,1.0,1.0,1,1,9.097222222222221,9.0,4,16
+seattle-seahawks,Seattle Seahawks,CB,60,4,1.0,1.0,1,1,9.433333333333334,9.0,9,29
+seattle-seahawks,Seattle Seahawks,QB,53,5,1.0,1.0,1,1,17.471698113207548,9.0,5,32
+seattle-seahawks,Seattle Seahawks,LB,6,3,1.0,1.0,1,1,9.0,9.0,9,9
+seattle-seahawks,Seattle Seahawks,DL,4,2,1.0,1.0,1,1,12.5,12.0,9,17
+seattle-seahawks,Seattle Seahawks,S,3,1,1.0,1.0,1,1,9.0,9.0,9,9
+seattle-seahawks,Seattle Seahawks,WR,3,3,1.0,1.0,1,1,13.666666666666666,10.0,9,22
+tampa-bay-buccaneers,Tampa Bay Buccaneers,DL,84,5,1.0,1.0,1,1,27.05952380952381,27.0,27,32
+tampa-bay-buccaneers,Tampa Bay Buccaneers,IOL,64,3,1.015625,1.0,1,2,27.609375,27.0,27,59
+tampa-bay-buccaneers,Tampa Bay Buccaneers,S,47,4,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,CB,32,4,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,EDGE,17,5,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,WR,9,5,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,OT,5,2,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,LB,4,2,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,TE,3,1,1.0,1.0,1,1,27.0,27.0,27,27
+tampa-bay-buccaneers,Tampa Bay Buccaneers,QB,1,1,1.0,1.0,1,1,27.0,27.0,27,27
+tennessee-titans,Tennessee Titans,IOL,78,3,1.0,1.0,1,1,26.076923076923077,26.0,26,32
+tennessee-titans,Tennessee Titans,WR,52,9,1.0192307692307692,1.0,1,2,26.51923076923077,26.0,21,58
+tennessee-titans,Tennessee Titans,OT,48,3,1.0,1.0,1,1,26.0,26.0,26,26
+tennessee-titans,Tennessee Titans,LB,32,3,1.0,1.0,1,1,26.0,26.0,26,26
+tennessee-titans,Tennessee Titans,QB,26,5,1.0,1.0,1,1,25.576923076923077,26.0,15,26
+tennessee-titans,Tennessee Titans,EDGE,15,5,1.0,1.0,1,1,26.0,26.0,26,26
+tennessee-titans,Tennessee Titans,CB,8,4,1.0,1.0,1,1,26.625,26.0,26,31
+tennessee-titans,Tennessee Titans,DL,4,3,1.0,1.0,1,1,26.5,26.0,26,28
+tennessee-titans,Tennessee Titans,S,2,2,1.0,1.0,1,1,26.0,26.0,26,26
+tennessee-titans,Tennessee Titans,RB,1,1,1.0,1.0,1,1,26.0,26.0,26,26
+tennessee-titans,Tennessee Titans,TE,1,1,1.0,1.0,1,1,30.0,30.0,30,30
+washington-commanders,Washington Commanders,WR,136,5,1.0,1.0,1,1,11.132352941176471,11.0,11,20
+washington-commanders,Washington Commanders,S,82,2,1.0,1.0,1,1,11.0,11.0,11,11
+washington-commanders,Washington Commanders,CB,22,3,1.0,1.0,1,1,11.136363636363637,11.0,6,19
+washington-commanders,Washington Commanders,OT,12,4,1.0833333333333333,1.0,1,2,13.666666666666666,11.0,11,43
+washington-commanders,Washington Commanders,QB,11,4,1.0,1.0,1,1,17.272727272727273,11.0,4,32
+washington-commanders,Washington Commanders,LB,4,2,1.0,1.0,1,1,13.25,11.0,11,20
+washington-commanders,Washington Commanders,IOL,3,2,1.0,1.0,1,1,11.0,11.0,11,11
+washington-commanders,Washington Commanders,DL,2,1,1.0,1.0,1,1,11.0,11.0,11,11
+washington-commanders,Washington Commanders,EDGE,2,2,1.0,1.0,1,1,11.0,11.0,11,11
+washington-commanders,Washington Commanders,TE,1,1,1.0,1.0,1,1,11.0,11.0,11,11

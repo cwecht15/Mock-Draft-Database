@@ -1,0 +1,310 @@
+player_name,player_position,mock_count,unique_mocks,unique_authors,avg_round,median_round,min_round,max_round,avg_pick,median_pick,min_pick,max_pick,team_count,most_common_team,most_common_team_slug
+Asante Samuel Jr.,CB,16,16,14,1.875,2.0,1,2,,,,,12,Arizona Cardinals,arizona-cardinals
+Kendrick Green,IOL,13,13,10,3.923076923076923,4.0,3,5,,,,,9,Minnesota Vikings,minnesota-vikings
+Dylan Moses,LB,12,12,12,3.4166666666666665,3.5,2,4,,,,,8,Philadelphia Eagles,philadelphia-eagles
+Micah Parsons,EDGE,12,12,10,1.0,1.0,1,1,,,,,7,New England Patriots,new-england-patriots
+Shaka Toney,EDGE,12,12,11,5.083333333333333,5.0,4,7,,,,,10,Pittsburgh Steelers,pittsburgh-steelers
+Jonathon Cooper,EDGE,11,11,11,5.545454545454546,5.0,5,7,,,,,9,Dallas Cowboys,dallas-cowboys
+Nico Collins,WR,11,11,11,3.1818181818181817,3.0,2,5,,,,,10,New England Patriots,new-england-patriots
+Paulson Adebo,CB,11,11,10,3.0,3.0,2,4,,,,,10,Minnesota Vikings,minnesota-vikings
+Simi Fehoko,WR,11,11,10,5.181818181818182,6.0,3,6,,,,,9,Atlanta Falcons,atlanta-falcons
+Teven Jenkins,OT,11,11,11,1.1818181818181819,1.0,1,2,,,,,8,Las Vegas Raiders,las-vegas-raiders
+Walker Little,OT,11,11,11,3.6363636363636362,4.0,2,5,,,,,9,Dallas Cowboys,dallas-cowboys
+Alim McNeill,DL,10,10,10,3.3,3.0,2,4,,,,,6,Las Vegas Raiders,las-vegas-raiders
+Avery Williams,CB,10,10,9,6.3,6.0,6,7,,,,,8,Dallas Cowboys,dallas-cowboys
+Benjamin St-Juste,CB,10,10,8,3.6,4.0,3,4,,,,,7,Minnesota Vikings,minnesota-vikings
+Cornell Powell,WR,10,10,9,5.7,6.0,5,6,,,,,9,Tennessee Titans,tennessee-titans
+Jabril Cox,LB,10,10,9,2.4,2.0,2,3,,,,,8,Denver Broncos,denver-broncos
+Jaelon Darden,WR,10,10,10,5.3,5.5,4,7,,,,,10,Arizona Cardinals,arizona-cardinals
+James Wiggins,S,10,10,8,4.3,4.0,3,5,,,,,7,Philadelphia Eagles,philadelphia-eagles
+Jaycee Horn,CB,10,10,10,1.0,1.0,1,1,,,,,5,Philadelphia Eagles,philadelphia-eagles
+Payton Turner,EDGE,10,10,10,2.4,2.0,2,3,,,,,8,Cleveland Browns,cleveland-browns
+Tre' McKitty,TE,10,10,10,5.7,6.0,5,6,,,,,10,Arizona Cardinals,arizona-cardinals
+Brady Christensen,OT,9,9,9,3.4444444444444446,3.0,2,5,,,,,4,Tennessee Titans,tennessee-titans
+Dillon Radunz,OT,9,9,7,2.0,2.0,1,3,,,,,6,Las Vegas Raiders,las-vegas-raiders
+Dyami Brown,WR,9,9,9,2.111111111111111,2.0,2,3,,,,,6,Kansas City Chiefs,kansas-city-chiefs
+Greg Newsome II,CB,9,9,8,1.1111111111111112,1.0,1,2,,,,,8,Green Bay Packers,green-bay-packers
+Ifeatu Melifonwu,CB,9,9,8,2.111111111111111,2.0,1,3,,,,,8,Buffalo Bills,buffalo-bills
+Joshua Kaindoh,EDGE,9,9,8,5.888888888888889,6.0,5,7,,,,,8,Philadelphia Eagles,philadelphia-eagles
+Milton Williams,DL,9,9,9,3.5555555555555554,3.0,2,5,,,,,8,Atlanta Falcons,atlanta-falcons
+Quinn Meinerz,IOL,9,9,9,2.4444444444444446,2.0,2,4,,,,,7,Miami Dolphins,miami-dolphins
+Richie Grant,S,9,9,9,2.5555555555555554,2.0,2,4,,,,,5,Denver Broncos,denver-broncos
+Spencer Brown,OT,9,9,9,3.111111111111111,3.0,2,4,,,,,7,Pittsburgh Steelers,pittsburgh-steelers
+Travis Etienne,RB,9,9,9,1.3333333333333333,1.0,1,2,,,,,5,Buffalo Bills,buffalo-bills
+Ambry Thomas,CB,8,8,8,4.75,5.0,4,6,,,,,7,San Francisco 49ers,san-francisco-49ers
+Andre Cisco,S,8,8,8,3.125,3.0,2,4,,,,,6,Cleveland Browns,cleveland-browns
+David Moore,IOL,8,8,7,4.5,4.5,4,5,,,,,6,Baltimore Ravens,baltimore-ravens
+Davis Mills,QB,8,8,8,2.875,3.0,1,6,,,,,5,New England Patriots,new-england-patriots
+Dazz Newsome,WR,8,8,6,4.75,5.0,4,6,,,,,7,Chicago Bears,chicago-bears
+Elerson Smith,EDGE,8,8,6,4.25,4.0,3,6,,,,,7,Denver Broncos,denver-broncos
+Elijah Molden,CB,8,8,8,2.375,2.0,2,3,,,,,6,San Francisco 49ers,san-francisco-49ers
+Jevon Holland,S,8,8,8,2.5,2.5,2,3,,,,,6,Las Vegas Raiders,las-vegas-raiders
+Kelvin Joseph,CB,8,8,8,2.625,2.5,2,4,,,,,7,Chicago Bears,chicago-bears
+Malcolm Koonce,EDGE,8,8,6,5.375,5.0,4,7,,,,,6,Chicago Bears,chicago-bears
+Patrick Jones II,EDGE,8,8,8,4.125,4.0,3,6,,,,,7,Kansas City Chiefs,kansas-city-chiefs
+Terrace Marshall Jr.,WR,8,8,7,1.375,1.0,1,2,,,,,6,Philadelphia Eagles,philadelphia-eagles
+Trevon Grimes,WR,8,8,6,6.25,6.0,5,7,,,,,7,Chicago Bears,chicago-bears
+Tyson Campbell,CB,8,8,8,2.625,3.0,2,3,,,,,7,Dallas Cowboys,dallas-cowboys
+Aaron Banks,IOL,7,7,7,3.857142857142857,3.0,3,6,,,,,7,Baltimore Ravens,baltimore-ravens
+Amari Rodgers,WR,7,7,7,3.0,3.0,2,4,,,,,6,Chicago Bears,chicago-bears
+Ar'Darius Washington,S,7,7,6,3.5714285714285716,4.0,3,4,,,,,6,Dallas Cowboys,dallas-cowboys
+Bobby Brown III,DL,7,7,7,4.428571428571429,4.0,4,5,,,,,5,Green Bay Packers,green-bay-packers
+Cameron McGrone,LB,7,7,6,3.2857142857142856,3.0,3,4,,,,,6,Pittsburgh Steelers,pittsburgh-steelers
+Dayo Odeyingbo,EDGE,7,7,7,4.142857142857143,4.0,3,6,,,,,7,Baltimore Ravens,baltimore-ravens
+Javonte Williams,RB,7,7,7,2.0,2.0,1,3,,,,,5,Pittsburgh Steelers,pittsburgh-steelers
+Josh Imatorbhebhe,WR,7,7,6,5.571428571428571,6.0,4,6,,,,,5,Baltimore Ravens,baltimore-ravens
+Kellen Mond,QB,7,7,7,3.5714285714285716,4.0,2,5,,,,,7,Carolina Panthers,carolina-panthers
+Kenny Yeboah,TE,7,7,7,5.428571428571429,6.0,4,6,,,,,5,Philadelphia Eagles,philadelphia-eagles
+Landon Young,OT,7,7,7,6.285714285714286,6.0,5,7,,,,,4,Philadelphia Eagles,philadelphia-eagles
+Najee Harris,RB,7,7,7,1.0,1.0,1,1,,,,,3,Pittsburgh Steelers,pittsburgh-steelers
+Patrick Johnson,EDGE,7,7,7,5.571428571428571,6.0,4,7,,,,,6,Atlanta Falcons,atlanta-falcons
+Robert Hainsey,IOL,7,7,7,4.857142857142857,5.0,4,6,,,,,5,Green Bay Packers,green-bay-packers
+Sadarius Hutcherson,IOL,7,7,7,5.285714285714286,5.0,4,7,,,,,6,Arizona Cardinals,arizona-cardinals
+Tedarrell Slaton,DL,7,7,6,5.0,5.0,3,7,,,,,7,Arizona Cardinals,arizona-cardinals
+Tre Norwood,CB,7,7,7,6.142857142857143,6.0,5,7,,,,,7,Denver Broncos,denver-broncos
+Alaric Jackson,OT,6,6,6,6.333333333333333,6.0,6,7,,,,,6,Baltimore Ravens,baltimore-ravens
+Alijah Vera-Tucker,IOL,6,6,6,1.1666666666666667,1.0,1,2,,,,,4,Minnesota Vikings,minnesota-vikings
+Amon-Ra St. Brown,WR,6,6,6,2.8333333333333335,3.0,2,3,,,,,6,Arizona Cardinals,arizona-cardinals
+Caleb Farley,CB,6,6,6,1.3333333333333333,1.0,1,2,,,,,4,New York Jets,new-york-jets
+Christian Darrisaw,OT,6,6,6,1.0,1.0,1,1,,,,,4,Chicago Bears,chicago-bears
+Chuba Hubbard,RB,6,6,6,4.833333333333333,5.0,4,5,,,,,6,Arizona Cardinals,arizona-cardinals
+Daelin Hayes,EDGE,6,6,6,4.333333333333333,4.5,3,5,,,,,5,Kansas City Chiefs,kansas-city-chiefs
+Elijah Moore,WR,6,6,6,1.6666666666666667,2.0,1,2,,,,,4,Tennessee Titans,tennessee-titans
+Hunter Long,TE,6,6,5,3.0,3.0,3,3,,,,,5,Tennessee Titans,tennessee-titans
+JaCoby Stevens,S,6,6,6,5.333333333333333,6.0,2,7,,,,,6,Buffalo Bills,buffalo-bills
+Jamin Davis,LB,6,6,6,2.1666666666666665,2.0,1,3,,,,,5,Green Bay Packers,green-bay-packers
+Jonathan Marshall,DL,6,6,6,5.833333333333333,6.0,4,7,,,,,6,Cleveland Browns,cleveland-browns
+Joseph Ossai,EDGE,6,6,6,1.8333333333333333,2.0,1,2,,,,,5,Baltimore Ravens,baltimore-ravens
+Kary Vincent Jr.,CB,6,6,6,5.166666666666667,5.0,4,7,,,,,5,Las Vegas Raiders,las-vegas-raiders
+Kyle Pitts,TE,6,6,6,1.0,1.0,1,1,,,,,3,Atlanta Falcons,atlanta-falcons
+Monty Rice,LB,6,6,5,4.166666666666667,4.0,4,5,,,,,4,Dallas Cowboys,dallas-cowboys
+Patrick Surtain II,CB,6,6,6,1.0,1.0,1,1,,,,,3,Dallas Cowboys,dallas-cowboys
+Rachad Wildgoose II,CB,6,6,6,5.5,5.0,5,7,,,,,5,Pittsburgh Steelers,pittsburgh-steelers
+Robert Rochell,CB,6,6,6,5.166666666666667,4.5,4,7,,,,,6,Chicago Bears,chicago-bears
+Shakur Brown,CB,6,6,6,5.166666666666667,5.0,4,6,,,,,5,Baltimore Ravens,baltimore-ravens
+Shaun Wade,CB,6,6,5,4.0,4.0,4,4,,,,,4,Minnesota Vikings,minnesota-vikings
+Stone Forsythe,OT,6,6,4,3.8333333333333335,3.5,3,5,,,,,6,Chicago Bears,chicago-bears
+Talanoa Hufanga,S,6,6,5,3.5,3.5,3,4,,,,,6,Baltimore Ravens,baltimore-ravens
+Tamorrion Terry,WR,6,6,5,6.166666666666667,6.5,4,7,,,,,4,Chicago Bears,chicago-bears
+Carlos Basham Jr.,EDGE,5,5,5,2.4,2.0,2,3,,,,,4,Philadelphia Eagles,philadelphia-eagles
+Chauncey Golston,EDGE,5,5,5,5.4,5.0,5,6,,,,,4,Dallas Cowboys,dallas-cowboys
+Creed Humphrey,IOL,5,5,5,2.2,2.0,2,3,,,,,4,Pittsburgh Steelers,pittsburgh-steelers
+Darrick Forrest,S,5,5,5,6.4,6.0,6,7,,,,,5,Atlanta Falcons,atlanta-falcons
+Demetric Felton,RB,5,5,5,5.6,6.0,5,6,,,,,4,Green Bay Packers,green-bay-packers
+Deommodore Lenoir,CB,5,5,3,6.2,6.0,5,7,,,,,5,Atlanta Falcons,atlanta-falcons
+Derrick Barnes,LB,5,5,5,5.2,5.0,4,7,,,,,4,Indianapolis Colts,indianapolis-colts
+Devonta Smith,WR,5,5,5,1.0,1.0,1,1,,,,,3,Philadelphia Eagles,philadelphia-eagles
+Ihmir Smith-Marsette,WR,5,5,5,4.2,4.0,3,6,,,,,5,Denver Broncos,denver-broncos
+Jalen Mayfield,OT,5,5,5,2.2,2.0,1,3,,,,,5,Denver Broncos,denver-broncos
+Jamar Johnson,S,5,5,5,3.2,3.0,3,4,,,,,4,Philadelphia Eagles,philadelphia-eagles
+James Hudson,OT,5,5,5,3.0,3.0,3,3,,,,,4,Minnesota Vikings,minnesota-vikings
+Joe Tryon,EDGE,5,5,5,2.2,2.0,1,3,,,,,5,Baltimore Ravens,baltimore-ravens
+Josh Palmer,WR,5,5,5,4.6,5.0,4,5,,,,,4,Minnesota Vikings,minnesota-vikings
+Joshuah Bledsoe,S,5,5,5,5.6,6.0,5,6,,,,,3,Chicago Bears,chicago-bears
+Justin Fields,QB,5,5,5,1.0,1.0,1,1,,,,,3,San Francisco 49ers,san-francisco-49ers
+Landon Dickerson,IOL,5,5,5,1.6,2.0,1,2,,,,,3,Pittsburgh Steelers,pittsburgh-steelers
+Mac Jones,QB,5,5,5,1.0,1.0,1,1,,,,,4,San Francisco 49ers,san-francisco-49ers
+Marvin Wilson,DL,5,5,4,4.2,4.0,3,5,,,,,4,Minnesota Vikings,minnesota-vikings
+Ta'Quon Graham,DL,5,5,4,6.0,6.0,5,7,,,,,5,Cincinnati Bengals,cincinnati-bengals
+Tommy Tremble,TE,5,5,5,3.2,3.0,3,4,,,,,3,Pittsburgh Steelers,pittsburgh-steelers
+Trey Hill,IOL,5,5,5,4.8,5.0,4,5,,,,,5,Baltimore Ravens,baltimore-ravens
+Trey Smith,IOL,5,5,5,3.0,3.0,3,3,,,,,5,Arizona Cardinals,arizona-cardinals
+Trill Williams,CB,5,5,5,4.0,4.0,3,5,,,,,3,Denver Broncos,denver-broncos
+Wyatt Davis,IOL,5,5,5,2.0,2.0,2,2,,,,,5,Arizona Cardinals,arizona-cardinals
+Adrian Ealy,OT,4,4,4,5.25,5.5,4,6,,,,,4,Kansas City Chiefs,kansas-city-chiefs
+Alex Leatherwood,OT,4,4,4,1.75,2.0,1,2,,,,,4,Carolina Panthers,carolina-panthers
+Ben Cleveland,IOL,4,4,4,3.5,3.5,3,4,,,,,4,Cleveland Browns,cleveland-browns
+Buddy Johnson,LB,4,4,4,6.25,6.0,6,7,,,,,3,Chicago Bears,chicago-bears
+Christian Barmore,DL,4,4,4,1.25,1.0,1,2,,,,,4,Green Bay Packers,green-bay-packers
+D'Wayne Eskridge,WR,4,4,4,3.25,3.0,2,5,,,,,4,Kansas City Chiefs,kansas-city-chiefs
+Damar Hamlin,S,4,4,4,5.25,5.0,4,7,,,,,4,Chicago Bears,chicago-bears
+Darren Hall,CB,4,4,4,5.25,5.5,3,7,,,,,4,Buffalo Bills,buffalo-bills
+Divine Deablo,S,4,4,4,4.25,4.5,3,5,,,,,4,Cincinnati Bengals,cincinnati-bengals
+Elijah Mitchell,RB,4,4,4,6.25,6.5,5,7,,,,,3,Philadelphia Eagles,philadelphia-eagles
+Gregory Rousseau,EDGE,4,4,4,1.75,2.0,1,2,,,,,4,Atlanta Falcons,atlanta-falcons
+Jacob Harris,TE,4,4,4,5.75,5.5,5,7,,,,,4,Atlanta Falcons,atlanta-falcons
+Jamie Newman,QB,4,4,4,4.75,5.0,4,5,,,,,3,Minnesota Vikings,minnesota-vikings
+Jamien Sherwood,S,4,4,4,5.0,5.0,4,6,,,,,3,Minnesota Vikings,minnesota-vikings
+Jaret Patterson,RB,4,4,4,5.75,6.0,5,6,,,,,3,New England Patriots,new-england-patriots
+Jay Tufele,DL,4,4,4,3.0,3.0,3,3,,,,,4,Baltimore Ravens,baltimore-ravens
+Josh Ball,OT,4,4,1,6.0,6.0,6,6,,,,,4,Atlanta Falcons,atlanta-falcons
+Kwity Paye,EDGE,4,4,4,1.0,1.0,1,1,,,,,3,Indianapolis Colts,indianapolis-colts
+Marlon Tuipulotu,DL,4,4,4,3.5,3.5,3,4,,,,,4,Dallas Cowboys,dallas-cowboys
+Michael Strachan,WR,4,4,4,6.25,6.0,6,7,,,,,3,Dallas Cowboys,dallas-cowboys
+Mustafa Johnson,DL,4,4,4,6.75,7.0,6,7,,,,,3,Philadelphia Eagles,philadelphia-eagles
+Pete Werner,LB,4,4,4,2.75,3.0,2,3,,,,,4,Green Bay Packers,green-bay-packers
+Rashad Weaver,EDGE,4,4,4,3.75,3.5,3,5,,,,,4,Houston Texans,houston-texans
+Rashawn Slater,OT,4,4,4,1.0,1.0,1,1,,,,,4,Carolina Panthers,carolina-panthers
+Rhamondre Stevenson,RB,4,4,4,4.75,4.5,4,6,,,,,3,Philadelphia Eagles,philadelphia-eagles
+Ronnie Perkins,EDGE,4,4,4,2.25,2.0,2,3,,,,,4,Buffalo Bills,buffalo-bills
+Seth Williams,WR,4,4,4,4.0,4.0,4,4,,,,,3,Minnesota Vikings,minnesota-vikings
+Tony Poljan,TE,4,4,4,6.25,7.0,4,7,,,,,4,Denver Broncos,denver-broncos
+Trey Lance,QB,4,4,4,1.0,1.0,1,1,,,,,3,Atlanta Falcons,atlanta-falcons
+Anthony Schwartz,WR,3,3,3,4.0,4.0,4,4,,,,,2,Pittsburgh Steelers,pittsburgh-steelers
+Austin Watkins Jr.,WR,3,3,3,5.333333333333333,5.0,4,7,,,,,3,Jacksonville Jaguars,jacksonville-jaguars
+Azeez Ojulari,EDGE,3,3,3,1.0,1.0,1,1,,,,,3,Baltimore Ravens,baltimore-ravens
+Brenden Jaimes,OT,3,3,3,4.0,4.0,4,4,,,,,1,Dallas Cowboys,dallas-cowboys
+Cade Johnson,WR,3,3,1,4.333333333333333,4.0,4,5,,,,,3,Cleveland Browns,cleveland-browns
+Caden Sterns,S,3,3,3,4.666666666666667,5.0,4,5,,,,,3,Baltimore Ravens,baltimore-ravens
+Chris Evans,RB,3,3,3,6.333333333333333,6.0,6,7,,,,,2,Buffalo Bills,buffalo-bills
+Chris Rumph II,EDGE,3,3,3,4.0,4.0,2,6,,,,,3,Chicago Bears,chicago-bears
+D'Ante Smith,OT,3,3,3,4.333333333333333,4.0,4,5,,,,,2,Chicago Bears,chicago-bears
+D.J. Daniel,CB,3,3,3,6.333333333333333,7.0,5,7,,,,,3,Arizona Cardinals,arizona-cardinals
+Dax Milne,WR,3,3,3,6.0,7.0,4,7,,,,,3,Arizona Cardinals,arizona-cardinals
+Deonte Brown,IOL,3,3,3,3.0,3.0,3,3,,,,,3,Cleveland Browns,cleveland-browns
+Drake Jackson,IOL,3,3,3,5.0,5.0,4,6,,,,,3,Green Bay Packers,green-bay-packers
+Eric Stokes,CB,3,3,3,2.0,2.0,2,2,,,,,3,New England Patriots,new-england-patriots
+Feleipe Franks,QB,3,3,3,6.333333333333333,6.0,6,7,,,,,3,Denver Broncos,denver-broncos
+Hamsah Nasirildeen,S,3,3,3,3.0,3.0,3,3,,,,,3,Buffalo Bills,buffalo-bills
+Ja'Marr Chase,WR,3,3,3,1.0,1.0,1,1,,,,,2,Detroit Lions,detroit-lions
+Jackson Carman,OT,3,3,3,3.6666666666666665,3.0,3,5,,,,,2,Minnesota Vikings,minnesota-vikings
+Jaelan Phillips,EDGE,3,3,3,1.6666666666666667,2.0,1,2,,,,,3,Denver Broncos,denver-broncos
+Janarius Robinson,EDGE,3,3,3,5.0,6.0,3,6,,,,,3,Kansas City Chiefs,kansas-city-chiefs
+Jason Pinnock,CB,3,3,3,6.666666666666667,7.0,6,7,,,,,3,Indianapolis Colts,indianapolis-colts
+Jaylen Waddle,WR,3,3,3,1.0,1.0,1,1,,,,,2,New York Giants,new-york-giants
+Jayson Oweh,EDGE,3,3,3,1.0,1.0,1,1,,,,,2,Buffalo Bills,buffalo-bills
+Jermar Jefferson,RB,3,3,3,5.666666666666667,6.0,5,6,,,,,3,Atlanta Falcons,atlanta-falcons
+Jordon Scott,DL,3,3,3,6.333333333333333,6.0,6,7,,,,,3,Los Angeles Chargers,los-angeles-chargers
+Josh Myers,IOL,3,3,3,3.0,3.0,3,3,,,,,2,Philadelphia Eagles,philadelphia-eagles
+Justin Hilliard,LB,3,3,3,5.666666666666667,6.0,5,6,,,,,3,Buffalo Bills,buffalo-bills
+K.J. Britt,LB,3,3,3,6.666666666666667,7.0,6,7,,,,,3,Arizona Cardinals,arizona-cardinals
+Keith Taylor,CB,3,3,3,4.0,3.0,3,6,,,,,3,Green Bay Packers,green-bay-packers
+Khalil Herbert,RB,3,3,3,5.333333333333333,5.0,5,6,,,,,3,Atlanta Falcons,atlanta-falcons
+Khyiris Tonga,DL,3,3,3,6.0,6.0,5,7,,,,,2,New England Patriots,new-england-patriots
+Kylen Granson,TE,3,3,3,5.666666666666667,5.0,5,7,,,,,3,Baltimore Ravens,baltimore-ravens
+Malik Herring,DL,3,3,3,6.666666666666667,7.0,6,7,,,,,3,Baltimore Ravens,baltimore-ravens
+Marco Wilson,CB,3,3,3,5.0,5.0,4,6,,,,,3,Kansas City Chiefs,kansas-city-chiefs
+Marquez Stevenson,WR,3,3,3,5.333333333333333,5.0,4,7,,,,,3,Kansas City Chiefs,kansas-city-chiefs
+Michal Menet,IOL,3,3,3,6.0,7.0,4,7,,,,,3,Atlanta Falcons,atlanta-falcons
+Olaijah Griffin,CB,3,3,3,6.333333333333333,6.0,6,7,,,,,3,Carolina Panthers,carolina-panthers
+Osa Odighizuwa,DL,3,3,3,4.0,4.0,3,5,,,,,2,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Pat Freiermuth,TE,3,3,3,2.3333333333333335,2.0,2,3,,,,,3,Carolina Panthers,carolina-panthers
+Penei Sewell,OT,3,3,3,1.0,1.0,1,1,,,,,3,Cincinnati Bengals,cincinnati-bengals
+Quincy Roche,EDGE,3,3,3,3.6666666666666665,4.0,3,4,,,,,3,Denver Broncos,denver-broncos
+Rashod Bateman,WR,3,3,3,1.0,1.0,1,1,,,,,3,Chicago Bears,chicago-bears
+Riley Cole,LB,3,3,3,6.333333333333333,6.0,6,7,,,,,3,Atlanta Falcons,atlanta-falcons
+Shemar Jean-Charles,CB,3,3,3,5.333333333333333,6.0,4,6,,,,,3,Dallas Cowboys,dallas-cowboys
+Shi Smith,WR,3,3,3,5.0,5.0,4,6,,,,,3,Atlanta Falcons,atlanta-falcons
+Tay Gowan,CB,3,3,3,5.333333333333333,5.0,5,6,,,,,3,Buffalo Bills,buffalo-bills
+Tommy Togiai,DL,3,3,3,3.0,3.0,3,3,,,,,2,Dallas Cowboys,dallas-cowboys
+Tony Fields II,LB,3,3,3,5.333333333333333,5.0,5,6,,,,,3,Minnesota Vikings,minnesota-vikings
+Tre Brown,CB,3,3,3,5.666666666666667,6.0,5,6,,,,,3,Chicago Bears,chicago-bears
+Trevon Moehrig-Woodard,S,3,3,3,1.3333333333333333,1.0,1,2,,,,,2,Jacksonville Jaguars,jacksonville-jaguars
+Trey Sermon,RB,3,3,3,3.6666666666666665,4.0,3,4,,,,,3,Arizona Cardinals,arizona-cardinals
+Tristen Hoge,IOL,3,3,3,6.333333333333333,6.0,6,7,,,,,3,Dallas Cowboys,dallas-cowboys
+Tylan Wallace,WR,3,3,3,3.0,3.0,3,3,,,,,3,Green Bay Packers,green-bay-packers
+Tyler Shelvin,DL,3,3,3,4.0,4.0,3,5,,,,,3,Cleveland Browns,cleveland-browns
+Zach Wilson,QB,3,3,3,1.0,1.0,1,1,,,,,1,New York Jets,new-york-jets
+Zaven Collins,LB,3,3,3,1.3333333333333333,1.0,1,2,,,,,3,Cleveland Browns,cleveland-browns
+Aaron Robinson,CB,2,2,2,2.0,2.0,2,2,,,,,1,Chicago Bears,chicago-bears
+Amen Ogbongbemiga,LB,2,2,2,6.5,6.5,6,7,,,,,2,Kansas City Chiefs,kansas-city-chiefs
+Baron Browning,LB,2,2,2,2.0,2.0,2,2,,,,,2,Dallas Cowboys,dallas-cowboys
+Brandon Smith,WR,2,2,2,6.5,6.5,6,7,,,,,2,Pittsburgh Steelers,pittsburgh-steelers
+Bryan Mills,CB,2,2,2,5.5,5.5,5,6,,,,,2,Baltimore Ravens,baltimore-ravens
+Cameron Sample,EDGE,2,2,2,4.0,4.0,4,4,,,,,2,New England Patriots,new-england-patriots
+Camryn Bynum,CB,2,2,2,5.5,5.5,5,6,,,,,2,Dallas Cowboys,dallas-cowboys
+Christian Uphoff,S,2,2,2,6.0,6.0,6,6,,,,,2,Houston Texans,houston-texans
+Cole Van Lanen,OT,2,2,2,5.5,5.5,5,6,,,,,2,Baltimore Ravens,baltimore-ravens
+Daviyon Nixon,DL,2,2,2,2.5,2.5,2,3,,,,,2,Cleveland Browns,cleveland-browns
+Dez Fitzpatrick,WR,2,2,2,5.5,5.5,4,7,,,,,2,Cleveland Browns,cleveland-browns
+Garret Wallow,LB,2,2,2,5.5,5.5,5,6,,,,,2,Kansas City Chiefs,kansas-city-chiefs
+Grant Stuard,LB,2,2,2,7.0,7.0,7,7,,,,,2,Los Angeles Chargers,los-angeles-chargers
+Hamilcar Rashed Jr.,EDGE,2,2,2,5.0,5.0,4,6,,,,,2,Chicago Bears,chicago-bears
+Israel Mukuamu,CB,2,2,2,4.0,4.0,4,4,,,,,2,Indianapolis Colts,indianapolis-colts
+Jack Anderson,IOL,2,2,2,6.0,6.0,6,6,,,,,2,Denver Broncos,denver-broncos
+Jalen Camp,WR,2,2,2,6.5,6.5,6,7,,,,,2,Chicago Bears,chicago-bears
+Jaylen Twyman,DL,2,2,2,4.5,4.5,4,5,,,,,2,Minnesota Vikings,minnesota-vikings
+Jeremiah Owusu-Koramoah,LB,2,2,2,1.5,1.5,1,2,,,,,1,Denver Broncos,denver-broncos
+Jimmy Morrissey,IOL,2,2,2,5.5,5.5,5,6,,,,,2,Minnesota Vikings,minnesota-vikings
+John Bates,TE,2,2,2,5.0,5.0,5,5,,,,,2,Los Angeles Chargers,los-angeles-chargers
+Jose Borregales,K,2,2,2,3.5,3.5,0,7,,,,,2,Minnesota Vikings,minnesota-vikings
+K.J. Costello,QB,2,2,2,6.5,6.5,6,7,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Kayode Awosika,OT,2,2,2,6.5,6.5,6,7,,,,,2,Atlanta Falcons,atlanta-falcons
+Kene Nwangwu,RB,2,2,2,6.5,6.5,6,7,,,,,2,Green Bay Packers,green-bay-packers
+Kyle Trask,QB,2,2,2,4.0,4.0,4,4,,,,,2,Minnesota Vikings,minnesota-vikings
+Larnel Coleman,OT,2,2,2,7.0,7.0,7,7,,,,,2,Denver Broncos,denver-broncos
+Larry Rountree III,RB,2,2,2,6.0,6.0,5,7,,,,,2,Atlanta Falcons,atlanta-falcons
+Liam Eichenberg,OT,2,2,2,1.5,1.5,1,2,,,,,2,Detroit Lions,detroit-lions
+Luke Farrell,TE,2,2,2,7.0,7.0,7,7,,,,,2,Pittsburgh Steelers,pittsburgh-steelers
+Matt Bushman,TE,2,2,2,6.5,6.5,6,7,,,,,2,Cincinnati Bengals,cincinnati-bengals
+Nick Bolton,LB,2,2,2,2.5,2.5,2,3,,,,,2,Dallas Cowboys,dallas-cowboys
+Nick Eubanks,TE,2,2,2,5.5,5.5,5,6,,,,,2,Chicago Bears,chicago-bears
+Nick Niemann,LB,2,2,2,6.5,6.5,6,7,,,,,1,Dallas Cowboys,dallas-cowboys
+Noah Gray,TE,2,2,2,6.5,6.5,6,7,,,,,2,Atlanta Falcons,atlanta-falcons
+Paddy Fisher,LB,2,2,2,7.0,7.0,7,7,,,,,2,Green Bay Packers,green-bay-packers
+Paris Ford,S,2,2,2,6.5,6.5,6,7,,,,,2,Buffalo Bills,buffalo-bills
+Pooka Williams Jr.,RB,2,2,2,6.5,6.5,6,7,,,,,2,Carolina Panthers,carolina-panthers
+Pressley Harvin,P,2,2,2,7.0,7.0,7,7,,,,,2,Dallas Cowboys,dallas-cowboys
+Richard LeCounte,S,2,2,2,5.0,5.0,5,5,,,,,2,Minnesota Vikings,minnesota-vikings
+Sam Ehlinger,QB,2,2,2,5.5,5.5,4,7,,,,,2,Chicago Bears,chicago-bears
+Samuel Cosmi,OT,2,2,2,1.0,1.0,1,1,,,,,2,Green Bay Packers,green-bay-packers
+Shane Buechele,QB,2,2,2,7.0,7.0,7,7,,,,,2,Pittsburgh Steelers,pittsburgh-steelers
+Shaun Beyer,TE,2,2,2,6.5,6.5,6,7,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Tariq Thompson,S,2,2,2,5.0,5.0,5,5,,,,,2,Atlanta Falcons,atlanta-falcons
+Tommy Kraemer,IOL,2,2,2,6.0,6.0,6,6,,,,,2,Atlanta Falcons,atlanta-falcons
+Trevor Lawrence,QB,2,2,2,1.0,1.0,1,1,,,,,1,Jacksonville Jaguars,jacksonville-jaguars
+Tyler Coyle,S,2,2,2,7.0,7.0,7,7,,,,,2,Green Bay Packers,green-bay-packers
+Tyree Gillespie,S,2,2,2,4.5,4.5,4,5,,,,,2,Indianapolis Colts,indianapolis-colts
+Victor Dimukeje,EDGE,2,2,2,4.0,4.0,4,4,,,,,2,Dallas Cowboys,dallas-cowboys
+Whop Philyor,WR,2,2,2,6.5,6.5,6,7,,,,,2,Carolina Panthers,carolina-panthers
+William Bradley-King,EDGE,2,2,2,7.0,7.0,7,7,,,,,2,Arizona Cardinals,arizona-cardinals
+Zach Davidson,TE,2,2,2,6.0,6.0,6,6,,,,,2,Baltimore Ravens,baltimore-ravens
+Zech McPhearson,CB,2,2,2,4.5,4.5,4,5,,,,,2,Atlanta Falcons,atlanta-falcons
+Aashari Crosswell,S,1,1,1,7.0,7.0,7,7,,,,,1,Dallas Cowboys,dallas-cowboys
+Adetokunbo Ogundeji,EDGE,1,1,1,6.0,6.0,6,6,,,,,1,Denver Broncos,denver-broncos
+Anthony Hines III,LB,1,1,1,7.0,7.0,7,7,,,,,1,Arizona Cardinals,arizona-cardinals
+Antonio Phillips,CB,1,1,1,6.0,6.0,6,6,,,,,1,Chicago Bears,chicago-bears
+Ben Mason,RB,1,1,1,6.0,6.0,6,6,,,,,1,New York Jets,new-york-jets
+Brady Breeze,S,1,1,1,7.0,7.0,7,7,,,,,1,Denver Broncos,denver-broncos
+Brett Heggie,IOL,1,1,1,7.0,7.0,7,7,,,,,1,Arizona Cardinals,arizona-cardinals
+Brevin Jordan,TE,1,1,1,2.0,2.0,2,2,,,,,1,Arizona Cardinals,arizona-cardinals
+Briley Moore,TE,1,1,1,6.0,6.0,6,6,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Bryce Thompson,CB,1,1,1,5.0,5.0,5,5,,,,,1,Green Bay Packers,green-bay-packers
+C.J. Marable,RB,1,1,1,6.0,6.0,6,6,,,,,1,Atlanta Falcons,atlanta-falcons
+Carlo Kemp,DL,1,1,1,7.0,7.0,7,7,,,,,1,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Carson Green,IOL,1,1,1,7.0,7.0,7,7,,,,,1,Seattle Seahawks,seattle-seahawks
+Cary Angeline,TE,1,1,1,6.0,6.0,6,6,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Charles Snowden,LB,1,1,1,5.0,5.0,5,5,,,,,1,Arizona Cardinals,arizona-cardinals
+Connor Wedington,WR,1,1,1,7.0,7.0,7,7,,,,,1,Dallas Cowboys,dallas-cowboys
+Damonte Coxie,WR,1,1,1,7.0,7.0,7,7,,,,,1,Arizona Cardinals,arizona-cardinals
+Dan Moore Jr.,OT,1,1,1,5.0,5.0,5,5,,,,,1,Denver Broncos,denver-broncos
+Drew Dalman,IOL,1,1,1,4.0,4.0,4,4,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Drue Chrisman,P,1,1,1,7.0,7.0,7,7,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Eric Burrell,S,1,1,1,7.0,7.0,7,7,,,,,1,Dallas Cowboys,dallas-cowboys
+Ernest Jones,LB,1,1,1,6.0,6.0,6,6,,,,,1,Las Vegas Raiders,las-vegas-raiders
+Erroll Thompson,LB,1,1,1,7.0,7.0,7,7,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Frank Darby,WR,1,1,1,6.0,6.0,6,6,,,,,1,Cincinnati Bengals,cincinnati-bengals
+Greg Eisworth II,S,1,1,1,7.0,7.0,7,7,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Jack Stoll,TE,1,1,1,6.0,6.0,6,6,,,,,1,Atlanta Falcons,atlanta-falcons
+Jamar Watson,EDGE,1,1,1,7.0,7.0,7,7,,,,,1,Denver Broncos,denver-broncos
+James Smith,P,1,1,1,7.0,7.0,7,7,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Javian Hawkins,RB,1,1,1,5.0,5.0,5,5,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Jaylon Moore,OT,1,1,1,6.0,6.0,6,6,,,,,1,Cleveland Browns,cleveland-browns
+Jonathan Adams Jr.,WR,1,1,1,6.0,6.0,6,6,,,,,1,Green Bay Packers,green-bay-packers
+Jordan Smith,EDGE,1,1,1,3.0,3.0,3,3,,,,,1,Miami Dolphins,miami-dolphins
+Jordyn Peters,S,1,1,1,6.0,6.0,6,6,,,,,1,Kansas City Chiefs,kansas-city-chiefs
+Kenneth Gainwell,RB,1,1,1,3.0,3.0,3,3,,,,,1,New York Jets,new-york-jets
+Lamont Wade,S,1,1,1,7.0,7.0,7,7,,,,,1,Indianapolis Colts,indianapolis-colts
+Levi Onwuzurike,DL,1,1,1,1.0,1.0,1,1,,,,,1,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Mark Gilbert,CB,1,1,1,6.0,6.0,6,6,,,,,1,Green Bay Packers,green-bay-packers
+Max Duffy,P,1,1,1,7.0,7.0,7,7,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Naquan Jones,DL,1,1,1,6.0,6.0,6,6,,,,,1,Green Bay Packers,green-bay-packers
+Nate Hobbs,CB,1,1,1,7.0,7.0,7,7,,,,,1,Cleveland Browns,cleveland-browns
+Peyton Ramsey,QB,1,1,1,6.0,6.0,6,6,,,,,1,Tennessee Titans,tennessee-titans
+Pro Wells,TE,1,1,1,6.0,6.0,6,6,,,,,1,Dallas Cowboys,dallas-cowboys
+Quintin Morris,TE,1,1,1,6.0,6.0,6,6,,,,,1,Chicago Bears,chicago-bears
+Quinton Bohanna,DL,1,1,1,7.0,7.0,7,7,,,,,1,Tennessee Titans,tennessee-titans
+Racey McMath,WR,1,1,1,6.0,6.0,6,6,,,,,1,New England Patriots,new-england-patriots
+Rico Bussey,WR,1,1,1,7.0,7.0,7,7,,,,,1,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Rodarius Williams,CB,1,1,1,4.0,4.0,4,4,,,,,1,Cleveland Browns,cleveland-browns
+Rondale Moore,WR,1,1,1,2.0,2.0,2,2,,,,,1,Chicago Bears,chicago-bears
+Royce Newman,IOL,1,1,1,6.0,6.0,6,6,,,,,1,Carolina Panthers,carolina-panthers
+Sage Surratt,WR,1,1,1,7.0,7.0,7,7,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Shawn Davis,S,1,1,1,5.0,5.0,5,5,,,,,1,Green Bay Packers,green-bay-packers
+Tarron Jackson,EDGE,1,1,1,7.0,7.0,7,7,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Tim Jones,WR,1,1,1,7.0,7.0,7,7,,,,,1,Green Bay Packers,green-bay-packers
+Tommy Doyle,OT,1,1,1,6.0,6.0,6,6,,,,,1,Philadelphia Eagles,philadelphia-eagles
+Tutu Atwell,WR,1,1,1,3.0,3.0,3,3,,,,,1,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Warren Jackson,WR,1,1,1,7.0,7.0,7,7,,,,,1,Los Angeles Rams,los-angeles-rams
+William Sherman,OT,1,1,1,7.0,7.0,7,7,,,,,1,Pittsburgh Steelers,pittsburgh-steelers
+Wyatt Hubert,EDGE,1,1,1,7.0,7.0,7,7,,,,,1,New England Patriots,new-england-patriots

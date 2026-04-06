@@ -1,0 +1,752 @@
+team_slug,team_name,player_name,player_position,mock_count,unique_mocks,unique_authors,avg_round,median_round,min_round,max_round,avg_pick,median_pick,min_pick,max_pick,team_mock_count,share_of_team_picks
+arizona-cardinals,Arizona Cardinals,Jahdae Barron,CB,29,29,29,1.0,1.0,1,1,16.0,16.0,16,16,245,0.11836734693877551
+arizona-cardinals,Arizona Cardinals,Will Johnson,CB,29,29,29,1.0,1.0,1,1,16.0,16.0,16,16,245,0.11836734693877551
+arizona-cardinals,Arizona Cardinals,Mykel Williams,EDGE,21,21,20,1.0,1.0,1,1,16.0,16.0,14,18,245,0.08571428571428572
+arizona-cardinals,Arizona Cardinals,Derrick Harmon,DL,20,20,19,1.0,1.0,1,1,16.55,16.0,10,23,245,0.08163265306122448
+arizona-cardinals,Arizona Cardinals,Mike Green,EDGE,16,15,15,1.0,1.0,1,1,16.0,16.0,16,16,245,0.0653061224489796
+arizona-cardinals,Arizona Cardinals,Shemar Stewart,EDGE,16,16,16,1.0,1.0,1,1,16.0,16.0,16,16,245,0.0653061224489796
+arizona-cardinals,Arizona Cardinals,Walter Nolen,DL,16,16,16,1.0,1.0,1,1,16.0,16.0,16,16,245,0.0653061224489796
+arizona-cardinals,Arizona Cardinals,Jihaad Campbell,LB,14,14,14,1.0,1.0,1,1,16.0,16.0,16,16,245,0.05714285714285714
+arizona-cardinals,Arizona Cardinals,Josh Simmons,OT,11,11,11,1.0,1.0,1,1,16.0,16.0,16,16,245,0.044897959183673466
+arizona-cardinals,Arizona Cardinals,Kelvin Banks,OT,11,11,11,1.0,1.0,1,1,16.0,16.0,16,16,245,0.044897959183673466
+arizona-cardinals,Arizona Cardinals,Kenneth Grant,DL,9,9,9,1.0,1.0,1,1,16.0,16.0,16,16,245,0.036734693877551024
+arizona-cardinals,Arizona Cardinals,Matthew Golden,WR,9,9,9,1.0,1.0,1,1,16.0,16.0,16,16,245,0.036734693877551024
+arizona-cardinals,Arizona Cardinals,Tyler Booker,IOL,9,9,9,1.0,1.0,1,1,16.0,16.0,16,16,245,0.036734693877551024
+arizona-cardinals,Arizona Cardinals,Donovan Ezeiruaku,EDGE,5,5,5,1.0,1.0,1,1,16.0,16.0,16,16,245,0.02040816326530612
+arizona-cardinals,Arizona Cardinals,Jalon Walker,EDGE,5,5,5,1.0,1.0,1,1,16.0,16.0,16,16,245,0.02040816326530612
+arizona-cardinals,Arizona Cardinals,Tetairoa McMillan,WR,5,5,5,1.0,1.0,1,1,16.0,16.0,16,16,245,0.02040816326530612
+arizona-cardinals,Arizona Cardinals,James Pearce Jr.,EDGE,4,4,4,1.0,1.0,1,1,16.0,16.0,16,16,245,0.0163265306122449
+arizona-cardinals,Arizona Cardinals,Emeka Egbuka,WR,3,3,3,1.0,1.0,1,1,16.0,16.0,16,16,245,0.012244897959183673
+arizona-cardinals,Arizona Cardinals,Mason Graham,DL,3,3,3,1.0,1.0,1,1,16.0,16.0,16,16,245,0.012244897959183673
+arizona-cardinals,Arizona Cardinals,Josh Conerly Jr.,OT,2,2,2,1.0,1.0,1,1,16.0,16.0,16,16,245,0.00816326530612245
+arizona-cardinals,Arizona Cardinals,Nick Emmanwori,S,2,2,2,1.0,1.0,1,1,16.0,16.0,16,16,245,0.00816326530612245
+arizona-cardinals,Arizona Cardinals,Shedeur Sanders,QB,1,1,1,1.0,1.0,1,1,8.0,8.0,8,8,245,0.004081632653061225
+arizona-cardinals,Arizona Cardinals,Will Campbell,OT,1,1,1,1.0,1.0,1,1,13.0,13.0,13,13,245,0.004081632653061225
+arizona-cardinals,Arizona Cardinals,Armand Membou,OT,1,1,1,1.0,1.0,1,1,16.0,16.0,16,16,245,0.004081632653061225
+arizona-cardinals,Arizona Cardinals,J.T. Tuimoloau,EDGE,1,1,1,1.0,1.0,1,1,16.0,16.0,16,16,245,0.004081632653061225
+arizona-cardinals,Arizona Cardinals,Jack Sawyer,EDGE,1,1,1,1.0,1.0,1,1,16.0,16.0,16,16,245,0.004081632653061225
+arizona-cardinals,Arizona Cardinals,Jonah Savaiinaea,IOL,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,245,0.004081632653061225
+atlanta-falcons,Atlanta Falcons,Mike Green,EDGE,84,84,80,1.0,1.0,1,1,15.023809523809524,15.0,15,17,243,0.345679012345679
+atlanta-falcons,Atlanta Falcons,Mykel Williams,EDGE,54,54,52,1.0,1.0,1,1,15.12962962962963,15.0,15,22,243,0.2222222222222222
+atlanta-falcons,Atlanta Falcons,Shemar Stewart,EDGE,24,24,23,1.0,1.0,1,1,15.208333333333334,15.0,15,20,243,0.09876543209876543
+atlanta-falcons,Atlanta Falcons,James Pearce Jr.,EDGE,22,22,22,1.0,1.0,1,1,15.272727272727273,15.0,13,23,243,0.09053497942386832
+atlanta-falcons,Atlanta Falcons,Jalon Walker,EDGE,14,14,14,1.0,1.0,1,1,14.928571428571429,15.0,14,15,243,0.05761316872427984
+atlanta-falcons,Atlanta Falcons,Jihaad Campbell,LB,13,13,13,1.0,1.0,1,1,15.0,15.0,15,15,243,0.053497942386831275
+atlanta-falcons,Atlanta Falcons,Will Johnson,CB,7,7,7,1.0,1.0,1,1,15.0,15.0,15,15,243,0.02880658436213992
+atlanta-falcons,Atlanta Falcons,Donovan Ezeiruaku,EDGE,5,5,5,1.0,1.0,1,1,18.2,15.0,15,31,243,0.0205761316872428
+atlanta-falcons,Atlanta Falcons,Walter Nolen,DL,4,4,4,1.0,1.0,1,1,15.0,15.0,15,15,243,0.01646090534979424
+atlanta-falcons,Atlanta Falcons,Luther Burden,WR,3,3,3,1.0,1.0,1,1,15.0,15.0,15,15,243,0.012345679012345678
+atlanta-falcons,Atlanta Falcons,Jahdae Barron,CB,2,2,2,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00823045267489712
+atlanta-falcons,Atlanta Falcons,Matthew Golden,WR,2,2,2,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00823045267489712
+atlanta-falcons,Atlanta Falcons,Carson Schwesinger,LB,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Derrick Harmon,DL,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Kenneth Grant,DL,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Malaki Starks,S,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Nick Emmanwori,S,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Omarion Hampton,RB,1,1,1,1.0,1.0,1,1,15.0,15.0,15,15,243,0.00411522633744856
+atlanta-falcons,Atlanta Falcons,Bradyn Swinson,EDGE,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,243,0.00411522633744856
+baltimore-ravens,Baltimore Ravens,Malaki Starks,S,62,62,62,1.0,1.0,1,1,27.06451612903226,27.0,27,31,241,0.2572614107883817
+baltimore-ravens,Baltimore Ravens,Tyler Booker,IOL,24,24,22,1.0,1.0,1,1,27.0,27.0,27,27,241,0.0995850622406639
+baltimore-ravens,Baltimore Ravens,Donovan Ezeiruaku,EDGE,20,20,20,1.0,1.0,1,1,27.5,27.0,27,32,241,0.08298755186721991
+baltimore-ravens,Baltimore Ravens,James Pearce Jr.,EDGE,18,18,17,1.0,1.0,1,1,27.22222222222222,27.0,27,31,241,0.07468879668049792
+baltimore-ravens,Baltimore Ravens,Nick Emmanwori,S,17,17,17,1.0,1.0,1,1,26.529411764705884,27.0,19,27,241,0.07053941908713693
+baltimore-ravens,Baltimore Ravens,Grey Zabel,IOL,13,13,13,1.0,1.0,1,1,27.0,27.0,27,27,241,0.05394190871369295
+baltimore-ravens,Baltimore Ravens,Shemar Stewart,EDGE,13,13,13,1.0,1.0,1,1,27.0,27.0,27,27,241,0.05394190871369295
+baltimore-ravens,Baltimore Ravens,Mike Green,EDGE,10,10,10,1.0,1.0,1,1,27.0,27.0,27,27,241,0.04149377593360996
+baltimore-ravens,Baltimore Ravens,Derrick Harmon,DL,9,9,9,1.0,1.0,1,1,27.0,27.0,27,27,241,0.03734439834024896
+baltimore-ravens,Baltimore Ravens,Kenneth Grant,DL,8,8,8,1.0,1.0,1,1,26.25,27.0,21,27,241,0.03319502074688797
+baltimore-ravens,Baltimore Ravens,Mykel Williams,EDGE,6,6,6,1.0,1.0,1,1,27.0,27.0,27,27,241,0.024896265560165973
+baltimore-ravens,Baltimore Ravens,Donovan Jackson,IOL,5,5,5,1.0,1.0,1,1,27.0,27.0,27,27,241,0.02074688796680498
+baltimore-ravens,Baltimore Ravens,Walter Nolen,DL,5,5,5,1.0,1.0,1,1,27.0,27.0,27,27,241,0.02074688796680498
+baltimore-ravens,Baltimore Ravens,Josh Simmons,OT,4,4,4,1.0,1.0,1,1,27.0,27.0,27,27,241,0.016597510373443983
+baltimore-ravens,Baltimore Ravens,Jihaad Campbell,LB,3,3,3,1.0,1.0,1,1,27.0,27.0,27,27,241,0.012448132780082987
+baltimore-ravens,Baltimore Ravens,Maxwell Hairston,CB,3,3,3,1.0,1.0,1,1,27.0,27.0,27,27,241,0.012448132780082987
+baltimore-ravens,Baltimore Ravens,Will Johnson,CB,3,3,3,1.0,1.0,1,1,27.0,27.0,27,27,241,0.012448132780082987
+baltimore-ravens,Baltimore Ravens,Emeka Egbuka,WR,2,2,2,1.0,1.0,1,1,27.0,27.0,27,27,241,0.008298755186721992
+baltimore-ravens,Baltimore Ravens,Jahdae Barron,CB,2,2,2,1.0,1.0,1,1,27.0,27.0,27,27,241,0.008298755186721992
+baltimore-ravens,Baltimore Ravens,Josh Conerly Jr.,OT,2,2,2,1.0,1.0,1,1,27.0,27.0,27,27,241,0.008298755186721992
+baltimore-ravens,Baltimore Ravens,Nic Scourton,EDGE,2,2,2,1.0,1.0,1,1,27.0,27.0,27,27,241,0.008298755186721992
+baltimore-ravens,Baltimore Ravens,Trey Amos,CB,2,2,2,1.0,1.0,1,1,27.0,27.0,27,27,241,0.008298755186721992
+baltimore-ravens,Baltimore Ravens,Benjamin Morrison,CB,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Kelvin Banks,OT,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Luther Burden,WR,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Matthew Golden,WR,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Oluwafemi Oladejo,EDGE,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Omarr Norman-Lott,DL,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+baltimore-ravens,Baltimore Ravens,Ty Robinson,DL,1,1,1,1.0,1.0,1,1,27.0,27.0,27,27,241,0.004149377593360996
+buffalo-bills,Buffalo Bills,Trey Amos,CB,26,26,26,1.0,1.0,1,1,29.653846153846153,30.0,21,30,232,0.11206896551724138
+buffalo-bills,Buffalo Bills,Maxwell Hairston,CB,22,22,22,1.0,1.0,1,1,29.954545454545453,30.0,29,30,232,0.09482758620689655
+buffalo-bills,Buffalo Bills,Derrick Harmon,DL,20,20,20,1.0,1.0,1,1,29.7,30.0,24,30,232,0.08620689655172414
+buffalo-bills,Buffalo Bills,Walter Nolen,DL,18,18,18,1.0,1.0,1,1,29.666666666666668,30.0,24,30,232,0.07758620689655173
+buffalo-bills,Buffalo Bills,Malaki Starks,S,17,17,17,1.0,1.0,1,1,29.41176470588235,30.0,24,30,232,0.07327586206896551
+buffalo-bills,Buffalo Bills,Kenneth Grant,DL,15,15,15,1.0,1.0,1,1,29.4,30.0,21,30,232,0.06465517241379311
+buffalo-bills,Buffalo Bills,Nick Emmanwori,S,15,15,15,1.0,1.0,1,1,29.533333333333335,30.0,24,30,232,0.06465517241379311
+buffalo-bills,Buffalo Bills,Jahdae Barron,CB,14,14,13,1.0,1.0,1,1,28.642857142857142,30.0,23,30,232,0.0603448275862069
+buffalo-bills,Buffalo Bills,Will Johnson,CB,13,13,13,1.0,1.0,1,1,28.846153846153847,30.0,21,30,232,0.05603448275862069
+buffalo-bills,Buffalo Bills,Tyleik Williams,DL,8,8,8,1.0,1.0,1,1,30.0,30.0,30,30,232,0.034482758620689655
+buffalo-bills,Buffalo Bills,Emeka Egbuka,WR,7,7,7,1.0,1.0,1,1,30.0,30.0,30,30,232,0.03017241379310345
+buffalo-bills,Buffalo Bills,Luther Burden,WR,7,7,7,1.0,1.0,1,1,30.0,30.0,30,30,232,0.03017241379310345
+buffalo-bills,Buffalo Bills,Shavon Revel Jr.,CB,6,6,6,1.0,1.0,1,1,30.0,30.0,30,30,232,0.02586206896551724
+buffalo-bills,Buffalo Bills,James Pearce Jr.,EDGE,5,5,5,1.0,1.0,1,1,30.0,30.0,30,30,232,0.021551724137931036
+buffalo-bills,Buffalo Bills,Nic Scourton,EDGE,5,5,5,1.0,1.0,1,1,30.0,30.0,30,30,232,0.021551724137931036
+buffalo-bills,Buffalo Bills,Matthew Golden,WR,4,4,4,1.0,1.0,1,1,28.5,30.0,24,30,232,0.017241379310344827
+buffalo-bills,Buffalo Bills,Mike Green,EDGE,4,4,4,1.0,1.0,1,1,28.5,30.0,24,30,232,0.017241379310344827
+buffalo-bills,Buffalo Bills,Shemar Stewart,EDGE,4,4,4,1.0,1.0,1,1,30.0,30.0,30,30,232,0.017241379310344827
+buffalo-bills,Buffalo Bills,Jihaad Campbell,LB,3,3,3,1.0,1.0,1,1,30.0,30.0,30,30,232,0.01293103448275862
+buffalo-bills,Buffalo Bills,Mykel Williams,EDGE,3,3,3,1.0,1.0,1,1,28.0,30.0,24,30,232,0.01293103448275862
+buffalo-bills,Buffalo Bills,Benjamin Morrison,CB,2,2,2,1.0,1.0,1,1,30.0,30.0,30,30,232,0.008620689655172414
+buffalo-bills,Buffalo Bills,Bradyn Swinson,EDGE,2,2,2,1.0,1.0,1,1,30.0,30.0,30,30,232,0.008620689655172414
+buffalo-bills,Buffalo Bills,Donovan Ezeiruaku,EDGE,2,2,2,1.0,1.0,1,1,30.0,30.0,30,30,232,0.008620689655172414
+buffalo-bills,Buffalo Bills,Donovan Jackson,IOL,2,2,2,1.0,1.0,1,1,30.0,30.0,30,30,232,0.008620689655172414
+buffalo-bills,Buffalo Bills,Tyler Booker,IOL,2,2,2,1.0,1.0,1,1,30.0,30.0,30,30,232,0.008620689655172414
+buffalo-bills,Buffalo Bills,Tetairoa McMillan,WR,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,232,0.004310344827586207
+buffalo-bills,Buffalo Bills,Grey Zabel,IOL,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,232,0.004310344827586207
+buffalo-bills,Buffalo Bills,Jayden Higgins,WR,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,232,0.004310344827586207
+buffalo-bills,Buffalo Bills,Jordan James,RB,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,232,0.004310344827586207
+buffalo-bills,Buffalo Bills,Landon Jackson,EDGE,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,232,0.004310344827586207
+buffalo-bills,Buffalo Bills,Xavier Watts,S,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,232,0.004310344827586207
+carolina-panthers,Carolina Panthers,Jalon Walker,EDGE,161,161,155,1.0,1.0,1,1,8.198757763975156,8.0,7,18,250,0.644
+carolina-panthers,Carolina Panthers,Mason Graham,DL,21,21,21,1.0,1.0,1,1,8.0,8.0,8,8,250,0.084
+carolina-panthers,Carolina Panthers,Tetairoa McMillan,WR,12,12,12,1.0,1.0,1,1,8.0,8.0,8,8,250,0.048
+carolina-panthers,Carolina Panthers,Mike Green,EDGE,10,10,9,1.0,1.0,1,1,8.4,8.0,8,12,250,0.04
+carolina-panthers,Carolina Panthers,Mykel Williams,EDGE,10,10,10,1.0,1.0,1,1,8.0,8.0,8,8,250,0.04
+carolina-panthers,Carolina Panthers,Shemar Stewart,EDGE,6,6,6,1.0,1.0,1,1,8.0,8.0,8,8,250,0.024
+carolina-panthers,Carolina Panthers,Tyler Warren,TE,6,6,6,1.0,1.0,1,1,8.5,8.0,8,11,250,0.024
+carolina-panthers,Carolina Panthers,Will Johnson,CB,4,4,4,1.0,1.0,1,1,8.0,8.0,8,8,250,0.016
+carolina-panthers,Carolina Panthers,Walter Nolen,DL,4,4,4,1.0,1.0,1,1,9.75,9.5,8,12,250,0.016
+carolina-panthers,Carolina Panthers,Abdul Carter,EDGE,3,3,3,1.0,1.0,1,1,4.0,4.0,3,5,250,0.012
+carolina-panthers,Carolina Panthers,Jahdae Barron,CB,3,3,3,1.0,1.0,1,1,12.0,12.0,8,16,250,0.012
+carolina-panthers,Carolina Panthers,James Pearce Jr.,EDGE,2,2,2,1.0,1.0,1,1,8.0,8.0,8,8,250,0.008
+carolina-panthers,Carolina Panthers,Matthew Golden,WR,2,2,2,1.0,1.0,1,1,8.0,8.0,8,8,250,0.008
+carolina-panthers,Carolina Panthers,Nick Emmanwori,S,2,2,2,1.0,1.0,1,1,8.0,8.0,8,8,250,0.008
+carolina-panthers,Carolina Panthers,Will Campbell,OT,2,2,2,1.0,1.0,1,1,8.0,8.0,8,8,250,0.008
+carolina-panthers,Carolina Panthers,Kenneth Grant,DL,1,1,1,1.0,1.0,1,1,8.0,8.0,8,8,250,0.004
+carolina-panthers,Carolina Panthers,Donovan Ezeiruaku,EDGE,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,250,0.004
+chicago-bears,Chicago Bears,Ashton Jeanty,RB,71,71,67,1.0,1.0,1,1,7.704225352112676,10.0,3,10,257,0.27626459143968873
+chicago-bears,Chicago Bears,Tyler Warren,TE,43,43,43,1.0,1.0,1,1,9.953488372093023,10.0,8,10,257,0.16731517509727625
+chicago-bears,Chicago Bears,Kelvin Banks,OT,40,40,40,1.0,1.0,1,1,10.225,10.0,9,16,257,0.1556420233463035
+chicago-bears,Chicago Bears,Armand Membou,OT,16,16,16,1.0,1.0,1,1,10.0,10.0,10,10,257,0.0622568093385214
+chicago-bears,Chicago Bears,Mason Graham,DL,13,13,13,1.0,1.0,1,1,10.0,10.0,10,10,257,0.05058365758754864
+chicago-bears,Chicago Bears,Mykel Williams,EDGE,11,11,9,1.0,1.0,1,1,10.0,10.0,10,10,257,0.042801556420233464
+chicago-bears,Chicago Bears,Colston Loveland,TE,10,10,10,1.0,1.0,1,1,10.0,10.0,10,10,257,0.038910505836575876
+chicago-bears,Chicago Bears,Omarion Hampton,RB,10,10,10,1.0,1.0,1,1,11.5,10.0,10,22,257,0.038910505836575876
+chicago-bears,Chicago Bears,Will Campbell,OT,7,7,7,1.0,1.0,1,1,10.0,10.0,10,10,257,0.027237354085603113
+chicago-bears,Chicago Bears,Shemar Stewart,EDGE,6,6,6,1.0,1.0,1,1,10.0,10.0,10,10,257,0.023346303501945526
+chicago-bears,Chicago Bears,Josh Simmons,OT,4,4,4,1.0,1.0,1,1,10.0,10.0,10,10,257,0.01556420233463035
+chicago-bears,Chicago Bears,Malaki Starks,S,3,3,3,1.0,1.0,1,1,13.333333333333334,10.0,10,20,257,0.011673151750972763
+chicago-bears,Chicago Bears,Mike Green,EDGE,3,3,3,1.0,1.0,1,1,10.0,10.0,10,10,257,0.011673151750972763
+chicago-bears,Chicago Bears,Tetairoa McMillan,WR,3,3,3,1.0,1.0,1,1,10.0,10.0,10,10,257,0.011673151750972763
+chicago-bears,Chicago Bears,Jalon Walker,EDGE,2,2,2,1.0,1.0,1,1,10.0,10.0,10,10,257,0.007782101167315175
+chicago-bears,Chicago Bears,Walter Nolen,DL,2,2,2,1.0,1.0,1,1,10.0,10.0,10,10,257,0.007782101167315175
+chicago-bears,Chicago Bears,Will Johnson,CB,2,2,2,1.0,1.0,1,1,11.5,11.5,10,13,257,0.007782101167315175
+chicago-bears,Chicago Bears,Aireontae Ersery,OT,2,2,2,1.0,1.0,1,1,16.5,16.5,10,23,257,0.007782101167315175
+chicago-bears,Chicago Bears,Emeka Egbuka,WR,2,2,2,1.0,1.0,1,1,18.0,18.0,10,26,257,0.007782101167315175
+chicago-bears,Chicago Bears,TreVeyon Henderson,RB,2,2,2,1.0,1.0,1,1,30.0,30.0,30,30,257,0.007782101167315175
+chicago-bears,Chicago Bears,Jahdae Barron,CB,1,1,1,1.0,1.0,1,1,10.0,10.0,10,10,257,0.0038910505836575876
+chicago-bears,Chicago Bears,Luther Burden,WR,1,1,1,1.0,1.0,1,1,10.0,10.0,10,10,257,0.0038910505836575876
+chicago-bears,Chicago Bears,James Pearce Jr.,EDGE,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,257,0.0038910505836575876
+chicago-bears,Chicago Bears,Nick Emmanwori,S,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,257,0.0038910505836575876
+chicago-bears,Chicago Bears,Landon Jackson,EDGE,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,257,0.0038910505836575876
+cincinnati-bengals,Cincinnati Bengals,Mike Green,EDGE,43,43,43,1.0,1.0,1,1,17.0,17.0,17,17,242,0.17768595041322313
+cincinnati-bengals,Cincinnati Bengals,Walter Nolen,DL,35,35,35,1.0,1.0,1,1,17.0,17.0,17,17,242,0.1446280991735537
+cincinnati-bengals,Cincinnati Bengals,Shemar Stewart,EDGE,31,31,31,1.0,1.0,1,1,16.870967741935484,17.0,15,17,242,0.128099173553719
+cincinnati-bengals,Cincinnati Bengals,Derrick Harmon,DL,30,30,29,1.0,1.0,1,1,17.0,17.0,17,17,242,0.12396694214876033
+cincinnati-bengals,Cincinnati Bengals,Mykel Williams,EDGE,15,15,15,1.0,1.0,1,1,17.0,17.0,17,17,242,0.06198347107438017
+cincinnati-bengals,Cincinnati Bengals,Jihaad Campbell,LB,14,14,14,1.0,1.0,1,1,17.0,17.0,17,17,242,0.05785123966942149
+cincinnati-bengals,Cincinnati Bengals,Kenneth Grant,DL,11,11,10,1.0,1.0,1,1,17.0,17.0,17,17,242,0.045454545454545456
+cincinnati-bengals,Cincinnati Bengals,James Pearce Jr.,EDGE,9,9,9,1.0,1.0,1,1,17.0,17.0,17,17,242,0.0371900826446281
+cincinnati-bengals,Cincinnati Bengals,Jahdae Barron,CB,8,8,8,1.0,1.0,1,1,17.0,17.0,17,17,242,0.03305785123966942
+cincinnati-bengals,Cincinnati Bengals,Malaki Starks,S,7,7,7,1.0,1.0,1,1,17.0,17.0,17,17,242,0.028925619834710745
+cincinnati-bengals,Cincinnati Bengals,Tyler Booker,IOL,7,7,7,1.0,1.0,1,1,17.0,17.0,17,17,242,0.028925619834710745
+cincinnati-bengals,Cincinnati Bengals,Will Johnson,CB,5,5,5,1.0,1.0,1,1,17.0,17.0,17,17,242,0.02066115702479339
+cincinnati-bengals,Cincinnati Bengals,Grey Zabel,IOL,4,4,4,1.0,1.0,1,1,17.0,17.0,17,17,242,0.01652892561983471
+cincinnati-bengals,Cincinnati Bengals,Jalon Walker,EDGE,4,4,4,1.0,1.0,1,1,15.0,17.0,9,17,242,0.01652892561983471
+cincinnati-bengals,Cincinnati Bengals,Donovan Ezeiruaku,EDGE,3,3,3,1.0,1.0,1,1,17.0,17.0,17,17,242,0.012396694214876033
+cincinnati-bengals,Cincinnati Bengals,Kelvin Banks,OT,3,3,3,1.0,1.0,1,1,17.0,17.0,17,17,242,0.012396694214876033
+cincinnati-bengals,Cincinnati Bengals,Nick Emmanwori,S,3,3,3,1.0,1.0,1,1,17.0,17.0,17,17,242,0.012396694214876033
+cincinnati-bengals,Cincinnati Bengals,Donovan Jackson,IOL,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Josh Conerly Jr.,OT,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Kevin Winston Jr.,S,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Mason Graham,DL,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Maxwell Hairston,CB,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Omarion Hampton,RB,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Tetairoa McMillan,WR,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cincinnati-bengals,Cincinnati Bengals,Xavier Watts,S,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,242,0.004132231404958678
+cleveland-browns,Cleveland Browns,Travis Hunter,CB,226,226,218,1.0,1.0,1,1,2.0,2.0,2,2,286,0.7902097902097902
+cleveland-browns,Cleveland Browns,Shedeur Sanders,QB,20,20,20,1.0,1.0,1,1,16.5,19.5,2,32,286,0.06993006993006994
+cleveland-browns,Cleveland Browns,Abdul Carter,EDGE,13,13,13,1.0,1.0,1,1,2.0,2.0,2,2,286,0.045454545454545456
+cleveland-browns,Cleveland Browns,Jaxson Dart,QB,12,12,12,1.0,1.0,1,1,26.583333333333332,29.0,2,32,286,0.04195804195804196
+cleveland-browns,Cleveland Browns,Jalen Milroe,QB,10,10,10,1.0,1.0,1,1,28.1,29.5,20,32,286,0.03496503496503497
+cleveland-browns,Cleveland Browns,Cameron Ward,QB,3,3,3,1.0,1.0,1,1,1.6666666666666667,2.0,1,2,286,0.01048951048951049
+cleveland-browns,Cleveland Browns,Mason Graham,DL,1,1,1,1.0,1.0,1,1,2.0,2.0,2,2,286,0.0034965034965034965
+cleveland-browns,Cleveland Browns,Omarion Hampton,RB,1,1,1,1.0,1.0,1,1,17.0,17.0,17,17,286,0.0034965034965034965
+dallas-cowboys,Dallas Cowboys,Tetairoa McMillan,WR,97,97,91,1.0,1.0,1,1,11.948453608247423,12.0,8,12,246,0.3943089430894309
+dallas-cowboys,Dallas Cowboys,Matthew Golden,WR,84,84,83,1.0,1.0,1,1,12.273809523809524,12.0,12,25,246,0.34146341463414637
+dallas-cowboys,Dallas Cowboys,Omarion Hampton,RB,10,10,10,1.0,1.0,1,1,13.0,12.0,12,22,246,0.04065040650406504
+dallas-cowboys,Dallas Cowboys,Tyler Booker,IOL,7,7,7,1.0,1.0,1,1,12.0,12.0,12,12,246,0.028455284552845527
+dallas-cowboys,Dallas Cowboys,Tyler Warren,TE,7,7,7,1.0,1.0,1,1,12.0,12.0,12,12,246,0.028455284552845527
+dallas-cowboys,Dallas Cowboys,Ashton Jeanty,RB,6,6,6,1.0,1.0,1,1,8.333333333333334,8.0,5,12,246,0.024390243902439025
+dallas-cowboys,Dallas Cowboys,Will Johnson,CB,5,5,5,1.0,1.0,1,1,12.0,12.0,12,12,246,0.02032520325203252
+dallas-cowboys,Dallas Cowboys,Jalon Walker,EDGE,4,4,4,1.0,1.0,1,1,11.0,12.0,8,12,246,0.016260162601626018
+dallas-cowboys,Dallas Cowboys,Kelvin Banks,OT,4,4,4,1.0,1.0,1,1,12.0,12.0,12,12,246,0.016260162601626018
+dallas-cowboys,Dallas Cowboys,Grey Zabel,IOL,3,3,3,1.0,1.0,1,1,14.0,12.0,12,18,246,0.012195121951219513
+dallas-cowboys,Dallas Cowboys,Mike Green,EDGE,3,3,3,1.0,1.0,1,1,12.0,12.0,12,12,246,0.012195121951219513
+dallas-cowboys,Dallas Cowboys,Colston Loveland,TE,2,2,2,1.0,1.0,1,1,12.0,12.0,12,12,246,0.008130081300813009
+dallas-cowboys,Dallas Cowboys,Walter Nolen,DL,2,2,2,1.0,1.0,1,1,12.0,12.0,12,12,246,0.008130081300813009
+dallas-cowboys,Dallas Cowboys,Armand Membou,OT,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Jahdae Barron,CB,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Jihaad Campbell,LB,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Luther Burden,WR,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Malaki Starks,S,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Mykel Williams,EDGE,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Nick Emmanwori,S,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Quinshon Judkins,RB,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Shemar Stewart,EDGE,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,Will Campbell,OT,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,246,0.0040650406504065045
+dallas-cowboys,Dallas Cowboys,TreVeyon Henderson,RB,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,246,0.0040650406504065045
+denver-broncos,Denver Broncos,Omarion Hampton,RB,131,131,124,1.0,1.0,1,1,19.778625954198475,20.0,9,20,237,0.5527426160337553
+denver-broncos,Denver Broncos,TreVeyon Henderson,RB,39,39,39,1.0,1.0,1,1,20.153846153846153,20.0,20,26,237,0.16455696202531644
+denver-broncos,Denver Broncos,Matthew Golden,WR,13,13,13,1.0,1.0,1,1,20.0,20.0,20,20,237,0.05485232067510549
+denver-broncos,Denver Broncos,Colston Loveland,TE,10,10,10,1.0,1.0,1,1,18.6,20.0,13,20,237,0.04219409282700422
+denver-broncos,Denver Broncos,Emeka Egbuka,WR,10,10,10,1.0,1.0,1,1,20.0,20.0,20,20,237,0.04219409282700422
+denver-broncos,Denver Broncos,Luther Burden,WR,9,9,9,1.0,1.0,1,1,20.0,20.0,20,20,237,0.0379746835443038
+denver-broncos,Denver Broncos,Tetairoa McMillan,WR,6,6,6,1.0,1.0,1,1,20.0,20.0,20,20,237,0.02531645569620253
+denver-broncos,Denver Broncos,Tyler Warren,TE,4,4,4,1.0,1.0,1,1,14.5,13.0,12,20,237,0.016877637130801686
+denver-broncos,Denver Broncos,Ashton Jeanty,RB,3,3,3,1.0,1.0,1,1,16.666666666666668,20.0,10,20,237,0.012658227848101266
+denver-broncos,Denver Broncos,Kenneth Grant,DL,2,2,2,1.0,1.0,1,1,20.0,20.0,20,20,237,0.008438818565400843
+denver-broncos,Denver Broncos,Walter Nolen,DL,2,2,2,1.0,1.0,1,1,20.0,20.0,20,20,237,0.008438818565400843
+denver-broncos,Denver Broncos,Will Johnson,CB,2,2,2,1.0,1.0,1,1,20.0,20.0,20,20,237,0.008438818565400843
+denver-broncos,Denver Broncos,Grey Zabel,IOL,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,237,0.004219409282700422
+denver-broncos,Denver Broncos,Jihaad Campbell,LB,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,237,0.004219409282700422
+denver-broncos,Denver Broncos,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,237,0.004219409282700422
+denver-broncos,Denver Broncos,Malaki Starks,S,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,237,0.004219409282700422
+denver-broncos,Denver Broncos,Trey Amos,CB,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,237,0.004219409282700422
+denver-broncos,Denver Broncos,Tyleik Williams,DL,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,237,0.004219409282700422
+detroit-lions,Detroit Lions,Donovan Ezeiruaku,EDGE,42,42,40,1.0,1.0,1,1,28.0,28.0,28,28,236,0.17796610169491525
+detroit-lions,Detroit Lions,Tyler Booker,IOL,28,28,28,1.0,1.0,1,1,27.928571428571427,28.0,22,32,236,0.11864406779661017
+detroit-lions,Detroit Lions,Grey Zabel,IOL,21,21,21,1.0,1.0,1,1,28.142857142857142,28.0,28,31,236,0.08898305084745763
+detroit-lions,Detroit Lions,James Pearce Jr.,EDGE,18,18,18,1.0,1.0,1,1,28.0,28.0,28,28,236,0.07627118644067797
+detroit-lions,Detroit Lions,Shemar Stewart,EDGE,17,17,16,1.0,1.0,1,1,26.705882352941178,28.0,18,28,236,0.07203389830508475
+detroit-lions,Detroit Lions,Mykel Williams,EDGE,11,11,11,1.0,1.0,1,1,27.636363636363637,28.0,24,28,236,0.046610169491525424
+detroit-lions,Detroit Lions,Kenneth Grant,DL,10,10,10,1.0,1.0,1,1,28.0,28.0,28,28,236,0.0423728813559322
+detroit-lions,Detroit Lions,Donovan Jackson,IOL,8,8,8,1.0,1.0,1,1,28.0,28.0,28,28,236,0.03389830508474576
+detroit-lions,Detroit Lions,Nic Scourton,EDGE,8,8,8,1.0,1.0,1,1,28.0,28.0,28,28,236,0.03389830508474576
+detroit-lions,Detroit Lions,Derrick Harmon,DL,7,7,7,1.0,1.0,1,1,28.0,28.0,28,28,236,0.029661016949152543
+detroit-lions,Detroit Lions,Mike Green,EDGE,7,7,7,1.0,1.0,1,1,28.0,28.0,28,28,236,0.029661016949152543
+detroit-lions,Detroit Lions,Matthew Golden,WR,6,6,6,1.0,1.0,1,1,28.0,28.0,28,28,236,0.025423728813559324
+detroit-lions,Detroit Lions,Maxwell Hairston,CB,6,6,6,1.0,1.0,1,1,28.0,28.0,28,28,236,0.025423728813559324
+detroit-lions,Detroit Lions,Walter Nolen,DL,6,6,6,1.0,1.0,1,1,28.0,28.0,28,28,236,0.025423728813559324
+detroit-lions,Detroit Lions,Josh Conerly Jr.,OT,5,5,5,1.0,1.0,1,1,28.0,28.0,28,28,236,0.0211864406779661
+detroit-lions,Detroit Lions,Luther Burden,WR,5,5,5,1.0,1.0,1,1,28.0,28.0,28,28,236,0.0211864406779661
+detroit-lions,Detroit Lions,Jihaad Campbell,LB,4,4,4,1.0,1.0,1,1,28.0,28.0,28,28,236,0.01694915254237288
+detroit-lions,Detroit Lions,Tyleik Williams,DL,3,3,3,1.0,1.0,1,1,28.0,28.0,28,28,236,0.012711864406779662
+detroit-lions,Detroit Lions,Emeka Egbuka,WR,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,J.T. Tuimoloau,EDGE,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Josh Simmons,OT,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Kelvin Banks,OT,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Landon Jackson,EDGE,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Nick Emmanwori,S,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Tate Ratledge,IOL,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Will Johnson,CB,2,2,2,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00847457627118644
+detroit-lions,Detroit Lions,Armand Membou,OT,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,Benjamin Morrison,CB,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,Darius Alexander,DL,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,Harold Fannin Jr.,TE,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,Jayden Higgins,WR,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,Jaylen Reed,S,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,Shavon Revel Jr.,CB,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+detroit-lions,Detroit Lions,T.J. Sanders,DL,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,236,0.00423728813559322
+green-bay-packers,Green Bay Packers,Jahdae Barron,CB,37,37,37,1.0,1.0,1,1,22.64864864864865,23.0,14,31,242,0.15289256198347106
+green-bay-packers,Green Bay Packers,Maxwell Hairston,CB,35,35,35,1.0,1.0,1,1,23.0,23.0,23,23,242,0.1446280991735537
+green-bay-packers,Green Bay Packers,Matthew Golden,WR,28,28,28,1.0,1.0,1,1,22.75,23.0,18,23,242,0.11570247933884298
+green-bay-packers,Green Bay Packers,Emeka Egbuka,WR,20,20,20,1.0,1.0,1,1,22.8,23.0,19,23,242,0.08264462809917356
+green-bay-packers,Green Bay Packers,Shemar Stewart,EDGE,18,18,18,1.0,1.0,1,1,23.0,23.0,23,23,242,0.0743801652892562
+green-bay-packers,Green Bay Packers,Will Johnson,CB,16,16,16,1.0,1.0,1,1,23.0,23.0,23,23,242,0.06611570247933884
+green-bay-packers,Green Bay Packers,Mykel Williams,EDGE,12,12,12,1.0,1.0,1,1,23.0,23.0,23,23,242,0.049586776859504134
+green-bay-packers,Green Bay Packers,Donovan Ezeiruaku,EDGE,10,10,10,1.0,1.0,1,1,23.0,23.0,23,23,242,0.04132231404958678
+green-bay-packers,Green Bay Packers,Tetairoa McMillan,WR,10,10,10,1.0,1.0,1,1,22.2,23.0,15,23,242,0.04132231404958678
+green-bay-packers,Green Bay Packers,Trey Amos,CB,8,8,8,1.0,1.0,1,1,23.0,23.0,23,23,242,0.03305785123966942
+green-bay-packers,Green Bay Packers,Walter Nolen,DL,8,8,8,1.0,1.0,1,1,23.0,23.0,23,23,242,0.03305785123966942
+green-bay-packers,Green Bay Packers,Derrick Harmon,DL,7,7,7,1.0,1.0,1,1,24.0,23.0,23,30,242,0.028925619834710745
+green-bay-packers,Green Bay Packers,Shavon Revel Jr.,CB,6,6,6,1.0,1.0,1,1,23.0,23.0,23,23,242,0.024793388429752067
+green-bay-packers,Green Bay Packers,Kenneth Grant,DL,5,5,5,1.0,1.0,1,1,23.0,23.0,23,23,242,0.02066115702479339
+green-bay-packers,Green Bay Packers,Luther Burden,WR,4,4,4,1.0,1.0,1,1,23.0,23.0,23,23,242,0.01652892561983471
+green-bay-packers,Green Bay Packers,James Pearce Jr.,EDGE,3,3,3,1.0,1.0,1,1,23.0,23.0,23,23,242,0.012396694214876033
+green-bay-packers,Green Bay Packers,Malaki Starks,S,2,2,2,1.0,1.0,1,1,23.0,23.0,23,23,242,0.008264462809917356
+green-bay-packers,Green Bay Packers,Azareye'h Thomas,CB,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Demetrius Knight,LB,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Jalon Walker,EDGE,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Jayden Higgins,WR,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Josaiah Stewart,EDGE,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Josh Conerly Jr.,OT,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Kelvin Banks,OT,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Mike Green,EDGE,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Nick Emmanwori,S,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Tyler Booker,IOL,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+green-bay-packers,Green Bay Packers,Will Campbell,OT,1,1,1,1.0,1.0,1,1,23.0,23.0,23,23,242,0.004132231404958678
+houston-texans,Houston Texans,Josh Simmons,OT,67,67,64,1.0,1.0,1,1,24.895522388059703,25.0,18,25,242,0.2768595041322314
+houston-texans,Houston Texans,Emeka Egbuka,WR,35,35,35,1.0,1.0,1,1,24.885714285714286,25.0,21,25,242,0.1446280991735537
+houston-texans,Houston Texans,Tyler Booker,IOL,32,32,32,1.0,1.0,1,1,25.34375,25.0,25,32,242,0.1322314049586777
+houston-texans,Houston Texans,Grey Zabel,IOL,27,27,27,1.0,1.0,1,1,24.74074074074074,25.0,18,25,242,0.1115702479338843
+houston-texans,Houston Texans,Josh Conerly Jr.,OT,22,22,22,1.0,1.0,1,1,24.727272727272727,25.0,19,25,242,0.09090909090909091
+houston-texans,Houston Texans,Donovan Jackson,IOL,19,19,19,1.0,1.0,1,1,25.0,25.0,25,25,242,0.07851239669421488
+houston-texans,Houston Texans,Kelvin Banks,OT,15,15,15,1.0,1.0,1,1,23.866666666666667,25.0,12,25,242,0.06198347107438017
+houston-texans,Houston Texans,Matthew Golden,WR,7,7,7,1.0,1.0,1,1,24.0,25.0,18,25,242,0.028925619834710745
+houston-texans,Houston Texans,Luther Burden,WR,6,6,5,1.0,1.0,1,1,25.0,25.0,25,25,242,0.024793388429752067
+houston-texans,Houston Texans,Shemar Stewart,EDGE,2,2,2,1.0,1.0,1,1,25.0,25.0,25,25,242,0.008264462809917356
+houston-texans,Houston Texans,Walter Nolen,DL,2,2,2,1.0,1.0,1,1,25.0,25.0,25,25,242,0.008264462809917356
+houston-texans,Houston Texans,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Jahdae Barron,CB,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Kenneth Grant,DL,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Marcus Mbow,IOL,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Shedeur Sanders,QB,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Tate Ratledge,IOL,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Tetairoa McMillan,WR,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+houston-texans,Houston Texans,Tyleik Williams,DL,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,242,0.004132231404958678
+indianapolis-colts,Indianapolis Colts,Colston Loveland,TE,133,133,129,1.0,1.0,1,1,13.924812030075188,14.0,9,23,245,0.5428571428571428
+indianapolis-colts,Indianapolis Colts,Tyler Warren,TE,52,52,51,1.0,1.0,1,1,13.576923076923077,14.0,6,15,245,0.21224489795918366
+indianapolis-colts,Indianapolis Colts,Jihaad Campbell,LB,15,15,15,1.0,1.0,1,1,14.0,14.0,14,14,245,0.061224489795918366
+indianapolis-colts,Indianapolis Colts,Shemar Stewart,EDGE,6,6,6,1.0,1.0,1,1,14.0,14.0,14,14,245,0.024489795918367346
+indianapolis-colts,Indianapolis Colts,Malaki Starks,S,5,5,5,1.0,1.0,1,1,14.0,14.0,14,14,245,0.02040816326530612
+indianapolis-colts,Indianapolis Colts,Armand Membou,OT,4,4,4,1.0,1.0,1,1,14.0,14.0,14,14,245,0.0163265306122449
+indianapolis-colts,Indianapolis Colts,Jalon Walker,EDGE,4,4,4,1.0,1.0,1,1,14.0,14.0,14,14,245,0.0163265306122449
+indianapolis-colts,Indianapolis Colts,Mike Green,EDGE,4,4,4,1.0,1.0,1,1,17.0,14.0,14,26,245,0.0163265306122449
+indianapolis-colts,Indianapolis Colts,Grey Zabel,IOL,3,3,3,1.0,1.0,1,1,14.0,14.0,14,14,245,0.012244897959183673
+indianapolis-colts,Indianapolis Colts,Josh Simmons,OT,3,3,3,1.0,1.0,1,1,14.0,14.0,14,14,245,0.012244897959183673
+indianapolis-colts,Indianapolis Colts,Kelvin Banks,OT,2,2,2,1.0,1.0,1,1,14.0,14.0,14,14,245,0.00816326530612245
+indianapolis-colts,Indianapolis Colts,Kenneth Grant,DL,2,2,2,1.0,1.0,1,1,14.0,14.0,14,14,245,0.00816326530612245
+indianapolis-colts,Indianapolis Colts,Mykel Williams,EDGE,2,2,2,1.0,1.0,1,1,14.0,14.0,14,14,245,0.00816326530612245
+indianapolis-colts,Indianapolis Colts,Tyler Booker,IOL,2,2,2,1.0,1.0,1,1,14.0,14.0,14,14,245,0.00816326530612245
+indianapolis-colts,Indianapolis Colts,Will Johnson,CB,2,2,2,1.0,1.0,1,1,14.0,14.0,14,14,245,0.00816326530612245
+indianapolis-colts,Indianapolis Colts,Donovan Ezeiruaku,EDGE,1,1,1,1.0,1.0,1,1,14.0,14.0,14,14,245,0.004081632653061225
+indianapolis-colts,Indianapolis Colts,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,14.0,14.0,14,14,245,0.004081632653061225
+indianapolis-colts,Indianapolis Colts,Jahdae Barron,CB,1,1,1,1.0,1.0,1,1,14.0,14.0,14,14,245,0.004081632653061225
+indianapolis-colts,Indianapolis Colts,Nick Emmanwori,S,1,1,1,1.0,1.0,1,1,14.0,14.0,14,14,245,0.004081632653061225
+indianapolis-colts,Indianapolis Colts,Tetairoa McMillan,WR,1,1,1,1.0,1.0,1,1,14.0,14.0,14,14,245,0.004081632653061225
+indianapolis-colts,Indianapolis Colts,Shavon Revel Jr.,CB,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,245,0.004081632653061225
+jacksonville-jaguars,Jacksonville Jaguars,Mason Graham,DL,97,97,89,1.0,1.0,1,1,5.103092783505154,5.0,5,10,251,0.38645418326693226
+jacksonville-jaguars,Jacksonville Jaguars,Ashton Jeanty,RB,76,76,75,1.0,1.0,1,1,5.0,5.0,5,5,251,0.30278884462151395
+jacksonville-jaguars,Jacksonville Jaguars,Tetairoa McMillan,WR,35,35,35,1.0,1.0,1,1,7.485714285714286,5.0,5,12,251,0.1394422310756972
+jacksonville-jaguars,Jacksonville Jaguars,Tyler Warren,TE,17,17,17,1.0,1.0,1,1,6.705882352941177,5.0,5,10,251,0.06772908366533864
+jacksonville-jaguars,Jacksonville Jaguars,Armand Membou,OT,4,4,4,1.0,1.0,1,1,5.0,5.0,5,5,251,0.01593625498007968
+jacksonville-jaguars,Jacksonville Jaguars,Jalon Walker,EDGE,4,4,4,1.0,1.0,1,1,5.0,5.0,5,5,251,0.01593625498007968
+jacksonville-jaguars,Jacksonville Jaguars,Will Campbell,OT,4,4,4,1.0,1.0,1,1,5.0,5.0,5,5,251,0.01593625498007968
+jacksonville-jaguars,Jacksonville Jaguars,Will Johnson,CB,4,4,4,1.0,1.0,1,1,6.25,5.0,5,10,251,0.01593625498007968
+jacksonville-jaguars,Jacksonville Jaguars,Travis Hunter,CB,3,3,3,1.0,1.0,1,1,5.0,5.0,5,5,251,0.01195219123505976
+jacksonville-jaguars,Jacksonville Jaguars,Kelvin Banks,OT,3,3,3,1.0,1.0,1,1,8.333333333333334,10.0,5,10,251,0.01195219123505976
+jacksonville-jaguars,Jacksonville Jaguars,Walter Nolen,DL,1,1,1,1.0,1.0,1,1,10.0,10.0,10,10,251,0.00398406374501992
+jacksonville-jaguars,Jacksonville Jaguars,Derrick Harmon,DL,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,251,0.00398406374501992
+jacksonville-jaguars,Jacksonville Jaguars,Luther Burden,WR,1,1,1,1.0,1.0,1,1,20.0,20.0,20,20,251,0.00398406374501992
+jacksonville-jaguars,Jacksonville Jaguars,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,251,0.00398406374501992
+kansas-city-chiefs,Kansas City Chiefs,Josh Simmons,OT,73,73,72,1.0,1.0,1,1,30.095890410958905,31.0,15,31,239,0.3054393305439331
+kansas-city-chiefs,Kansas City Chiefs,Josh Conerly Jr.,OT,50,50,48,1.0,1.0,1,1,30.82,31.0,23,31,239,0.20920502092050208
+kansas-city-chiefs,Kansas City Chiefs,Donovan Jackson,IOL,15,15,15,1.0,1.0,1,1,31.0,31.0,31,31,239,0.06276150627615062
+kansas-city-chiefs,Kansas City Chiefs,Derrick Harmon,DL,10,10,10,1.0,1.0,1,1,31.0,31.0,31,31,239,0.04184100418410042
+kansas-city-chiefs,Kansas City Chiefs,Grey Zabel,IOL,9,9,9,1.0,1.0,1,1,31.0,31.0,31,31,239,0.03765690376569038
+kansas-city-chiefs,Kansas City Chiefs,James Pearce Jr.,EDGE,9,9,9,1.0,1.0,1,1,31.0,31.0,31,31,239,0.03765690376569038
+kansas-city-chiefs,Kansas City Chiefs,Tyler Booker,IOL,8,8,8,1.0,1.0,1,1,30.125,31.0,24,31,239,0.03347280334728033
+kansas-city-chiefs,Kansas City Chiefs,Kelvin Banks,OT,7,7,7,1.0,1.0,1,1,29.0,31.0,24,31,239,0.029288702928870293
+kansas-city-chiefs,Kansas City Chiefs,Walter Nolen,DL,6,6,6,1.0,1.0,1,1,29.333333333333332,31.0,21,31,239,0.02510460251046025
+kansas-city-chiefs,Kansas City Chiefs,Colston Loveland,TE,5,5,5,1.0,1.0,1,1,30.4,31.0,28,31,239,0.02092050209205021
+kansas-city-chiefs,Kansas City Chiefs,Kenneth Grant,DL,5,5,5,1.0,1.0,1,1,31.0,31.0,31,31,239,0.02092050209205021
+kansas-city-chiefs,Kansas City Chiefs,Mike Green,EDGE,5,5,5,1.0,1.0,1,1,31.0,31.0,31,31,239,0.02092050209205021
+kansas-city-chiefs,Kansas City Chiefs,TreVeyon Henderson,RB,5,5,5,1.0,1.0,1,1,31.0,31.0,31,31,239,0.02092050209205021
+kansas-city-chiefs,Kansas City Chiefs,Aireontae Ersery,OT,4,4,4,1.0,1.0,1,1,30.0,31.0,27,31,239,0.016736401673640166
+kansas-city-chiefs,Kansas City Chiefs,Luther Burden,WR,3,3,3,1.0,1.0,1,1,31.0,31.0,31,31,239,0.012552301255230125
+kansas-city-chiefs,Kansas City Chiefs,Shemar Stewart,EDGE,3,3,3,1.0,1.0,1,1,31.0,31.0,31,31,239,0.012552301255230125
+kansas-city-chiefs,Kansas City Chiefs,Tyleik Williams,DL,3,3,3,1.0,1.0,1,1,31.0,31.0,31,31,239,0.012552301255230125
+kansas-city-chiefs,Kansas City Chiefs,Malaki Starks,S,2,2,2,1.0,1.0,1,1,31.0,31.0,31,31,239,0.008368200836820083
+kansas-city-chiefs,Kansas City Chiefs,Mason Taylor,TE,2,2,2,1.0,1.0,1,1,31.0,31.0,31,31,239,0.008368200836820083
+kansas-city-chiefs,Kansas City Chiefs,Trey Amos,CB,2,2,2,1.0,1.0,1,1,31.0,31.0,31,31,239,0.008368200836820083
+kansas-city-chiefs,Kansas City Chiefs,Mykel Williams,EDGE,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Matthew Golden,WR,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Armand Membou,OT,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Donovan Ezeiruaku,EDGE,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Jalon Walker,EDGE,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Jonah Savaiinaea,IOL,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Lathan Ransom,S,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Maxwell Hairston,CB,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Nic Scourton,EDGE,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Nick Emmanwori,S,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Omarion Hampton,RB,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+kansas-city-chiefs,Kansas City Chiefs,Tetairoa McMillan,WR,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,239,0.0041841004184100415
+las-vegas-raiders,Las Vegas Raiders,Ashton Jeanty,RB,79,79,77,1.0,1.0,1,1,5.987341772151899,6.0,4,9,256,0.30859375
+las-vegas-raiders,Las Vegas Raiders,Armand Membou,OT,66,66,61,1.0,1.0,1,1,5.984848484848484,6.0,5,6,256,0.2578125
+las-vegas-raiders,Las Vegas Raiders,Mason Graham,DL,32,32,32,1.0,1.0,1,1,6.0,6.0,6,6,256,0.125
+las-vegas-raiders,Las Vegas Raiders,Kelvin Banks,OT,24,24,24,1.0,1.0,1,1,6.0,6.0,6,6,256,0.09375
+las-vegas-raiders,Las Vegas Raiders,Tetairoa McMillan,WR,12,12,12,1.0,1.0,1,1,6.416666666666667,6.0,6,11,256,0.046875
+las-vegas-raiders,Las Vegas Raiders,Jalon Walker,EDGE,8,8,8,1.0,1.0,1,1,6.0,6.0,6,6,256,0.03125
+las-vegas-raiders,Las Vegas Raiders,Will Johnson,CB,8,8,8,1.0,1.0,1,1,6.625,6.0,6,11,256,0.03125
+las-vegas-raiders,Las Vegas Raiders,Will Campbell,OT,6,6,6,1.0,1.0,1,1,6.0,6.0,6,6,256,0.0234375
+las-vegas-raiders,Las Vegas Raiders,Jahdae Barron,CB,5,5,5,1.0,1.0,1,1,6.0,6.0,6,6,256,0.01953125
+las-vegas-raiders,Las Vegas Raiders,Shedeur Sanders,QB,5,5,5,1.0,1.0,1,1,5.4,6.0,3,6,256,0.01953125
+las-vegas-raiders,Las Vegas Raiders,Emeka Egbuka,WR,3,3,3,1.0,1.0,1,1,23.0,31.0,6,32,256,0.01171875
+las-vegas-raiders,Las Vegas Raiders,Jihaad Campbell,LB,2,2,2,1.0,1.0,1,1,10.0,10.0,6,14,256,0.0078125
+las-vegas-raiders,Las Vegas Raiders,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,6.0,6.0,6,6,256,0.00390625
+las-vegas-raiders,Las Vegas Raiders,Matthew Golden,WR,1,1,1,1.0,1.0,1,1,6.0,6.0,6,6,256,0.00390625
+las-vegas-raiders,Las Vegas Raiders,Jalen Milroe,QB,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,256,0.00390625
+las-vegas-raiders,Las Vegas Raiders,Omarion Hampton,RB,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,256,0.00390625
+las-vegas-raiders,Las Vegas Raiders,Quinshon Judkins,RB,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,256,0.00390625
+las-vegas-raiders,Las Vegas Raiders,Jaxson Dart,QB,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,256,0.00390625
+los-angeles-chargers,Los Angeles Chargers,Kenneth Grant,DL,95,95,95,1.0,1.0,1,1,22.0,22.0,22,22,241,0.3941908713692946
+los-angeles-chargers,Los Angeles Chargers,Colston Loveland,TE,41,41,39,1.0,1.0,1,1,21.658536585365855,22.0,11,22,241,0.17012448132780084
+los-angeles-chargers,Los Angeles Chargers,Matthew Golden,WR,14,14,14,1.0,1.0,1,1,22.0,22.0,22,22,241,0.058091286307053944
+los-angeles-chargers,Los Angeles Chargers,Derrick Harmon,DL,10,10,10,1.0,1.0,1,1,22.0,22.0,22,22,241,0.04149377593360996
+los-angeles-chargers,Los Angeles Chargers,Emeka Egbuka,WR,10,10,9,1.0,1.0,1,1,22.0,22.0,22,22,241,0.04149377593360996
+los-angeles-chargers,Los Angeles Chargers,Shemar Stewart,EDGE,7,7,7,1.0,1.0,1,1,21.142857142857142,22.0,16,22,241,0.029045643153526972
+los-angeles-chargers,Los Angeles Chargers,Will Johnson,CB,7,7,7,1.0,1.0,1,1,21.285714285714285,22.0,17,22,241,0.029045643153526972
+los-angeles-chargers,Los Angeles Chargers,Tetairoa McMillan,WR,6,6,6,1.0,1.0,1,1,20.833333333333332,22.0,15,22,241,0.024896265560165973
+los-angeles-chargers,Los Angeles Chargers,Walter Nolen,DL,6,6,6,1.0,1.0,1,1,22.0,22.0,22,22,241,0.024896265560165973
+los-angeles-chargers,Los Angeles Chargers,Mason Taylor,TE,5,5,5,1.0,1.0,1,1,22.0,22.0,22,22,241,0.02074688796680498
+los-angeles-chargers,Los Angeles Chargers,Luther Burden,WR,4,4,4,1.0,1.0,1,1,22.0,22.0,22,22,241,0.016597510373443983
+los-angeles-chargers,Los Angeles Chargers,Malaki Starks,S,4,4,4,1.0,1.0,1,1,22.0,22.0,22,22,241,0.016597510373443983
+los-angeles-chargers,Los Angeles Chargers,Mike Green,EDGE,4,4,4,1.0,1.0,1,1,22.0,22.0,22,22,241,0.016597510373443983
+los-angeles-chargers,Los Angeles Chargers,Mykel Williams,EDGE,4,4,4,1.0,1.0,1,1,19.5,22.0,12,22,241,0.016597510373443983
+los-angeles-chargers,Los Angeles Chargers,Omarion Hampton,RB,3,3,3,1.0,1.0,1,1,22.0,22.0,22,22,241,0.012448132780082987
+los-angeles-chargers,Los Angeles Chargers,TreVeyon Henderson,RB,3,3,3,1.0,1.0,1,1,22.0,22.0,22,22,241,0.012448132780082987
+los-angeles-chargers,Los Angeles Chargers,Tyler Warren,TE,2,2,2,1.0,1.0,1,1,20.5,20.5,19,22,241,0.008298755186721992
+los-angeles-chargers,Los Angeles Chargers,Donovan Ezeiruaku,EDGE,2,2,2,1.0,1.0,1,1,22.0,22.0,22,22,241,0.008298755186721992
+los-angeles-chargers,Los Angeles Chargers,Jalon Walker,EDGE,2,2,2,1.0,1.0,1,1,22.0,22.0,22,22,241,0.008298755186721992
+los-angeles-chargers,Los Angeles Chargers,Josh Simmons,OT,2,2,2,1.0,1.0,1,1,22.0,22.0,22,22,241,0.008298755186721992
+los-angeles-chargers,Los Angeles Chargers,Tyler Booker,IOL,2,2,2,1.0,1.0,1,1,22.0,22.0,22,22,241,0.008298755186721992
+los-angeles-chargers,Los Angeles Chargers,Mason Graham,DL,1,1,1,1.0,1.0,1,1,8.0,8.0,8,8,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Grey Zabel,IOL,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Jihaad Campbell,LB,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Maxwell Hairston,CB,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Shavon Revel Jr.,CB,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Shedeur Sanders,QB,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Tai Felton,WR,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-chargers,Los Angeles Chargers,Trey Amos,CB,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,241,0.004149377593360996
+los-angeles-rams,Los Angeles Rams,Maxwell Hairston,CB,28,28,28,1.0,1.0,1,1,25.785714285714285,26.0,20,26,234,0.11965811965811966
+los-angeles-rams,Los Angeles Rams,Jihaad Campbell,LB,23,23,23,1.0,1.0,1,1,26.0,26.0,24,28,234,0.09829059829059829
+los-angeles-rams,Los Angeles Rams,Colston Loveland,TE,21,20,20,1.0,1.0,1,1,23.904761904761905,26.0,13,26,234,0.08974358974358974
+los-angeles-rams,Los Angeles Rams,Emeka Egbuka,WR,19,19,18,1.0,1.0,1,1,26.210526315789473,26.0,26,30,234,0.0811965811965812
+los-angeles-rams,Los Angeles Rams,Trey Amos,CB,18,18,17,1.0,1.0,1,1,26.0,26.0,26,26,234,0.07692307692307693
+los-angeles-rams,Los Angeles Rams,Jahdae Barron,CB,13,13,13,1.0,1.0,1,1,26.0,26.0,26,26,234,0.05555555555555555
+los-angeles-rams,Los Angeles Rams,Josh Conerly Jr.,OT,13,13,13,1.0,1.0,1,1,26.0,26.0,26,26,234,0.05555555555555555
+los-angeles-rams,Los Angeles Rams,Josh Simmons,OT,13,13,13,1.0,1.0,1,1,26.0,26.0,26,26,234,0.05555555555555555
+los-angeles-rams,Los Angeles Rams,Malaki Starks,S,7,7,7,1.0,1.0,1,1,26.0,26.0,26,26,234,0.029914529914529916
+los-angeles-rams,Los Angeles Rams,Jaxson Dart,QB,6,6,6,1.0,1.0,1,1,26.0,26.0,26,26,234,0.02564102564102564
+los-angeles-rams,Los Angeles Rams,Matthew Golden,WR,6,6,6,1.0,1.0,1,1,26.0,26.0,26,26,234,0.02564102564102564
+los-angeles-rams,Los Angeles Rams,Nick Emmanwori,S,6,6,6,1.0,1.0,1,1,26.0,26.0,26,26,234,0.02564102564102564
+los-angeles-rams,Los Angeles Rams,Omarion Hampton,RB,6,6,6,1.0,1.0,1,1,25.166666666666668,26.0,21,26,234,0.02564102564102564
+los-angeles-rams,Los Angeles Rams,Will Johnson,CB,6,6,6,1.0,1.0,1,1,26.0,26.0,26,26,234,0.02564102564102564
+los-angeles-rams,Los Angeles Rams,Grey Zabel,IOL,5,5,5,1.0,1.0,1,1,26.0,26.0,26,26,234,0.021367521367521368
+los-angeles-rams,Los Angeles Rams,Kelvin Banks,OT,5,5,5,1.0,1.0,1,1,26.0,26.0,26,26,234,0.021367521367521368
+los-angeles-rams,Los Angeles Rams,Luther Burden,WR,5,5,5,1.0,1.0,1,1,28.2,26.0,26,32,234,0.021367521367521368
+los-angeles-rams,Los Angeles Rams,Shavon Revel Jr.,CB,5,5,5,1.0,1.0,1,1,26.0,26.0,26,26,234,0.021367521367521368
+los-angeles-rams,Los Angeles Rams,Jalen Milroe,QB,4,4,4,1.0,1.0,1,1,26.0,26.0,26,26,234,0.017094017094017096
+los-angeles-rams,Los Angeles Rams,Mason Taylor,TE,4,4,4,1.0,1.0,1,1,26.0,26.0,26,26,234,0.017094017094017096
+los-angeles-rams,Los Angeles Rams,Shedeur Sanders,QB,3,3,3,1.0,1.0,1,1,26.0,26.0,26,26,234,0.01282051282051282
+los-angeles-rams,Los Angeles Rams,Tyler Booker,IOL,3,3,3,1.0,1.0,1,1,26.0,26.0,26,26,234,0.01282051282051282
+los-angeles-rams,Los Angeles Rams,Benjamin Morrison,CB,2,2,2,1.0,1.0,1,1,26.0,26.0,26,26,234,0.008547008547008548
+los-angeles-rams,Los Angeles Rams,Carson Schwesinger,LB,2,2,2,1.0,1.0,1,1,26.0,26.0,26,26,234,0.008547008547008548
+los-angeles-rams,Los Angeles Rams,Jalon Walker,EDGE,2,2,2,1.0,1.0,1,1,26.0,26.0,26,26,234,0.008547008547008548
+los-angeles-rams,Los Angeles Rams,James Pearce Jr.,EDGE,2,2,2,1.0,1.0,1,1,26.0,26.0,26,26,234,0.008547008547008548
+los-angeles-rams,Los Angeles Rams,Mike Green,EDGE,2,2,2,1.0,1.0,1,1,26.0,26.0,26,26,234,0.008547008547008548
+los-angeles-rams,Los Angeles Rams,Azareye'h Thomas,CB,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,234,0.004273504273504274
+los-angeles-rams,Los Angeles Rams,Kenneth Grant,DL,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,234,0.004273504273504274
+los-angeles-rams,Los Angeles Rams,Walter Nolen,DL,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,234,0.004273504273504274
+los-angeles-rams,Los Angeles Rams,Will Howard,QB,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,234,0.004273504273504274
+los-angeles-rams,Los Angeles Rams,Xavier Watts,S,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,234,0.004273504273504274
+miami-dolphins,Miami Dolphins,Jahdae Barron,CB,59,59,56,1.0,1.0,1,1,13.016949152542374,13.0,13,14,246,0.23983739837398374
+miami-dolphins,Miami Dolphins,Will Johnson,CB,51,51,49,1.0,1.0,1,1,13.294117647058824,13.0,13,28,246,0.2073170731707317
+miami-dolphins,Miami Dolphins,Kelvin Banks,OT,37,37,37,1.0,1.0,1,1,12.91891891891892,13.0,9,16,246,0.15040650406504066
+miami-dolphins,Miami Dolphins,Malaki Starks,S,14,14,14,1.0,1.0,1,1,13.928571428571429,13.0,12,20,246,0.056910569105691054
+miami-dolphins,Miami Dolphins,Armand Membou,OT,12,12,12,1.0,1.0,1,1,12.5,13.0,10,13,246,0.04878048780487805
+miami-dolphins,Miami Dolphins,Mason Graham,DL,11,11,11,1.0,1.0,1,1,12.545454545454545,13.0,8,13,246,0.044715447154471545
+miami-dolphins,Miami Dolphins,Walter Nolen,DL,9,9,9,1.0,1.0,1,1,13.0,13.0,13,13,246,0.036585365853658534
+miami-dolphins,Miami Dolphins,Josh Simmons,OT,8,8,8,1.0,1.0,1,1,13.0,13.0,13,13,246,0.032520325203252036
+miami-dolphins,Miami Dolphins,Grey Zabel,IOL,5,5,5,1.0,1.0,1,1,13.0,13.0,13,13,246,0.02032520325203252
+miami-dolphins,Miami Dolphins,Kenneth Grant,DL,5,5,5,1.0,1.0,1,1,13.0,13.0,13,13,246,0.02032520325203252
+miami-dolphins,Miami Dolphins,Matthew Golden,WR,5,5,5,1.0,1.0,1,1,13.0,13.0,13,13,246,0.02032520325203252
+miami-dolphins,Miami Dolphins,Nick Emmanwori,S,5,5,5,1.0,1.0,1,1,13.0,13.0,13,13,246,0.02032520325203252
+miami-dolphins,Miami Dolphins,Derrick Harmon,DL,4,4,4,1.0,1.0,1,1,13.0,13.0,13,13,246,0.016260162601626018
+miami-dolphins,Miami Dolphins,Jalon Walker,EDGE,3,3,3,1.0,1.0,1,1,13.0,13.0,13,13,246,0.012195121951219513
+miami-dolphins,Miami Dolphins,Tyler Warren,TE,3,3,3,1.0,1.0,1,1,13.0,13.0,13,13,246,0.012195121951219513
+miami-dolphins,Miami Dolphins,Tyler Booker,IOL,3,3,3,1.0,1.0,1,1,17.666666666666668,20.0,13,20,246,0.012195121951219513
+miami-dolphins,Miami Dolphins,Mykel Williams,EDGE,2,2,2,1.0,1.0,1,1,13.0,13.0,13,13,246,0.008130081300813009
+miami-dolphins,Miami Dolphins,Tetairoa McMillan,WR,2,2,2,1.0,1.0,1,1,13.0,13.0,13,13,246,0.008130081300813009
+miami-dolphins,Miami Dolphins,Will Campbell,OT,2,2,2,1.0,1.0,1,1,13.0,13.0,13,13,246,0.008130081300813009
+miami-dolphins,Miami Dolphins,Ashton Jeanty,RB,1,1,1,1.0,1.0,1,1,13.0,13.0,13,13,246,0.0040650406504065045
+miami-dolphins,Miami Dolphins,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,13.0,13.0,13,13,246,0.0040650406504065045
+miami-dolphins,Miami Dolphins,Josh Conerly Jr.,OT,1,1,1,1.0,1.0,1,1,13.0,13.0,13,13,246,0.0040650406504065045
+miami-dolphins,Miami Dolphins,Princely Umanmielen,EDGE,1,1,1,1.0,1.0,1,1,13.0,13.0,13,13,246,0.0040650406504065045
+miami-dolphins,Miami Dolphins,Shemar Stewart,EDGE,1,1,1,1.0,1.0,1,1,13.0,13.0,13,13,246,0.0040650406504065045
+miami-dolphins,Miami Dolphins,Alfred Collins,DL,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,246,0.0040650406504065045
+minnesota-vikings,Minnesota Vikings,Malaki Starks,S,50,50,50,1.0,1.0,1,1,24.62,24.0,24,31,209,0.23923444976076555
+minnesota-vikings,Minnesota Vikings,Nick Emmanwori,S,49,49,48,1.0,1.0,1,1,24.244897959183675,24.0,24,30,209,0.23444976076555024
+minnesota-vikings,Minnesota Vikings,Jahdae Barron,CB,17,17,17,1.0,1.0,1,1,24.0,24.0,24,24,209,0.08133971291866028
+minnesota-vikings,Minnesota Vikings,Grey Zabel,IOL,12,12,11,1.0,1.0,1,1,24.0,24.0,24,24,209,0.05741626794258373
+minnesota-vikings,Minnesota Vikings,Derrick Harmon,DL,11,11,11,1.0,1.0,1,1,24.727272727272727,24.0,24,32,209,0.05263157894736842
+minnesota-vikings,Minnesota Vikings,Will Johnson,CB,11,11,11,1.0,1.0,1,1,24.0,24.0,24,24,209,0.05263157894736842
+minnesota-vikings,Minnesota Vikings,Maxwell Hairston,CB,8,8,8,1.0,1.0,1,1,25.75,24.0,24,31,209,0.03827751196172249
+minnesota-vikings,Minnesota Vikings,Tyler Booker,IOL,8,8,8,1.0,1.0,1,1,24.625,24.0,24,29,209,0.03827751196172249
+minnesota-vikings,Minnesota Vikings,Walter Nolen,DL,7,7,6,1.0,1.0,1,1,24.0,24.0,24,24,209,0.03349282296650718
+minnesota-vikings,Minnesota Vikings,Donovan Jackson,IOL,4,4,4,1.0,1.0,1,1,25.5,24.0,24,30,209,0.019138755980861243
+minnesota-vikings,Minnesota Vikings,Omarion Hampton,RB,4,4,4,1.0,1.0,1,1,25.75,24.0,24,31,209,0.019138755980861243
+minnesota-vikings,Minnesota Vikings,Shavon Revel Jr.,CB,4,4,4,1.0,1.0,1,1,25.5,24.0,24,30,209,0.019138755980861243
+minnesota-vikings,Minnesota Vikings,Kelvin Banks,OT,3,3,3,1.0,1.0,1,1,24.0,24.0,24,24,209,0.014354066985645933
+minnesota-vikings,Minnesota Vikings,Kenneth Grant,DL,3,3,3,1.0,1.0,1,1,24.0,24.0,24,24,209,0.014354066985645933
+minnesota-vikings,Minnesota Vikings,Shemar Stewart,EDGE,2,2,2,1.0,1.0,1,1,24.0,24.0,24,24,209,0.009569377990430622
+minnesota-vikings,Minnesota Vikings,James Pearce Jr.,EDGE,2,2,2,1.0,1.0,1,1,27.5,27.5,24,31,209,0.009569377990430622
+minnesota-vikings,Minnesota Vikings,Jihaad Campbell,LB,2,2,2,1.0,1.0,1,1,32.0,32.0,32,32,209,0.009569377990430622
+minnesota-vikings,Minnesota Vikings,Carson Schwesinger,LB,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Deone Walker,DL,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Kaleb Johnson,RB,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Luther Burden,WR,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Matthew Golden,WR,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Mike Green,EDGE,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Nic Scourton,EDGE,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,TreVeyon Henderson,RB,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Azareye'h Thomas,CB,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Jaxson Dart,QB,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,209,0.004784688995215311
+minnesota-vikings,Minnesota Vikings,Trey Amos,CB,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,209,0.004784688995215311
+new-england-patriots,New England Patriots,Will Campbell,OT,207,207,199,1.0,1.0,1,1,4.072463768115942,4.0,4,10,252,0.8214285714285714
+new-england-patriots,New England Patriots,Armand Membou,OT,13,13,13,1.0,1.0,1,1,4.384615384615385,4.0,4,9,252,0.051587301587301584
+new-england-patriots,New England Patriots,Abdul Carter,EDGE,12,12,11,1.0,1.0,1,1,4.0,4.0,4,4,252,0.047619047619047616
+new-england-patriots,New England Patriots,Ashton Jeanty,RB,4,4,4,1.0,1.0,1,1,4.0,4.0,4,4,252,0.015873015873015872
+new-england-patriots,New England Patriots,Jalon Walker,EDGE,4,4,4,1.0,1.0,1,1,4.0,4.0,4,4,252,0.015873015873015872
+new-england-patriots,New England Patriots,Tetairoa McMillan,WR,4,4,4,1.0,1.0,1,1,6.5,6.0,4,10,252,0.015873015873015872
+new-england-patriots,New England Patriots,Mason Graham,DL,2,2,2,1.0,1.0,1,1,4.0,4.0,4,4,252,0.007936507936507936
+new-england-patriots,New England Patriots,Kelvin Banks,OT,2,2,2,1.0,1.0,1,1,17.0,17.0,10,24,252,0.007936507936507936
+new-england-patriots,New England Patriots,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,4.0,4.0,4,4,252,0.003968253968253968
+new-england-patriots,New England Patriots,Mykel Williams,EDGE,1,1,1,1.0,1.0,1,1,4.0,4.0,4,4,252,0.003968253968253968
+new-england-patriots,New England Patriots,Travis Hunter,CB,1,1,1,1.0,1.0,1,1,4.0,4.0,4,4,252,0.003968253968253968
+new-england-patriots,New England Patriots,Tre Harris,WR,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,252,0.003968253968253968
+new-orleans-saints,New Orleans Saints,Shedeur Sanders,QB,60,60,57,1.0,1.0,1,1,9.266666666666667,9.0,3,24,266,0.22556390977443608
+new-orleans-saints,New Orleans Saints,Mykel Williams,EDGE,37,37,37,1.0,1.0,1,1,9.243243243243244,9.0,9,14,266,0.13909774436090225
+new-orleans-saints,New Orleans Saints,Jaxson Dart,QB,32,32,30,1.0,1.0,1,1,17.40625,11.5,9,32,266,0.12030075187969924
+new-orleans-saints,New Orleans Saints,Armand Membou,OT,21,21,21,1.0,1.0,1,1,9.095238095238095,9.0,9,11,266,0.07894736842105263
+new-orleans-saints,New Orleans Saints,Tetairoa McMillan,WR,17,17,17,1.0,1.0,1,1,9.0,9.0,9,9,266,0.06390977443609022
+new-orleans-saints,New Orleans Saints,Kelvin Banks,OT,16,16,16,1.0,1.0,1,1,9.3125,9.0,9,14,266,0.06015037593984962
+new-orleans-saints,New Orleans Saints,Will Johnson,CB,14,14,13,1.0,1.0,1,1,9.142857142857142,9.0,9,11,266,0.05263157894736842
+new-orleans-saints,New Orleans Saints,Mason Graham,DL,13,13,13,1.0,1.0,1,1,8.923076923076923,9.0,8,9,266,0.04887218045112782
+new-orleans-saints,New Orleans Saints,Tyler Warren,TE,13,13,12,1.0,1.0,1,1,9.0,9.0,9,9,266,0.04887218045112782
+new-orleans-saints,New Orleans Saints,Jalon Walker,EDGE,10,10,10,1.0,1.0,1,1,9.0,9.0,9,9,266,0.03759398496240601
+new-orleans-saints,New Orleans Saints,Shemar Stewart,EDGE,8,8,8,1.0,1.0,1,1,9.625,9.0,9,14,266,0.03007518796992481
+new-orleans-saints,New Orleans Saints,Tyler Booker,IOL,6,6,6,1.0,1.0,1,1,9.0,9.0,9,9,266,0.022556390977443608
+new-orleans-saints,New Orleans Saints,Ashton Jeanty,RB,3,3,3,1.0,1.0,1,1,9.0,9.0,9,9,266,0.011278195488721804
+new-orleans-saints,New Orleans Saints,Jihaad Campbell,LB,3,3,3,1.0,1.0,1,1,9.0,9.0,9,9,266,0.011278195488721804
+new-orleans-saints,New Orleans Saints,Will Campbell,OT,3,3,3,1.0,1.0,1,1,9.0,9.0,9,9,266,0.011278195488721804
+new-orleans-saints,New Orleans Saints,Derrick Harmon,DL,2,2,2,1.0,1.0,1,1,9.0,9.0,9,9,266,0.007518796992481203
+new-orleans-saints,New Orleans Saints,Walter Nolen,DL,2,2,2,1.0,1.0,1,1,9.0,9.0,9,9,266,0.007518796992481203
+new-orleans-saints,New Orleans Saints,Jahdae Barron,CB,1,1,1,1.0,1.0,1,1,9.0,9.0,9,9,266,0.0037593984962406013
+new-orleans-saints,New Orleans Saints,Josh Conerly Jr.,OT,1,1,1,1.0,1.0,1,1,9.0,9.0,9,9,266,0.0037593984962406013
+new-orleans-saints,New Orleans Saints,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,9.0,9.0,9,9,266,0.0037593984962406013
+new-orleans-saints,New Orleans Saints,Luther Burden,WR,1,1,1,1.0,1.0,1,1,9.0,9.0,9,9,266,0.0037593984962406013
+new-orleans-saints,New Orleans Saints,TreVeyon Henderson,RB,1,1,1,1.0,1.0,1,1,9.0,9.0,9,9,266,0.0037593984962406013
+new-orleans-saints,New Orleans Saints,Tyleik Williams,DL,1,1,1,1.0,1.0,1,1,24.0,24.0,24,24,266,0.0037593984962406013
+new-york-giants,New York Giants,Abdul Carter,EDGE,218,218,211,1.0,1.0,1,1,3.0,3.0,3,3,296,0.7364864864864865
+new-york-giants,New York Giants,Jaxson Dart,QB,28,28,28,1.0,1.0,1,1,24.857142857142858,25.0,8,32,296,0.0945945945945946
+new-york-giants,New York Giants,Travis Hunter,CB,17,17,16,1.0,1.0,1,1,3.0,3.0,3,3,296,0.057432432432432436
+new-york-giants,New York Giants,Shedeur Sanders,QB,17,17,16,1.0,1.0,1,1,15.941176470588236,19.0,3,32,296,0.057432432432432436
+new-york-giants,New York Giants,Jalen Milroe,QB,6,6,6,1.0,1.0,1,1,27.5,28.0,24,31,296,0.02027027027027027
+new-york-giants,New York Giants,Mason Graham,DL,2,2,2,1.0,1.0,1,1,3.0,3.0,3,3,296,0.006756756756756757
+new-york-giants,New York Giants,Tyler Warren,TE,2,2,2,1.0,1.0,1,1,4.5,4.5,3,6,296,0.006756756756756757
+new-york-giants,New York Giants,Will Campbell,OT,2,2,2,1.0,1.0,1,1,9.5,9.5,9,10,296,0.006756756756756757
+new-york-giants,New York Giants,Ashton Jeanty,RB,1,1,1,1.0,1.0,1,1,3.0,3.0,3,3,296,0.0033783783783783786
+new-york-giants,New York Giants,Darius Alexander,DL,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,296,0.0033783783783783786
+new-york-giants,New York Giants,Tyler Shough,QB,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,296,0.0033783783783783786
+new-york-giants,New York Giants,Donovan Ezeiruaku,EDGE,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,296,0.0033783783783783786
+new-york-jets,New York Jets,Tyler Warren,TE,96,96,90,1.0,1.0,1,1,7.114583333333333,7.0,6,11,251,0.38247011952191234
+new-york-jets,New York Jets,Armand Membou,OT,95,95,95,1.0,1.0,1,1,6.978947368421053,7.0,5,7,251,0.3784860557768924
+new-york-jets,New York Jets,Mason Graham,DL,23,23,23,1.0,1.0,1,1,7.0,7.0,7,7,251,0.09163346613545817
+new-york-jets,New York Jets,Kelvin Banks,OT,11,11,10,1.0,1.0,1,1,7.0,7.0,7,7,251,0.043824701195219126
+new-york-jets,New York Jets,Will Campbell,OT,9,9,9,1.0,1.0,1,1,7.0,7.0,7,7,251,0.035856573705179286
+new-york-jets,New York Jets,Jahdae Barron,CB,3,3,3,1.0,1.0,1,1,7.0,7.0,7,7,251,0.01195219123505976
+new-york-jets,New York Jets,Ashton Jeanty,RB,2,2,2,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00796812749003984
+new-york-jets,New York Jets,Shemar Stewart,EDGE,2,2,2,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00796812749003984
+new-york-jets,New York Jets,Tetairoa McMillan,WR,2,2,2,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00796812749003984
+new-york-jets,New York Jets,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Derrick Harmon,DL,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Jalon Walker,EDGE,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Malaki Starks,S,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Shedeur Sanders,QB,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Will Johnson,CB,1,1,1,1.0,1.0,1,1,7.0,7.0,7,7,251,0.00398406374501992
+new-york-jets,New York Jets,Jaxson Dart,QB,1,1,1,1.0,1.0,1,1,26.0,26.0,26,26,251,0.00398406374501992
+philadelphia-eagles,Philadelphia Eagles,Walter Nolen,DL,31,31,31,1.0,1.0,1,1,30.70967741935484,32.0,21,32,222,0.13963963963963963
+philadelphia-eagles,Philadelphia Eagles,James Pearce Jr.,EDGE,27,27,25,1.0,1.0,1,1,31.77777777777778,32.0,27,32,222,0.12162162162162163
+philadelphia-eagles,Philadelphia Eagles,Donovan Ezeiruaku,EDGE,19,19,19,1.0,1.0,1,1,32.0,32.0,32,32,222,0.08558558558558559
+philadelphia-eagles,Philadelphia Eagles,Malaki Starks,S,18,18,18,1.0,1.0,1,1,31.555555555555557,32.0,24,32,222,0.08108108108108109
+philadelphia-eagles,Philadelphia Eagles,Nick Emmanwori,S,18,18,17,1.0,1.0,1,1,32.0,32.0,32,32,222,0.08108108108108109
+philadelphia-eagles,Philadelphia Eagles,Mason Taylor,TE,13,13,13,1.0,1.0,1,1,32.0,32.0,32,32,222,0.05855855855855856
+philadelphia-eagles,Philadelphia Eagles,Shemar Stewart,EDGE,11,11,11,1.0,1.0,1,1,32.0,32.0,32,32,222,0.04954954954954955
+philadelphia-eagles,Philadelphia Eagles,Derrick Harmon,DL,10,10,10,1.0,1.0,1,1,31.1,32.0,27,32,222,0.04504504504504504
+philadelphia-eagles,Philadelphia Eagles,Emeka Egbuka,WR,9,9,9,1.0,1.0,1,1,32.0,32.0,32,32,222,0.04054054054054054
+philadelphia-eagles,Philadelphia Eagles,Nic Scourton,EDGE,9,9,9,1.0,1.0,1,1,32.0,32.0,32,32,222,0.04054054054054054
+philadelphia-eagles,Philadelphia Eagles,Josh Conerly Jr.,OT,6,6,6,1.0,1.0,1,1,32.0,32.0,32,32,222,0.02702702702702703
+philadelphia-eagles,Philadelphia Eagles,Mike Green,EDGE,6,6,6,1.0,1.0,1,1,32.0,32.0,32,32,222,0.02702702702702703
+philadelphia-eagles,Philadelphia Eagles,Donovan Jackson,IOL,4,4,4,1.0,1.0,1,1,32.0,32.0,32,32,222,0.018018018018018018
+philadelphia-eagles,Philadelphia Eagles,Grey Zabel,IOL,4,4,4,1.0,1.0,1,1,32.0,32.0,32,32,222,0.018018018018018018
+philadelphia-eagles,Philadelphia Eagles,Tyler Booker,IOL,4,4,4,1.0,1.0,1,1,32.0,32.0,32,32,222,0.018018018018018018
+philadelphia-eagles,Philadelphia Eagles,Jihaad Campbell,LB,3,3,3,1.0,1.0,1,1,32.0,32.0,32,32,222,0.013513513513513514
+philadelphia-eagles,Philadelphia Eagles,Luther Burden,WR,3,3,3,1.0,1.0,1,1,32.0,32.0,32,32,222,0.013513513513513514
+philadelphia-eagles,Philadelphia Eagles,Maxwell Hairston,CB,3,3,3,1.0,1.0,1,1,32.0,32.0,32,32,222,0.013513513513513514
+philadelphia-eagles,Philadelphia Eagles,Mykel Williams,EDGE,3,3,3,1.0,1.0,1,1,32.0,32.0,32,32,222,0.013513513513513514
+philadelphia-eagles,Philadelphia Eagles,Trey Amos,CB,3,3,3,1.0,1.0,1,1,32.0,32.0,32,32,222,0.013513513513513514
+philadelphia-eagles,Philadelphia Eagles,Elijah Arroyo,TE,2,2,2,1.0,1.0,1,1,32.0,32.0,32,32,222,0.009009009009009009
+philadelphia-eagles,Philadelphia Eagles,Josh Simmons,OT,2,2,2,1.0,1.0,1,1,32.0,32.0,32,32,222,0.009009009009009009
+philadelphia-eagles,Philadelphia Eagles,Oluwafemi Oladejo,EDGE,2,2,2,1.0,1.0,1,1,32.0,32.0,32,32,222,0.009009009009009009
+philadelphia-eagles,Philadelphia Eagles,Shavon Revel Jr.,CB,2,2,2,1.0,1.0,1,1,32.0,32.0,32,32,222,0.009009009009009009
+philadelphia-eagles,Philadelphia Eagles,Aireontae Ersery,OT,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Cody Simon,LB,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Darius Alexander,DL,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,J.T. Tuimoloau,EDGE,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Jalon Walker,EDGE,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Jonah Savaiinaea,IOL,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Kenneth Grant,DL,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Marcus Mbow,IOL,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Matthew Golden,WR,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+philadelphia-eagles,Philadelphia Eagles,Tyleik Williams,DL,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,222,0.0045045045045045045
+pittsburgh-steelers,Pittsburgh Steelers,Shedeur Sanders,QB,88,88,88,1.0,1.0,1,1,21.125,21.0,8,32,240,0.36666666666666664
+pittsburgh-steelers,Pittsburgh Steelers,Jaxson Dart,QB,35,35,34,1.0,1.0,1,1,21.285714285714285,21.0,21,31,240,0.14583333333333334
+pittsburgh-steelers,Pittsburgh Steelers,Derrick Harmon,DL,28,28,28,1.0,1.0,1,1,21.0,21.0,16,26,240,0.11666666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Jalen Milroe,QB,18,18,18,1.0,1.0,1,1,21.22222222222222,21.0,21,25,240,0.075
+pittsburgh-steelers,Pittsburgh Steelers,Kenneth Grant,DL,18,18,18,1.0,1.0,1,1,21.11111111111111,21.0,21,23,240,0.075
+pittsburgh-steelers,Pittsburgh Steelers,Omarion Hampton,RB,9,9,9,1.0,1.0,1,1,22.0,21.0,21,30,240,0.0375
+pittsburgh-steelers,Pittsburgh Steelers,Emeka Egbuka,WR,7,7,7,1.0,1.0,1,1,21.714285714285715,21.0,21,26,240,0.029166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Nick Emmanwori,S,6,6,6,1.0,1.0,1,1,21.0,21.0,21,21,240,0.025
+pittsburgh-steelers,Pittsburgh Steelers,Josh Simmons,OT,5,5,5,1.0,1.0,1,1,21.0,21.0,21,21,240,0.020833333333333332
+pittsburgh-steelers,Pittsburgh Steelers,Walter Nolen,DL,5,5,5,1.0,1.0,1,1,21.0,21.0,21,21,240,0.020833333333333332
+pittsburgh-steelers,Pittsburgh Steelers,Shemar Stewart,EDGE,4,4,4,1.0,1.0,1,1,21.0,21.0,21,21,240,0.016666666666666666
+pittsburgh-steelers,Pittsburgh Steelers,Jahdae Barron,CB,3,3,3,1.0,1.0,1,1,21.0,21.0,21,21,240,0.0125
+pittsburgh-steelers,Pittsburgh Steelers,Malaki Starks,S,3,3,3,1.0,1.0,1,1,21.0,21.0,21,21,240,0.0125
+pittsburgh-steelers,Pittsburgh Steelers,Luther Burden,WR,2,2,2,1.0,1.0,1,1,25.5,25.5,21,30,240,0.008333333333333333
+pittsburgh-steelers,Pittsburgh Steelers,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Donovan Ezeiruaku,EDGE,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Kelvin Banks,OT,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Matthew Golden,WR,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Mike Green,EDGE,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Mykel Williams,EDGE,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Terrance Ferguson,TE,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Will Johnson,CB,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+pittsburgh-steelers,Pittsburgh Steelers,Xavier Watts,S,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,240,0.004166666666666667
+san-francisco-49ers,San Francisco 49ers,Walter Nolen,DL,41,41,40,1.0,1.0,1,1,10.975609756097562,11.0,10,11,247,0.1659919028340081
+san-francisco-49ers,San Francisco 49ers,Kelvin Banks,OT,36,36,34,1.0,1.0,1,1,11.0,11.0,11,11,247,0.145748987854251
+san-francisco-49ers,San Francisco 49ers,Mason Graham,DL,29,29,29,1.0,1.0,1,1,10.482758620689655,11.0,6,11,247,0.11740890688259109
+san-francisco-49ers,San Francisco 49ers,Mykel Williams,EDGE,25,25,25,1.0,1.0,1,1,11.0,11.0,11,11,247,0.10121457489878542
+san-francisco-49ers,San Francisco 49ers,Will Johnson,CB,22,22,22,1.0,1.0,1,1,11.454545454545455,11.0,11,21,247,0.08906882591093117
+san-francisco-49ers,San Francisco 49ers,Shemar Stewart,EDGE,16,16,16,1.0,1.0,1,1,11.0,11.0,8,14,247,0.06477732793522267
+san-francisco-49ers,San Francisco 49ers,Armand Membou,OT,13,13,13,1.0,1.0,1,1,11.0,11.0,11,11,247,0.05263157894736842
+san-francisco-49ers,San Francisco 49ers,Jahdae Barron,CB,13,13,12,1.0,1.0,1,1,11.846153846153847,11.0,11,20,247,0.05263157894736842
+san-francisco-49ers,San Francisco 49ers,Jalon Walker,EDGE,11,11,11,1.0,1.0,1,1,10.363636363636363,11.0,6,11,247,0.044534412955465584
+san-francisco-49ers,San Francisco 49ers,Derrick Harmon,DL,7,7,7,1.0,1.0,1,1,11.0,11.0,11,11,247,0.02834008097165992
+san-francisco-49ers,San Francisco 49ers,Josh Simmons,OT,7,7,7,1.0,1.0,1,1,13.571428571428571,11.0,11,29,247,0.02834008097165992
+san-francisco-49ers,San Francisco 49ers,Mike Green,EDGE,6,6,6,1.0,1.0,1,1,11.0,11.0,11,11,247,0.024291497975708502
+san-francisco-49ers,San Francisco 49ers,Will Campbell,OT,4,4,4,1.0,1.0,1,1,10.25,11.0,8,11,247,0.016194331983805668
+san-francisco-49ers,San Francisco 49ers,Jihaad Campbell,LB,3,3,3,1.0,1.0,1,1,11.0,11.0,11,11,247,0.012145748987854251
+san-francisco-49ers,San Francisco 49ers,Tyler Warren,TE,3,3,3,1.0,1.0,1,1,10.333333333333334,11.0,9,11,247,0.012145748987854251
+san-francisco-49ers,San Francisco 49ers,Ashton Jeanty,RB,2,2,2,1.0,1.0,1,1,11.0,11.0,11,11,247,0.008097165991902834
+san-francisco-49ers,San Francisco 49ers,Kenneth Grant,DL,2,2,2,1.0,1.0,1,1,16.5,16.5,11,22,247,0.008097165991902834
+san-francisco-49ers,San Francisco 49ers,James Pearce Jr.,EDGE,2,2,2,1.0,1.0,1,1,19.0,19.0,11,27,247,0.008097165991902834
+san-francisco-49ers,San Francisco 49ers,Abdul Carter,EDGE,1,1,1,1.0,1.0,1,1,3.0,3.0,3,3,247,0.004048582995951417
+san-francisco-49ers,San Francisco 49ers,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,11.0,11.0,11,11,247,0.004048582995951417
+san-francisco-49ers,San Francisco 49ers,Grey Zabel,IOL,1,1,1,1.0,1.0,1,1,11.0,11.0,11,11,247,0.004048582995951417
+san-francisco-49ers,San Francisco 49ers,Jordan Burch,EDGE,1,1,1,1.0,1.0,1,1,11.0,11.0,11,11,247,0.004048582995951417
+san-francisco-49ers,San Francisco 49ers,Tetairoa McMillan,WR,1,1,1,1.0,1.0,1,1,11.0,11.0,11,11,247,0.004048582995951417
+seattle-seahawks,Seattle Seahawks,Grey Zabel,IOL,86,86,83,1.0,1.0,1,1,18.232558139534884,18.0,18,26,237,0.3628691983122363
+seattle-seahawks,Seattle Seahawks,Matthew Golden,WR,25,25,24,1.0,1.0,1,1,18.04,18.0,12,25,237,0.10548523206751055
+seattle-seahawks,Seattle Seahawks,Tyler Booker,IOL,20,20,20,1.0,1.0,1,1,18.0,18.0,18,18,237,0.08438818565400844
+seattle-seahawks,Seattle Seahawks,Nick Emmanwori,S,17,17,17,1.0,1.0,1,1,18.58823529411765,18.0,18,28,237,0.07172995780590717
+seattle-seahawks,Seattle Seahawks,Tetairoa McMillan,WR,16,16,16,1.0,1.0,1,1,17.875,18.0,16,18,237,0.06751054852320675
+seattle-seahawks,Seattle Seahawks,Kelvin Banks,OT,12,12,12,1.0,1.0,1,1,18.0,18.0,18,18,237,0.05063291139240506
+seattle-seahawks,Seattle Seahawks,Colston Loveland,TE,9,9,9,1.0,1.0,1,1,18.0,18.0,18,18,237,0.0379746835443038
+seattle-seahawks,Seattle Seahawks,Emeka Egbuka,WR,7,7,7,1.0,1.0,1,1,18.0,18.0,18,18,237,0.029535864978902954
+seattle-seahawks,Seattle Seahawks,Jihaad Campbell,LB,7,7,7,1.0,1.0,1,1,20.428571428571427,18.0,18,28,237,0.029535864978902954
+seattle-seahawks,Seattle Seahawks,Will Johnson,CB,5,5,5,1.0,1.0,1,1,18.0,18.0,18,18,237,0.02109704641350211
+seattle-seahawks,Seattle Seahawks,Jahdae Barron,CB,4,4,4,1.0,1.0,1,1,18.0,18.0,18,18,237,0.016877637130801686
+seattle-seahawks,Seattle Seahawks,Malaki Starks,S,4,4,3,1.0,1.0,1,1,18.0,18.0,18,18,237,0.016877637130801686
+seattle-seahawks,Seattle Seahawks,Donovan Ezeiruaku,EDGE,3,3,3,1.0,1.0,1,1,18.0,18.0,18,18,237,0.012658227848101266
+seattle-seahawks,Seattle Seahawks,Josh Conerly Jr.,OT,3,3,3,1.0,1.0,1,1,18.0,18.0,18,18,237,0.012658227848101266
+seattle-seahawks,Seattle Seahawks,Shedeur Sanders,QB,3,3,3,1.0,1.0,1,1,15.0,18.0,9,18,237,0.012658227848101266
+seattle-seahawks,Seattle Seahawks,Shemar Stewart,EDGE,3,3,3,1.0,1.0,1,1,19.333333333333332,18.0,18,22,237,0.012658227848101266
+seattle-seahawks,Seattle Seahawks,Derrick Harmon,DL,2,2,2,1.0,1.0,1,1,18.0,18.0,18,18,237,0.008438818565400843
+seattle-seahawks,Seattle Seahawks,Donovan Jackson,IOL,2,2,2,1.0,1.0,1,1,18.0,18.0,18,18,237,0.008438818565400843
+seattle-seahawks,Seattle Seahawks,Mike Green,EDGE,2,2,2,1.0,1.0,1,1,18.0,18.0,18,18,237,0.008438818565400843
+seattle-seahawks,Seattle Seahawks,Carson Schwesinger,LB,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+seattle-seahawks,Seattle Seahawks,James Pearce Jr.,EDGE,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+seattle-seahawks,Seattle Seahawks,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+seattle-seahawks,Seattle Seahawks,Luther Burden,WR,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+seattle-seahawks,Seattle Seahawks,Mykel Williams,EDGE,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+seattle-seahawks,Seattle Seahawks,Shavon Revel Jr.,CB,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+seattle-seahawks,Seattle Seahawks,Tyler Warren,TE,1,1,1,1.0,1.0,1,1,18.0,18.0,18,18,237,0.004219409282700422
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Jihaad Campbell,LB,105,105,103,1.0,1.0,1,1,19.0,19.0,19,19,238,0.4411764705882353
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Donovan Ezeiruaku,EDGE,33,33,32,1.0,1.0,1,1,20.060606060606062,19.0,19,32,238,0.13865546218487396
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Malaki Starks,S,17,17,15,1.0,1.0,1,1,19.0,19.0,19,19,238,0.07142857142857142
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Jahdae Barron,CB,12,12,12,1.0,1.0,1,1,19.0,19.0,19,19,238,0.05042016806722689
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Mykel Williams,EDGE,9,9,9,1.0,1.0,1,1,19.0,19.0,19,19,238,0.037815126050420166
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Will Johnson,CB,9,9,9,1.0,1.0,1,1,19.0,19.0,19,19,238,0.037815126050420166
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Mike Green,EDGE,8,8,8,1.0,1.0,1,1,19.0,19.0,19,19,238,0.03361344537815126
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Tetairoa McMillan,WR,6,6,6,1.0,1.0,1,1,19.0,19.0,19,19,238,0.025210084033613446
+tampa-bay-buccaneers,Tampa Bay Buccaneers,James Pearce Jr.,EDGE,5,5,5,1.0,1.0,1,1,19.0,19.0,19,19,238,0.02100840336134454
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Maxwell Hairston,CB,5,5,5,1.0,1.0,1,1,19.0,19.0,19,19,238,0.02100840336134454
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Nick Emmanwori,S,5,5,5,1.0,1.0,1,1,19.0,19.0,19,19,238,0.02100840336134454
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Shemar Stewart,EDGE,5,5,5,1.0,1.0,1,1,19.8,19.0,19,23,238,0.02100840336134454
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Matthew Golden,WR,4,4,4,1.0,1.0,1,1,19.0,19.0,19,19,238,0.01680672268907563
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Nic Scourton,EDGE,3,3,3,1.0,1.0,1,1,19.0,19.0,19,19,238,0.012605042016806723
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Derrick Harmon,DL,2,2,2,1.0,1.0,1,1,19.0,19.0,19,19,238,0.008403361344537815
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Grey Zabel,IOL,2,2,2,1.0,1.0,1,1,19.0,19.0,19,19,238,0.008403361344537815
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Colston Loveland,TE,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Jalon Walker,EDGE,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Josh Simmons,OT,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Oluwafemi Oladejo,EDGE,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Walter Nolen,DL,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Xavier Watts,S,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,238,0.004201680672268907
+tampa-bay-buccaneers,Tampa Bay Buccaneers,Kenneth Grant,DL,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,238,0.004201680672268907
+tennessee-titans,Tennessee Titans,Cameron Ward,QB,245,245,235,1.0,1.0,1,1,1.0,1.0,1,1,255,0.9607843137254902
+tennessee-titans,Tennessee Titans,Luther Burden,WR,3,3,3,1.0,1.0,1,1,27.333333333333332,29.0,21,32,255,0.011764705882352941
+tennessee-titans,Tennessee Titans,Abdul Carter,EDGE,2,2,2,1.0,1.0,1,1,1.0,1.0,1,1,255,0.00784313725490196
+tennessee-titans,Tennessee Titans,Shedeur Sanders,QB,2,2,2,1.0,1.0,1,1,1.0,1.0,1,1,255,0.00784313725490196
+tennessee-titans,Tennessee Titans,Travis Hunter,CB,1,1,1,1.0,1.0,1,1,2.0,2.0,2,2,255,0.00392156862745098
+tennessee-titans,Tennessee Titans,Jayden Higgins,WR,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,255,0.00392156862745098
+tennessee-titans,Tennessee Titans,Emeka Egbuka,WR,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,255,0.00392156862745098
+washington-commanders,Washington Commanders,Donovan Ezeiruaku,EDGE,34,34,33,1.0,1.0,1,1,28.735294117647058,29.0,24,29,224,0.15178571428571427
+washington-commanders,Washington Commanders,Omarion Hampton,RB,23,23,23,1.0,1.0,1,1,29.0,29.0,29,29,224,0.10267857142857142
+washington-commanders,Washington Commanders,Shemar Stewart,EDGE,21,21,21,1.0,1.0,1,1,29.0,29.0,29,29,224,0.09375
+washington-commanders,Washington Commanders,James Pearce Jr.,EDGE,17,17,17,1.0,1.0,1,1,29.0,29.0,29,29,224,0.07589285714285714
+washington-commanders,Washington Commanders,Nick Emmanwori,S,15,15,15,1.0,1.0,1,1,29.0,29.0,29,29,224,0.06696428571428571
+washington-commanders,Washington Commanders,Emeka Egbuka,WR,12,12,12,1.0,1.0,1,1,29.0,29.0,29,29,224,0.05357142857142857
+washington-commanders,Washington Commanders,TreVeyon Henderson,RB,10,10,10,1.0,1.0,1,1,29.0,29.0,29,29,224,0.044642857142857144
+washington-commanders,Washington Commanders,Jihaad Campbell,LB,7,7,6,1.0,1.0,1,1,29.0,29.0,29,29,224,0.03125
+washington-commanders,Washington Commanders,Matthew Golden,WR,7,7,7,1.0,1.0,1,1,29.0,29.0,29,29,224,0.03125
+washington-commanders,Washington Commanders,Maxwell Hairston,CB,7,7,7,1.0,1.0,1,1,29.0,29.0,29,29,224,0.03125
+washington-commanders,Washington Commanders,Mike Green,EDGE,7,7,7,1.0,1.0,1,1,29.0,29.0,29,29,224,0.03125
+washington-commanders,Washington Commanders,Malaki Starks,S,6,6,6,1.0,1.0,1,1,29.0,29.0,29,29,224,0.026785714285714284
+washington-commanders,Washington Commanders,Nic Scourton,EDGE,6,6,6,1.0,1.0,1,1,29.0,29.0,29,29,224,0.026785714285714284
+washington-commanders,Washington Commanders,Trey Amos,CB,6,6,6,1.0,1.0,1,1,28.0,29.0,23,29,224,0.026785714285714284
+washington-commanders,Washington Commanders,Jahdae Barron,CB,5,5,5,1.0,1.0,1,1,29.0,29.0,29,29,224,0.022321428571428572
+washington-commanders,Washington Commanders,Derrick Harmon,DL,4,4,4,1.0,1.0,1,1,29.0,29.0,29,29,224,0.017857142857142856
+washington-commanders,Washington Commanders,Mykel Williams,EDGE,4,4,4,1.0,1.0,1,1,29.5,29.0,29,31,224,0.017857142857142856
+washington-commanders,Washington Commanders,Shavon Revel Jr.,CB,4,4,4,1.0,1.0,1,1,29.0,29.0,29,29,224,0.017857142857142856
+washington-commanders,Washington Commanders,Tetairoa McMillan,WR,3,3,3,1.0,1.0,1,1,29.0,29.0,29,29,224,0.013392857142857142
+washington-commanders,Washington Commanders,Walter Nolen,DL,3,3,3,1.0,1.0,1,1,29.0,29.0,29,29,224,0.013392857142857142
+washington-commanders,Washington Commanders,J.T. Tuimoloau,EDGE,2,2,2,1.0,1.0,1,1,29.0,29.0,29,29,224,0.008928571428571428
+washington-commanders,Washington Commanders,Kelvin Banks,OT,2,2,2,1.0,1.0,1,1,29.0,29.0,29,29,224,0.008928571428571428
+washington-commanders,Washington Commanders,Mason Taylor,TE,2,2,2,1.0,1.0,1,1,29.0,29.0,29,29,224,0.008928571428571428
+washington-commanders,Washington Commanders,Oluwafemi Oladejo,EDGE,2,2,2,1.0,1.0,1,1,29.0,29.0,29,29,224,0.008928571428571428
+washington-commanders,Washington Commanders,Will Johnson,CB,2,2,2,1.0,1.0,1,1,29.0,29.0,29,29,224,0.008928571428571428
+washington-commanders,Washington Commanders,Kenneth Grant,DL,2,2,2,1.0,1.0,1,1,29.5,29.5,29,30,224,0.008928571428571428
+washington-commanders,Washington Commanders,Aireontae Ersery,OT,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Ashton Gillotte,EDGE,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Benjamin Morrison,CB,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Carson Schwesinger,LB,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Donovan Jackson,IOL,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Grey Zabel,IOL,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Jack Sawyer,EDGE,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Jalon Walker,EDGE,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Jayden Higgins,WR,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Josh Conerly Jr.,OT,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714
+washington-commanders,Washington Commanders,Tyler Booker,IOL,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,224,0.004464285714285714

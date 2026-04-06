@@ -1,0 +1,7 @@
+player_name,player_position,mock_count,unique_mocks,unique_authors,avg_round,median_round,min_round,max_round,avg_pick,median_pick,min_pick,max_pick,team_count,most_common_team,most_common_team_slug
+J.J. Pegues,DL,1,1,1,5.0,5.0,5,5,,,,,1,Arizona Cardinals,arizona-cardinals
+Jack Sawyer,EDGE,1,1,1,3.0,3.0,3,3,,,,,1,Arizona Cardinals,arizona-cardinals
+Jayden Higgins,WR,1,1,1,2.0,2.0,2,2,,,,,1,Arizona Cardinals,arizona-cardinals
+Jaylin Smith,CB,1,1,1,7.0,7.0,7,7,,,,,1,Arizona Cardinals,arizona-cardinals
+Josh Simmons,OT,1,1,1,1.0,1.0,1,1,,,,,1,Arizona Cardinals,arizona-cardinals
+Miles Frazier,IOL,1,1,1,4.0,4.0,4,4,,,,,1,Arizona Cardinals,arizona-cardinals

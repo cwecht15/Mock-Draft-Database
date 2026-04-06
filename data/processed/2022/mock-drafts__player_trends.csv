@@ -1,0 +1,77 @@
+player_name,player_position,mock_count,unique_mocks,unique_authors,avg_round,median_round,min_round,max_round,avg_pick,median_pick,min_pick,max_pick,team_count,most_common_team,most_common_team_slug
+Aidan Hutchinson,EDGE,273,273,255,1.0036630036630036,1.0,1,2,1.8424908424908424,2.0,1,34,6,Detroit Lions,detroit-lions
+Kayvon Thibodeaux,EDGE,273,273,255,1.0036630036630036,1.0,1,2,5.5054945054945055,4.0,1,35,11,New York Jets,new-york-jets
+Ahmad Gardner,CB,273,273,255,1.0036630036630036,1.0,1,2,5.923076923076923,5.0,2,42,11,New York Giants,new-york-giants
+Evan Neal,OT,272,272,254,1.0036764705882353,1.0,1,2,5.617647058823529,5.0,1,33,13,New York Giants,new-york-giants
+Ikem Ekwonu,OT,272,272,254,1.0036764705882353,1.0,1,2,5.125,5.0,1,37,11,Houston Texans,houston-texans
+Travon Walker,EDGE,271,271,253,1.003690036900369,1.0,1,2,3.1180811808118083,1.0,1,36,13,Jacksonville Jaguars,jacksonville-jaguars
+Charles Cross,OT,271,271,253,1.003690036900369,1.0,1,2,9.96309963099631,9.0,3,41,15,New York Giants,new-york-giants
+Derek Stingley Jr.,CB,271,270,252,1.003690036900369,1.0,1,2,9.324723247232471,9.0,2,44,15,Minnesota Vikings,minnesota-vikings
+Garrett Wilson,WR,271,271,253,1.003690036900369,1.0,1,2,11.261992619926199,10.0,4,47,17,Atlanta Falcons,atlanta-falcons
+Jameson Williams,WR,271,270,252,1.003690036900369,1.0,1,2,14.490774907749078,15.0,6,58,20,Philadelphia Eagles,philadelphia-eagles
+Jermaine Johnson,EDGE,269,269,251,1.003717472118959,1.0,1,2,11.297397769516728,10.0,1,55,19,New York Jets,new-york-jets
+Kyle Hamilton,S,269,269,252,1.003717472118959,1.0,1,2,11.189591078066915,11.0,2,39,15,Washington Commanders,washington-commanders
+Malik Willis,QB,269,269,251,1.003717472118959,1.0,1,2,12.847583643122677,12.0,2,38,11,Pittsburgh Steelers,pittsburgh-steelers
+Drake London,WR,268,268,250,1.0037313432835822,1.0,1,2,13.152985074626866,11.0,7,45,18,New York Jets,new-york-jets
+Chris Olave,WR,266,266,248,1.0037593984962405,1.0,1,2,18.12406015037594,18.0,8,48,20,New Orleans Saints,new-orleans-saints
+Jordan Davis,DL,265,264,246,1.0037735849056604,1.0,1,2,15.226415094339623,14.0,8,46,18,Baltimore Ravens,baltimore-ravens
+Trent McDuffie,CB,264,264,246,1.003787878787879,1.0,1,2,18.46590909090909,18.0,10,63,19,Philadelphia Eagles,philadelphia-eagles
+Trevor Penning,OT,257,257,239,1.0038910505836576,1.0,1,2,17.17898832684825,17.0,6,43,19,New Orleans Saints,new-orleans-saints
+George Karlaftis,EDGE,247,247,229,1.0040485829959513,1.0,1,2,22.218623481781375,23.0,7,60,20,Arizona Cardinals,arizona-cardinals
+Treylon Burks,WR,246,246,229,1.0040650406504066,1.0,1,2,22.483739837398375,22.0,8,54,21,Green Bay Packers,green-bay-packers
+Devin Lloyd,LB,243,243,228,1.0041152263374487,1.0,1,2,20.71604938271605,21.0,5,50,22,New England Patriots,new-england-patriots
+Zion Johnson,IOL,240,240,224,1.0041666666666667,1.0,1,2,23.095833333333335,24.0,7,53,19,Dallas Cowboys,dallas-cowboys
+Kenny Pickett,QB,229,229,217,1.0043668122270741,1.0,1,2,16.336244541484717,16.0,2,40,10,Carolina Panthers,carolina-panthers
+Kenyon Green,IOL,214,214,201,1.0046728971962617,1.0,1,2,24.934579439252335,24.0,11,59,17,Dallas Cowboys,dallas-cowboys
+Andrew Booth Jr.,CB,198,198,185,1.005050505050505,1.0,1,2,24.161616161616163,25.0,8,57,18,Buffalo Bills,buffalo-bills
+Devonte Wyatt,DL,195,195,178,1.005128205128205,1.0,1,2,23.574358974358976,25.0,12,49,19,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Daxton Hill,S,180,180,169,1.0055555555555555,1.0,1,2,27.17222222222222,28.0,11,61,17,Kansas City Chiefs,kansas-city-chiefs
+Tyler Linderbaum,IOL,170,170,156,1.0058823529411764,1.0,1,2,25.17058823529412,24.0,6,56,17,Cincinnati Bengals,cincinnati-bengals
+Kaiir Elam,CB,170,170,160,1.0,1.0,1,1,25.78235294117647,26.5,9,31,15,Cincinnati Bengals,cincinnati-bengals
+Jahan Dotson,WR,166,166,153,1.0,1.0,1,1,26.349397590361445,28.0,15,32,14,Kansas City Chiefs,kansas-city-chiefs
+Desmond Ridder,QB,119,119,109,1.0084033613445378,1.0,1,2,23.689075630252102,20.0,8,52,7,Pittsburgh Steelers,pittsburgh-steelers
+Nakobe Dean,LB,111,111,104,1.0,1.0,1,1,25.45045045045045,26.0,5,32,19,Detroit Lions,detroit-lions
+Boye Mafe,EDGE,111,111,107,1.0,1.0,1,1,27.92792792792793,29.0,12,31,9,Kansas City Chiefs,kansas-city-chiefs
+Lewis Cine,S,99,99,93,1.0,1.0,1,1,27.767676767676768,28.0,15,32,14,Detroit Lions,detroit-lions
+Tyler Smith,OT,85,85,83,1.011764705882353,1.0,1,2,24.75294117647059,26.0,16,51,10,Tennessee Titans,tennessee-titans
+Kyler Gordon,CB,82,82,81,1.0,1.0,1,1,26.804878048780488,27.0,12,32,14,Buffalo Bills,buffalo-bills
+George Pickens,WR,75,75,68,1.0,1.0,1,1,28.133333333333333,29.0,19,32,8,Kansas City Chiefs,kansas-city-chiefs
+Matt Corral,QB,71,71,66,1.0140845070422535,1.0,1,2,25.43661971830986,30.0,3,64,9,Detroit Lions,detroit-lions
+Quay Walker,LB,59,59,57,1.0,1.0,1,1,24.338983050847457,22.0,9,32,11,Green Bay Packers,green-bay-packers
+Arnold Ebiketie,EDGE,58,58,55,1.0172413793103448,1.0,1,2,28.637931034482758,29.0,18,62,8,Kansas City Chiefs,kansas-city-chiefs
+Christian Watson,WR,58,58,53,1.0,1.0,1,1,28.06896551724138,29.0,18,32,9,Kansas City Chiefs,kansas-city-chiefs
+Bernhard Raimann,OT,51,51,48,1.0,1.0,1,1,22.88235294117647,21.0,16,31,11,New Orleans Saints,new-orleans-saints
+Breece Hall,RB,50,50,48,1.0,1.0,1,1,25.36,25.0,25,31,4,Buffalo Bills,buffalo-bills
+David Ojabo,EDGE,50,50,47,1.0,1.0,1,1,28.76,30.0,19,32,12,Kansas City Chiefs,kansas-city-chiefs
+Logan Hall,DL,45,45,42,1.0,1.0,1,1,27.733333333333334,28.0,16,31,7,Cincinnati Bengals,cincinnati-bengals
+Skyy Moore,WR,38,38,36,1.0,1.0,1,1,28.263157894736842,29.0,22,32,7,Kansas City Chiefs,kansas-city-chiefs
+Sam Howell,QB,36,36,36,1.0,1.0,1,1,26.666666666666668,32.0,6,32,9,Detroit Lions,detroit-lions
+Travis Jones,DL,22,22,22,1.0,1.0,1,1,27.0,27.0,22,32,6,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Perrion Winfrey,DL,16,16,16,1.0,1.0,1,1,28.125,28.0,24,32,6,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Jalen Pitre,S,14,14,14,1.0,1.0,1,1,26.5,29.0,18,31,8,Kansas City Chiefs,kansas-city-chiefs
+Trey McBride,TE,9,9,9,1.0,1.0,1,1,26.333333333333332,27.0,11,31,5,Cincinnati Bengals,cincinnati-bengals
+Roger McCreary,CB,8,8,8,1.0,1.0,1,1,25.0,25.0,21,32,4,Buffalo Bills,buffalo-bills
+DeMarvin Leal,DL,8,8,8,1.0,1.0,1,1,27.875,28.5,23,32,7,Cincinnati Bengals,cincinnati-bengals
+Drake Jackson,EDGE,5,5,5,1.0,1.0,1,1,27.0,28.0,23,30,4,Green Bay Packers,green-bay-packers
+John Metchie III,WR,4,4,4,1.0,1.0,1,1,30.0,29.5,29,32,2,Kansas City Chiefs,kansas-city-chiefs
+Jaquan Brisker,S,3,3,3,1.0,1.0,1,1,25.666666666666668,27.0,20,30,3,Kansas City Chiefs,kansas-city-chiefs
+Cameron Thomas,EDGE,2,2,2,1.0,1.0,1,1,12.5,12.5,12,13,2,Houston Texans,houston-texans
+Christian Harris,LB,2,2,2,1.0,1.0,1,1,27.0,27.0,24,30,2,Dallas Cowboys,dallas-cowboys
+Tariq Woolen,CB,2,2,2,1.0,1.0,1,1,27.5,27.5,25,30,2,Buffalo Bills,buffalo-bills
+Kenneth Walker III,RB,2,2,2,1.0,1.0,1,1,30.5,30.5,30,31,2,Cincinnati Bengals,cincinnati-bengals
+Carson Strong,QB,1,1,1,1.0,1.0,1,1,12.0,12.0,12,12,1,Minnesota Vikings,minnesota-vikings
+Nicholas Petit-Frere,OT,1,1,1,1.0,1.0,1,1,16.0,16.0,16,16,1,New Orleans Saints,new-orleans-saints
+Daniel Faalele,OT,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,1,New Orleans Saints,new-orleans-saints
+Nik Bonitto,EDGE,1,1,1,1.0,1.0,1,1,19.0,19.0,19,19,1,New Orleans Saints,new-orleans-saints
+Leo Chenal,LB,1,1,1,1.0,1.0,1,1,21.0,21.0,21,21,1,New England Patriots,new-england-patriots
+Myjai Sanders,EDGE,1,1,1,1.0,1.0,1,1,22.0,22.0,22,22,1,Green Bay Packers,green-bay-packers
+Derion Kendrick,CB,1,1,1,1.0,1.0,1,1,25.0,25.0,25,25,1,Buffalo Bills,buffalo-bills
+Abraham Lucas,OT,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,1,Green Bay Packers,green-bay-packers
+David Bell,WR,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,1,Green Bay Packers,green-bay-packers
+Jalen Tolbert,WR,1,1,1,1.0,1.0,1,1,28.0,28.0,28,28,1,Green Bay Packers,green-bay-packers
+Tyquan Thornton,WR,1,1,1,1.0,1.0,1,1,29.0,29.0,29,29,1,Kansas City Chiefs,kansas-city-chiefs
+Alec Pierce,WR,1,1,1,1.0,1.0,1,1,30.0,30.0,30,30,1,Kansas City Chiefs,kansas-city-chiefs
+Kingsley Enagbare,EDGE,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,1,Cincinnati Bengals,cincinnati-bengals
+Zyon McCollum,CB,1,1,1,1.0,1.0,1,1,31.0,31.0,31,31,1,Cincinnati Bengals,cincinnati-bengals
+Chad Muma,LB,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,1,Detroit Lions,detroit-lions
+Matt Araiza,P,1,1,1,1.0,1.0,1,1,32.0,32.0,32,32,1,Detroit Lions,detroit-lions
