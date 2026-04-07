@@ -18,6 +18,8 @@ from scripts.scrape_nflmockdraftdatabase import (
     slugify,
     team_name_from_slug,
 )
+from scripts.scrape_draft_visits import normalize_name as normalize_visit_player_name
+from scripts.scrape_draft_visits import normalize_position as normalize_visit_position
 
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -84,6 +86,37 @@ def mode_or_first(values: pd.Series) -> object:
     if not modes.empty:
         return modes.iloc[0]
     return cleaned.iloc[0]
+
+
+def join_unique_text(values: pd.Series) -> str:
+    cleaned = sorted({str(value).strip() for value in values.dropna() if str(value).strip()})
+    return " | ".join(cleaned)
+
+
+def safe_rate(numerator: float, denominator: float) -> float:
+    if denominator in {0, 0.0} or pd.isna(denominator):
+        return 0.0
+    if pd.isna(numerator):
+        return 0.0
+    return float(numerator) / float(denominator)
+
+
+def split_pipe_values(value: object) -> list[str]:
+    if value is None or pd.isna(value):
+        return []
+    text = str(value).strip()
+    if not text:
+        return []
+    return [item.strip() for item in text.split("|") if item.strip()]
+
+
+def format_visit_label(value: str | None) -> str:
+    text = str(value or "").strip()
+    return text.replace("_", " ").title() if text else ""
+
+
+def format_pipe_visit_labels(value: object) -> str:
+    return " | ".join(format_visit_label(part) for part in split_pipe_values(value))
 
 
 def current_cycle_archive_paths(section: str) -> tuple[Path, Path]:
@@ -423,6 +456,48 @@ def refresh_current_cycle_data(status_callback=None) -> tuple[bool, str]:
 
     st.cache_data.clear()
     return True, "\n\n".join(outputs) if outputs else "Refresh completed."
+
+
+def refresh_current_visit_data(status_callback=None) -> tuple[bool, str]:
+    def update_status(message: str) -> None:
+        if status_callback is not None:
+            status_callback(message)
+
+    update_status(f"Refreshing full {CURRENT_YEAR} visit trackers across all configured sources...")
+    command = [
+        sys.executable,
+        str(ROOT_DIR / "scripts" / "scrape_draft_visits.py"),
+        "--start-year",
+        str(CURRENT_YEAR),
+        "--end-year",
+        str(CURRENT_YEAR),
+        "--current-year",
+        str(CURRENT_YEAR),
+        "--data-dir",
+        str(ROOT_DIR / "data"),
+        "--refresh",
+        "--sleep-seconds",
+        str(REFRESH_SLEEP_SECONDS),
+    ]
+    result = subprocess.run(
+        command,
+        cwd=ROOT_DIR,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        error_text = result.stderr.strip() or result.stdout.strip() or "Unknown error"
+        return False, error_text
+
+    st.cache_data.clear()
+    output_text = result.stdout.strip()
+    if output_text:
+        output_text += (
+            f"\n\nCurrent-season visit refresh refetched the full {CURRENT_YEAR} tracker pages, "
+            "so older in-season visit entries stay in the dataset."
+        )
+    return True, output_text or f"Current-season {CURRENT_YEAR} visit refresh completed."
 
 
 def build_refresh_highlight_lines(message: str) -> list[str]:
@@ -1184,6 +1259,607 @@ def load_team_specialists() -> pd.DataFrame:
         team_author["team_specialist_weight"] = team_author["team_specific_score"] / 100.0
     team_author["author_name_norm"] = team_author["author_name"].map(normalize_author)
     return team_author
+
+
+@st.cache_data(show_spinner=False)
+def load_historical_actual_results() -> pd.DataFrame:
+    frames: list[pd.DataFrame] = []
+    for year in HISTORICAL_YEARS:
+        path = PROCESSED_DIR / str(year) / f"actual_draft_results_{year}.csv"
+        if not path.exists():
+            continue
+        df = pd.read_csv(path)
+        if df.empty:
+            continue
+        df["year"] = year
+        frames.append(df)
+
+    if not frames:
+        return pd.DataFrame()
+
+    actual = pd.concat(frames, ignore_index=True)
+    actual["player_norm"] = actual["player_name"].map(normalize_visit_player_name)
+    actual["player_position_norm"] = actual["player_position"].map(normalize_visit_position)
+    actual["pick"] = pd.to_numeric(actual["pick"], errors="coerce")
+    actual["round_number"] = pd.to_numeric(actual["round_number"], errors="coerce")
+    actual["team_name"] = actual["team_name"].fillna(actual["team_slug"].map(team_name_from_slug))
+    return actual
+
+
+@st.cache_data(show_spinner=False)
+def load_historical_visit_history_data() -> pd.DataFrame:
+    path = PROCESSED_DIR / "draft-visits" / "draft_visits__merged.csv"
+    if not path.exists():
+        return pd.DataFrame()
+
+    visits = pd.read_csv(path)
+    if visits.empty:
+        return visits
+
+    visits["year"] = pd.to_numeric(visits["year"], errors="coerce")
+    visits = visits[visits["year"].isin(HISTORICAL_YEARS)].copy()
+    if visits.empty:
+        return visits
+
+    visits["player_norm"] = visits["player_norm"].fillna(visits["player_name"].map(normalize_visit_player_name))
+    visits["visit_position"] = (
+        visits["position_normalized"].fillna(visits["position_raw"]).map(normalize_visit_position)
+    )
+    visits["team_name"] = visits["team_name"].fillna(visits["team_slug"].map(team_name_from_slug))
+    visits["source_count"] = pd.to_numeric(visits.get("source_count"), errors="coerce").fillna(1).astype(int)
+    visits = visits.dropna(subset=["year", "team_slug", "player_norm"]).copy()
+    visits = visits.drop_duplicates(subset=["year", "team_slug", "player_norm"], keep="first").copy()
+    return visits
+
+
+@st.cache_data(show_spinner=False)
+def load_current_visit_data() -> pd.DataFrame:
+    candidate_paths = [
+        PROCESSED_DIR / "draft-visits" / f"draft_visits__current_{CURRENT_YEAR}.csv",
+        PROCESSED_DIR / "draft-visits" / "draft_visits__current_cycle.csv",
+        PROCESSED_DIR / "draft-visits" / "draft_visits__merged.csv",
+    ]
+    source_path = next((path for path in candidate_paths if path.exists()), None)
+    if source_path is None:
+        return pd.DataFrame()
+
+    visits = pd.read_csv(source_path)
+    if visits.empty:
+        return visits
+
+    if "year" in visits.columns:
+        visits["year"] = pd.to_numeric(visits["year"], errors="coerce")
+        visits = visits[visits["year"] == CURRENT_YEAR].copy()
+    else:
+        visits["year"] = CURRENT_YEAR
+    if visits.empty:
+        return visits
+
+    visits["player_norm"] = visits["player_norm"].fillna(visits["player_name"].map(normalize_visit_player_name))
+    visits["visit_position"] = (
+        visits["position_normalized"].fillna(visits["position_raw"]).map(normalize_visit_position)
+    )
+    visits["team_name"] = visits["team_name"].fillna(visits["team_slug"].map(team_name_from_slug))
+    visits["source_count"] = pd.to_numeric(visits.get("source_count"), errors="coerce").fillna(1).astype(int)
+    visits["source_record_count"] = pd.to_numeric(
+        visits.get("source_record_count"),
+        errors="coerce",
+    ).fillna(visits["source_count"]).astype(int)
+    visits["player_name"] = visits["player_name"].fillna("")
+    visits["school"] = visits["school"].fillna("")
+    visits["visit_types_normalized"] = visits["visit_types_normalized"].fillna("")
+    visits["visit_statuses"] = visits["visit_statuses"].fillna("")
+    visits["sources"] = visits["sources"].fillna("")
+    visits = visits.dropna(subset=["year", "team_slug", "player_norm"]).copy()
+    visits = visits.drop_duplicates(subset=["year", "team_slug", "player_norm"], keep="first").copy()
+
+    visits["has_top_30_visit"] = visits["visit_types_normalized"].map(
+        lambda value: "top_30_visit" in split_pipe_values(value)
+    )
+    visits["has_combine_meeting"] = visits["visit_types_normalized"].map(
+        lambda value: "combine_meeting" in split_pipe_values(value)
+    )
+    visits["has_local_visit"] = visits["visit_types_normalized"].map(
+        lambda value: "local_visit" in split_pipe_values(value)
+    )
+    visits["has_virtual_meeting"] = visits["visit_types_normalized"].map(
+        lambda value: "virtual_meeting" in split_pipe_values(value)
+    )
+    visits["has_workout"] = visits["visit_types_normalized"].map(
+        lambda value: any(
+            part in {
+                "private_workout",
+                "private_meeting",
+                "pro_day_meeting",
+                "pro_day_or_campus_meeting_workout",
+            }
+            for part in split_pipe_values(value)
+        )
+    )
+    visits["is_reported"] = visits["visit_statuses"].map(lambda value: "reported" in split_pipe_values(value))
+    visits["is_scheduled"] = visits["visit_statuses"].map(lambda value: "scheduled" in split_pipe_values(value))
+    visits["is_scheduled_only"] = visits["is_scheduled"] & ~visits["is_reported"]
+    visits["is_multi_source"] = visits["source_count"] >= 2
+    visits["visit_types_display"] = visits["visit_types_normalized"].map(format_pipe_visit_labels)
+    visits["visit_statuses_display"] = visits["visit_statuses"].map(format_pipe_visit_labels)
+    return visits
+
+
+@st.cache_data(show_spinner=False)
+def build_current_team_visit_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    visits = load_current_visit_data()
+    if visits.empty:
+        empty = pd.DataFrame()
+        return empty, empty, empty, empty
+
+    team_summary = (
+        visits.groupby(["team_slug", "team_name"], dropna=False)
+        .agg(
+            total_visit_players=("player_norm", "nunique"),
+            total_visit_positions=("visit_position", lambda values: int(values.dropna().nunique())),
+            multi_source_players=("is_multi_source", "sum"),
+            top_30_players=("has_top_30_visit", "sum"),
+            combine_players=("has_combine_meeting", "sum"),
+            workout_players=("has_workout", "sum"),
+            local_players=("has_local_visit", "sum"),
+            virtual_players=("has_virtual_meeting", "sum"),
+            reported_players=("is_reported", "sum"),
+            scheduled_players=("is_scheduled", "sum"),
+            scheduled_only_players=("is_scheduled_only", "sum"),
+        )
+        .reset_index()
+    )
+
+    position_summary = (
+        visits.dropna(subset=["visit_position"])
+        .groupby(["team_slug", "team_name", "visit_position"], dropna=False)
+        .agg(
+            visited_player_count=("player_norm", "nunique"),
+            multi_source_players=("is_multi_source", "sum"),
+            top_30_players=("has_top_30_visit", "sum"),
+            combine_players=("has_combine_meeting", "sum"),
+            workout_players=("has_workout", "sum"),
+            local_players=("has_local_visit", "sum"),
+            scheduled_only_players=("is_scheduled_only", "sum"),
+            player_names=("player_name", join_unique_text),
+            visit_type_mix=("visit_types_display", join_unique_text),
+            status_mix=("visit_statuses_display", join_unique_text),
+        )
+        .reset_index()
+        .rename(columns={"visit_position": "position"})
+    )
+    if not position_summary.empty:
+        position_summary = position_summary.merge(
+            team_summary[["team_slug", "total_visit_players"]],
+            on="team_slug",
+            how="left",
+        )
+        position_summary["visit_share"] = (
+            position_summary["visited_player_count"] / position_summary["total_visit_players"]
+        ).fillna(0.0)
+        position_summary["visit_rank"] = (
+            position_summary.groupby(["team_slug"])["visited_player_count"]
+            .rank(method="dense", ascending=False)
+            .astype(int)
+        )
+    else:
+        position_summary["visit_share"] = pd.Series(dtype="float64")
+        position_summary["visit_rank"] = pd.Series(dtype="int64")
+
+    top_positions = (
+        position_summary[position_summary["visit_rank"] == 1]
+        .groupby(["team_slug", "team_name"], dropna=False)
+        .agg(
+            top_visited_positions=("position", join_unique_text),
+            top_visited_position_count=("visited_player_count", "max"),
+        )
+        .reset_index()
+    )
+    team_summary = team_summary.merge(
+        top_positions,
+        on=["team_slug", "team_name"],
+        how="left",
+    )
+    team_summary["multi_source_rate"] = (
+        team_summary["multi_source_players"] / team_summary["total_visit_players"]
+    ).fillna(0.0)
+    team_summary["top_30_rate"] = (
+        team_summary["top_30_players"] / team_summary["total_visit_players"]
+    ).fillna(0.0)
+    team_summary["scheduled_only_rate"] = (
+        team_summary["scheduled_only_players"] / team_summary["total_visit_players"]
+    ).fillna(0.0)
+    team_summary = team_summary.sort_values(
+        by=["total_visit_players", "top_30_players", "multi_source_players", "team_name"],
+        ascending=[False, False, False, True],
+    ).reset_index(drop=True)
+
+    visit_type_summary = visits[
+        [
+            "team_slug",
+            "team_name",
+            "player_norm",
+            "player_name",
+            "visit_types_normalized",
+            "is_multi_source",
+            "is_reported",
+            "is_scheduled",
+        ]
+    ].copy()
+    visit_type_summary["visit_type"] = visit_type_summary["visit_types_normalized"].map(split_pipe_values)
+    visit_type_summary = visit_type_summary.explode("visit_type")
+    visit_type_summary["visit_type"] = visit_type_summary["visit_type"].fillna("unspecified")
+    visit_type_summary["visit_type_display"] = visit_type_summary["visit_type"].map(format_visit_label)
+    visit_type_summary = (
+        visit_type_summary.groupby(["team_slug", "team_name", "visit_type", "visit_type_display"], dropna=False)
+        .agg(
+            player_count=("player_norm", "nunique"),
+            multi_source_players=("is_multi_source", "sum"),
+            reported_players=("is_reported", "sum"),
+            scheduled_players=("is_scheduled", "sum"),
+            player_names=("player_name", join_unique_text),
+        )
+        .reset_index()
+    )
+    visit_type_summary = visit_type_summary.merge(
+        team_summary[["team_slug", "total_visit_players"]],
+        on="team_slug",
+        how="left",
+    )
+    visit_type_summary["player_share"] = (
+        visit_type_summary["player_count"] / visit_type_summary["total_visit_players"]
+    ).fillna(0.0)
+    visit_type_summary["visit_type_rank"] = (
+        visit_type_summary.groupby(["team_slug"])["player_count"]
+        .rank(method="dense", ascending=False)
+        .astype(int)
+    )
+    visit_type_summary = visit_type_summary.sort_values(
+        by=["team_name", "player_count", "visit_type_display"],
+        ascending=[True, False, True],
+    ).reset_index(drop=True)
+
+    player_detail = visits[
+        [
+            "team_slug",
+            "team_name",
+            "player_name",
+            "visit_position",
+            "school",
+            "visit_types_normalized",
+            "visit_types_display",
+            "visit_statuses_display",
+            "source_count",
+            "source_record_count",
+            "sources",
+            "is_multi_source",
+            "has_top_30_visit",
+            "has_workout",
+            "is_scheduled_only",
+        ]
+    ].copy()
+    player_detail = player_detail.rename(columns={"visit_position": "position"})
+    player_detail = player_detail.sort_values(
+        by=[
+            "team_name",
+            "source_count",
+            "has_top_30_visit",
+            "has_workout",
+            "position",
+            "player_name",
+        ],
+        ascending=[True, False, False, False, True, True],
+        na_position="last",
+    ).reset_index(drop=True)
+    return team_summary, position_summary, player_detail, visit_type_summary
+
+
+@st.cache_data(show_spinner=False)
+def build_team_visit_history_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    visits = load_historical_visit_history_data()
+    actual = load_historical_actual_results()
+    if visits.empty or actual.empty:
+        empty = pd.DataFrame()
+        return empty, empty, empty, empty, empty
+
+    team_visit_totals = (
+        visits.groupby(["year", "team_slug", "team_name"], dropna=False)
+        .agg(
+            total_visit_players=("player_norm", "nunique"),
+            total_visit_positions=("visit_position", lambda values: int(values.dropna().nunique())),
+        )
+        .reset_index()
+    )
+
+    position_visits = (
+        visits.dropna(subset=["visit_position"])
+        .groupby(["year", "team_slug", "team_name", "visit_position"], dropna=False)
+        .agg(
+            visited_player_count=("player_norm", "nunique"),
+            visited_player_names=("player_name", join_unique_text),
+            visit_type_mix=("visit_types_normalized", join_unique_text),
+        )
+        .reset_index()
+    )
+    if not position_visits.empty:
+        position_visits = position_visits.merge(
+            team_visit_totals[["year", "team_slug", "total_visit_players"]],
+            on=["year", "team_slug"],
+            how="left",
+        )
+        position_visits["visit_share"] = (
+            position_visits["visited_player_count"] / position_visits["total_visit_players"]
+        ).fillna(0.0)
+        position_visits["visit_rank"] = (
+            position_visits.groupby(["year", "team_slug"])["visited_player_count"]
+            .rank(method="dense", ascending=False)
+            .astype(int)
+        )
+    else:
+        position_visits["visit_share"] = pd.Series(dtype="float64")
+        position_visits["visit_rank"] = pd.Series(dtype="int64")
+
+    top_positions = (
+        position_visits[position_visits["visit_rank"] == 1]
+        .groupby(["year", "team_slug"], dropna=False)
+        .agg(
+            top_visited_positions=("visit_position", join_unique_text),
+            top_visited_position_count=("visited_player_count", "max"),
+        )
+        .reset_index()
+    )
+
+    visit_player_lookup = visits[
+        [
+            "year",
+            "team_slug",
+            "player_norm",
+            "visit_types_normalized",
+            "visit_statuses",
+            "sources",
+            "source_count",
+            "visit_position",
+            "school",
+        ]
+    ].copy()
+    actual_pick_history = actual.merge(
+        visit_player_lookup,
+        on=["year", "team_slug", "player_norm"],
+        how="left",
+    )
+    actual_pick_history["was_visited"] = actual_pick_history["visit_types_normalized"].notna()
+
+    position_visit_lookup = position_visits[
+        [
+            "year",
+            "team_slug",
+            "visit_position",
+            "visited_player_count",
+            "visit_rank",
+            "visit_share",
+        ]
+    ].rename(
+        columns={
+            "visit_position": "player_position_norm",
+            "visited_player_count": "position_visit_player_count",
+            "visit_rank": "position_visit_rank",
+            "visit_share": "position_visit_share",
+        }
+    )
+    actual_pick_history = actual_pick_history.merge(
+        position_visit_lookup,
+        on=["year", "team_slug", "player_position_norm"],
+        how="left",
+    )
+    actual_pick_history["position_visit_player_count"] = pd.to_numeric(
+        actual_pick_history["position_visit_player_count"], errors="coerce"
+    ).fillna(0)
+    actual_pick_history["position_visit_rank"] = pd.to_numeric(
+        actual_pick_history["position_visit_rank"], errors="coerce"
+    )
+    actual_pick_history["position_visit_share"] = pd.to_numeric(
+        actual_pick_history["position_visit_share"], errors="coerce"
+    ).fillna(0.0)
+    actual_pick_history["drafted_position_had_visit"] = actual_pick_history["position_visit_player_count"] > 0
+    actual_pick_history["drafted_position_had_3plus_visits"] = actual_pick_history["position_visit_player_count"] >= 3
+    actual_pick_history["drafted_position_was_top_visited"] = actual_pick_history["position_visit_rank"] == 1
+    actual_pick_history["drafted_position_was_top_3_visited"] = (
+        actual_pick_history["position_visit_rank"].fillna(999) <= 3
+    )
+    actual_pick_history["visit_match_type"] = "No recorded visit"
+    actual_pick_history.loc[
+        actual_pick_history["drafted_position_had_visit"],
+        "visit_match_type",
+    ] = "Visited position"
+    actual_pick_history.loc[actual_pick_history["was_visited"], "visit_match_type"] = "Visited player"
+
+    visited_drafted_players = (
+        actual_pick_history[actual_pick_history["was_visited"]]
+        .groupby(["year", "team_slug"], dropna=False)
+        .agg(visited_drafted_players=("player_name", join_unique_text))
+        .reset_index()
+    )
+    drafted_positions = (
+        actual_pick_history.groupby(["year", "team_slug"], dropna=False)
+        .agg(drafted_positions=("player_position_norm", join_unique_text))
+        .reset_index()
+    )
+
+    team_year_summary = (
+        actual_pick_history.groupby(["year", "team_slug", "team_name"], dropna=False)
+        .agg(
+            drafted_picks=("pick", "count"),
+            drafted_round1_picks=("round_number", lambda values: int((values.fillna(0) == 1).sum())),
+            drafted_visited_players=("was_visited", "sum"),
+            drafted_picks_at_visited_positions=("drafted_position_had_visit", "sum"),
+            drafted_picks_at_3plus_visit_positions=("drafted_position_had_3plus_visits", "sum"),
+            drafted_any_top_visited_position=("drafted_position_was_top_visited", "max"),
+            drafted_any_top_3_visited_position=("drafted_position_was_top_3_visited", "max"),
+        )
+        .reset_index()
+    )
+    team_year_summary = team_year_summary.merge(
+        team_visit_totals,
+        on=["year", "team_slug", "team_name"],
+        how="left",
+    )
+    team_year_summary = team_year_summary.merge(
+        top_positions,
+        on=["year", "team_slug"],
+        how="left",
+    )
+    team_year_summary = team_year_summary.merge(
+        visited_drafted_players,
+        on=["year", "team_slug"],
+        how="left",
+    )
+    team_year_summary = team_year_summary.merge(
+        drafted_positions,
+        on=["year", "team_slug"],
+        how="left",
+    )
+    for column_name in ("total_visit_players", "total_visit_positions", "top_visited_position_count"):
+        team_year_summary[column_name] = pd.to_numeric(team_year_summary[column_name], errors="coerce").fillna(0)
+    team_year_summary["drafted_visited_player_rate"] = (
+        team_year_summary["drafted_visited_players"] / team_year_summary["drafted_picks"]
+    ).fillna(0.0)
+    team_year_summary["visit_pool_conversion_rate"] = (
+        team_year_summary["drafted_visited_players"] / team_year_summary["total_visit_players"]
+    ).fillna(0.0)
+    team_year_summary["drafted_pick_on_visited_position_rate"] = (
+        team_year_summary["drafted_picks_at_visited_positions"] / team_year_summary["drafted_picks"]
+    ).fillna(0.0)
+    team_year_summary["drafted_pick_on_3plus_visit_position_rate"] = (
+        team_year_summary["drafted_picks_at_3plus_visit_positions"] / team_year_summary["drafted_picks"]
+    ).fillna(0.0)
+    team_year_summary["drafted_any_visited_player"] = team_year_summary["drafted_visited_players"] > 0
+    team_year_summary = team_year_summary.sort_values(["team_name", "year"], ascending=[True, True])
+
+    team_history_summary = (
+        team_year_summary.groupby(["team_slug", "team_name"], dropna=False)
+        .agg(
+            seasons_covered=("year", "nunique"),
+            total_visit_players=("total_visit_players", "sum"),
+            avg_visit_players_per_year=("total_visit_players", "mean"),
+            drafted_picks=("drafted_picks", "sum"),
+            drafted_round1_picks=("drafted_round1_picks", "sum"),
+            drafted_visited_players=("drafted_visited_players", "sum"),
+            drafted_picks_at_visited_positions=("drafted_picks_at_visited_positions", "sum"),
+            drafted_picks_at_3plus_visit_positions=("drafted_picks_at_3plus_visit_positions", "sum"),
+            seasons_with_visited_player_pick=("drafted_any_visited_player", "sum"),
+            seasons_with_top_visited_position_drafted=("drafted_any_top_visited_position", "sum"),
+            seasons_with_top_3_visited_position_drafted=("drafted_any_top_3_visited_position", "sum"),
+        )
+        .reset_index()
+    )
+    team_history_summary["drafted_visited_player_rate"] = (
+        team_history_summary["drafted_visited_players"] / team_history_summary["drafted_picks"]
+    ).fillna(0.0)
+    team_history_summary["visit_pool_conversion_rate"] = (
+        team_history_summary["drafted_visited_players"] / team_history_summary["total_visit_players"]
+    ).fillna(0.0)
+    team_history_summary["drafted_pick_on_visited_position_rate"] = (
+        team_history_summary["drafted_picks_at_visited_positions"] / team_history_summary["drafted_picks"]
+    ).fillna(0.0)
+    team_history_summary["drafted_pick_on_3plus_visit_position_rate"] = (
+        team_history_summary["drafted_picks_at_3plus_visit_positions"] / team_history_summary["drafted_picks"]
+    ).fillna(0.0)
+    team_history_summary["seasons_with_visited_player_pick_rate"] = (
+        team_history_summary["seasons_with_visited_player_pick"] / team_history_summary["seasons_covered"]
+    ).fillna(0.0)
+    team_history_summary["seasons_with_top_visited_position_drafted_rate"] = (
+        team_history_summary["seasons_with_top_visited_position_drafted"] / team_history_summary["seasons_covered"]
+    ).fillna(0.0)
+    team_history_summary["seasons_with_top_3_visited_position_drafted_rate"] = (
+        team_history_summary["seasons_with_top_3_visited_position_drafted"] / team_history_summary["seasons_covered"]
+    ).fillna(0.0)
+    team_history_summary = team_history_summary.sort_values(
+        by=["drafted_visited_player_rate", "drafted_pick_on_visited_position_rate", "team_name"],
+        ascending=[False, False, True],
+    )
+
+    actual_position_summary = (
+        actual_pick_history.groupby(["year", "team_slug", "team_name", "player_position_norm"], dropna=False)
+        .agg(
+            drafted_pick_count=("pick", "count"),
+            drafted_players=("player_name", join_unique_text),
+        )
+        .reset_index()
+        .rename(columns={"player_position_norm": "position"})
+    )
+    visit_position_summary = position_visits.rename(columns={"visit_position": "position"}).copy()
+    position_year_summary = visit_position_summary.merge(
+        actual_position_summary,
+        on=["year", "team_slug", "team_name", "position"],
+        how="outer",
+    )
+    position_year_summary["visited_player_count"] = pd.to_numeric(
+        position_year_summary["visited_player_count"], errors="coerce"
+    ).fillna(0)
+    position_year_summary["drafted_pick_count"] = pd.to_numeric(
+        position_year_summary["drafted_pick_count"], errors="coerce"
+    ).fillna(0)
+    position_year_summary["visit_rank"] = pd.to_numeric(
+        position_year_summary["visit_rank"], errors="coerce"
+    )
+    position_year_summary["visit_share"] = pd.to_numeric(
+        position_year_summary["visit_share"], errors="coerce"
+    ).fillna(0.0)
+    position_year_summary["position_was_drafted"] = position_year_summary["drafted_pick_count"] > 0
+    position_year_summary["position_had_3plus_visits"] = position_year_summary["visited_player_count"] >= 3
+    position_year_summary["position_was_top_visited"] = position_year_summary["visit_rank"] == 1
+    position_year_summary["position_was_top_3_visited"] = position_year_summary["visit_rank"].fillna(999) <= 3
+    position_year_summary["drafted_when_top_visited_season"] = (
+        position_year_summary["position_was_drafted"] & position_year_summary["position_was_top_visited"]
+    )
+    position_year_summary["drafted_when_top_3_visited_season"] = (
+        position_year_summary["position_was_drafted"] & position_year_summary["position_was_top_3_visited"]
+    )
+    position_year_summary["drafted_when_3plus_visit_season"] = (
+        position_year_summary["position_was_drafted"] & position_year_summary["position_had_3plus_visits"]
+    )
+    position_year_summary = position_year_summary.sort_values(
+        by=["team_name", "year", "visited_player_count", "drafted_pick_count", "position"],
+        ascending=[True, True, False, False, True],
+    )
+
+    position_history_summary = (
+        position_year_summary.groupby(["team_slug", "team_name", "position"], dropna=False)
+        .agg(
+            seasons_with_visits=("visited_player_count", lambda values: int((values > 0).sum())),
+            total_visit_players=("visited_player_count", "sum"),
+            max_visits_in_season=("visited_player_count", "max"),
+            drafted_pick_count=("drafted_pick_count", "sum"),
+            drafted_seasons=("position_was_drafted", "sum"),
+            seasons_top_visited=("position_was_top_visited", "sum"),
+            drafted_when_top_visited_seasons=("drafted_when_top_visited_season", "sum"),
+            drafted_when_top_3_visited_seasons=("drafted_when_top_3_visited_season", "sum"),
+            drafted_when_3plus_visit_seasons=("drafted_when_3plus_visit_season", "sum"),
+        )
+        .reset_index()
+    )
+    position_history_summary["avg_visits_per_visit_season"] = (
+        position_history_summary["total_visit_players"] / position_history_summary["seasons_with_visits"]
+    ).fillna(0.0)
+    position_history_summary["drafted_season_rate_when_visited"] = (
+        position_history_summary["drafted_seasons"] / position_history_summary["seasons_with_visits"]
+    ).fillna(0.0)
+    position_history_summary = position_history_summary.sort_values(
+        by=["team_name", "total_visit_players", "drafted_pick_count", "position"],
+        ascending=[True, False, False, True],
+    )
+
+    actual_pick_history = actual_pick_history.sort_values(
+        by=["team_name", "year", "pick"],
+        ascending=[True, True, True],
+    )
+    return (
+        team_history_summary,
+        team_year_summary,
+        actual_pick_history,
+        position_history_summary,
+        position_year_summary,
+    )
 
 
 def build_qualified_authors(
@@ -2456,6 +3132,146 @@ def best_team_full_mockers_column_config() -> dict[str, object]:
     }
 
 
+def visit_team_history_summary_column_config() -> dict[str, object]:
+    return {
+        "team_name": st.column_config.TextColumn("Team", help="NFL team."),
+        "seasons_covered": st.column_config.NumberColumn("Seasons", help="Historical seasons with actual draft results in the sample.", format="%d"),
+        "total_visit_players": st.column_config.NumberColumn("Visited\nPlayers", help="Total unique visited prospects across the historical sample.", format="%d"),
+        "avg_visit_players_per_year": st.column_config.NumberColumn("Avg Visits\nPer Year", help="Average unique visited prospects per season.", format="%.1f"),
+        "drafted_picks": st.column_config.NumberColumn("Drafted\nPicks", help="Total actual draft picks for this team across the sample.", format="%d"),
+        "drafted_visited_players": st.column_config.NumberColumn("Drafted\nVisited", help="How many actual picks were players the team had a recorded meeting or visit with.", format="%d"),
+        "drafted_visited_player_rate": st.column_config.NumberColumn("Pick Rate:\nVisited Player", help="Share of actual draft picks that were players the team had already visited.", format="%.3f"),
+        "visit_pool_conversion_rate": st.column_config.NumberColumn("Visit Pool\nConversion", help="Share of visited prospects who were eventually drafted by that team.", format="%.3f"),
+        "drafted_pick_on_visited_position_rate": st.column_config.NumberColumn("Pick Rate:\nVisited Position", help="Share of actual draft picks spent on positions that had at least one recorded visit.", format="%.3f"),
+        "drafted_pick_on_3plus_visit_position_rate": st.column_config.NumberColumn("Pick Rate:\n3+ Visit Pos", help="Share of actual draft picks spent on positions with at least three visited prospects that year.", format="%.3f"),
+        "seasons_with_visited_player_pick_rate": st.column_config.NumberColumn("Seasons With\nVisited Pick", help="Share of seasons where the team drafted at least one player it had visited.", format="%.3f"),
+        "seasons_with_top_visited_position_drafted_rate": st.column_config.NumberColumn("Seasons With\nTop Pos Used", help="Share of seasons where the team drafted at least one player at its most-visited position.", format="%.3f"),
+    }
+
+
+def visit_team_year_column_config() -> dict[str, object]:
+    return {
+        "year": st.column_config.NumberColumn("Year", format="%d"),
+        "total_visit_players": st.column_config.NumberColumn("Visited\nPlayers", format="%d"),
+        "total_visit_positions": st.column_config.NumberColumn("Visited\nPositions", format="%d"),
+        "top_visited_positions": st.column_config.TextColumn("Top Visited\nPosition(s)", help="Most-visited position group or groups for that team-season."),
+        "top_visited_position_count": st.column_config.NumberColumn("Top Pos\nVisits", help="Unique visited prospects at the most-visited position.", format="%d"),
+        "drafted_picks": st.column_config.NumberColumn("Drafted\nPicks", format="%d"),
+        "drafted_visited_players": st.column_config.NumberColumn("Drafted\nVisited", format="%d"),
+        "drafted_visited_player_rate": st.column_config.NumberColumn("Pick Rate:\nVisited Player", format="%.3f"),
+        "drafted_picks_at_visited_positions": st.column_config.NumberColumn("Picks At\nVisited Pos", format="%d"),
+        "drafted_pick_on_visited_position_rate": st.column_config.NumberColumn("Pick Rate:\nVisited Pos", format="%.3f"),
+        "drafted_picks_at_3plus_visit_positions": st.column_config.NumberColumn("Picks At\n3+ Visit Pos", format="%d"),
+        "drafted_pick_on_3plus_visit_position_rate": st.column_config.NumberColumn("Pick Rate:\n3+ Visit Pos", format="%.3f"),
+        "drafted_positions": st.column_config.TextColumn("Drafted\nPositions"),
+        "visited_drafted_players": st.column_config.TextColumn("Visited Players\nThey Drafted"),
+    }
+
+
+def visit_actual_pick_history_column_config() -> dict[str, object]:
+    return {
+        "year": st.column_config.NumberColumn("Year", format="%d"),
+        "round_number": st.column_config.NumberColumn("Round", format="%d"),
+        "pick": st.column_config.NumberColumn("Pick", format="%d"),
+        "player_name": st.column_config.TextColumn("Player"),
+        "player_position_norm": st.column_config.TextColumn("Pos"),
+        "college_name": st.column_config.TextColumn("College"),
+        "visit_match_type": st.column_config.TextColumn("Visit Match", help="Visited player means the exact drafted player was visited. Visited position means the team drafted that position after bringing in prospects there."),
+        "visit_types_normalized": st.column_config.TextColumn("Player Visit\nTypes"),
+        "position_visit_player_count": st.column_config.NumberColumn("Pos Visit\nCount", help="How many visited prospects this team had at the drafted player's position that season.", format="%d"),
+        "position_visit_rank": st.column_config.NumberColumn("Pos Visit\nRank", help="Rank of the drafted player's position by visit volume within that team-season.", format="%d"),
+        "sources": st.column_config.TextColumn("Visit\nSources"),
+    }
+
+
+def visit_position_history_column_config() -> dict[str, object]:
+    return {
+        "position": st.column_config.TextColumn("Pos"),
+        "seasons_with_visits": st.column_config.NumberColumn("Visit\nSeasons", format="%d"),
+        "total_visit_players": st.column_config.NumberColumn("Visited\nPlayers", format="%d"),
+        "avg_visits_per_visit_season": st.column_config.NumberColumn("Avg Visits\nPer Season", format="%.2f"),
+        "max_visits_in_season": st.column_config.NumberColumn("Max Visits\nIn Season", format="%d"),
+        "drafted_pick_count": st.column_config.NumberColumn("Drafted\nPicks", format="%d"),
+        "drafted_seasons": st.column_config.NumberColumn("Drafted\nSeasons", format="%d"),
+        "drafted_season_rate_when_visited": st.column_config.NumberColumn("Draft Rate\nWhen Visited", format="%.3f"),
+        "drafted_when_top_visited_seasons": st.column_config.NumberColumn("Drafted When\nTop Visited", format="%d"),
+        "drafted_when_top_3_visited_seasons": st.column_config.NumberColumn("Drafted When\nTop 3 Visited", format="%d"),
+        "drafted_when_3plus_visit_seasons": st.column_config.NumberColumn("Drafted When\n3+ Visits", format="%d"),
+    }
+
+
+def visit_position_year_column_config() -> dict[str, object]:
+    return {
+        "position": st.column_config.TextColumn("Pos"),
+        "visited_player_count": st.column_config.NumberColumn("Visited\nPlayers", format="%d"),
+        "visit_rank": st.column_config.NumberColumn("Visit\nRank", format="%d"),
+        "visit_share": st.column_config.NumberColumn("Visit\nShare", format="%.3f"),
+        "drafted_pick_count": st.column_config.NumberColumn("Drafted\nPicks", format="%d"),
+        "drafted_players": st.column_config.TextColumn("Drafted\nPlayers"),
+        "visited_player_names": st.column_config.TextColumn("Visited\nProspects"),
+    }
+
+
+def current_visit_team_summary_column_config() -> dict[str, object]:
+    return {
+        "team_name": st.column_config.TextColumn("Team"),
+        "total_visit_players": st.column_config.NumberColumn("Visited\nPlayers", format="%d"),
+        "total_visit_positions": st.column_config.NumberColumn("Visited\nPositions", format="%d"),
+        "top_visited_positions": st.column_config.TextColumn("Top Visited\nPosition(s)"),
+        "top_visited_position_count": st.column_config.NumberColumn("Top Pos\nCount", format="%d"),
+        "top_30_players": st.column_config.NumberColumn("Top 30\nPlayers", format="%d"),
+        "workout_players": st.column_config.NumberColumn("Workout / Pro Day\nPlayers", format="%d"),
+        "multi_source_players": st.column_config.NumberColumn("Multi-Source\nPlayers", format="%d"),
+        "multi_source_rate": st.column_config.NumberColumn("Multi-Source\nRate", format="%.3f"),
+        "scheduled_only_players": st.column_config.NumberColumn("Scheduled-Only\nPlayers", format="%d"),
+        "scheduled_only_rate": st.column_config.NumberColumn("Scheduled-Only\nRate", format="%.3f"),
+    }
+
+
+def current_visit_position_column_config() -> dict[str, object]:
+    return {
+        "position": st.column_config.TextColumn("Pos"),
+        "visited_player_count": st.column_config.NumberColumn("Visited\nPlayers", format="%d"),
+        "visit_rank": st.column_config.NumberColumn("Visit\nRank", format="%d"),
+        "visit_share": st.column_config.NumberColumn("Visit\nShare", format="%.3f"),
+        "top_30_players": st.column_config.NumberColumn("Top 30\nPlayers", format="%d"),
+        "workout_players": st.column_config.NumberColumn("Workout / Pro Day\nPlayers", format="%d"),
+        "multi_source_players": st.column_config.NumberColumn("Multi-Source\nPlayers", format="%d"),
+        "scheduled_only_players": st.column_config.NumberColumn("Scheduled-Only\nPlayers", format="%d"),
+        "player_names": st.column_config.TextColumn("Players"),
+        "visit_type_mix": st.column_config.TextColumn("Visit Type Mix"),
+    }
+
+
+def current_visit_type_column_config() -> dict[str, object]:
+    return {
+        "visit_type_display": st.column_config.TextColumn("Visit Type"),
+        "player_count": st.column_config.NumberColumn("Players", format="%d"),
+        "player_share": st.column_config.NumberColumn("Share Of\nTeam Pool", format="%.3f"),
+        "multi_source_players": st.column_config.NumberColumn("Multi-Source\nPlayers", format="%d"),
+        "reported_players": st.column_config.NumberColumn("Reported\nPlayers", format="%d"),
+        "scheduled_players": st.column_config.NumberColumn("Scheduled\nPlayers", format="%d"),
+        "player_names": st.column_config.TextColumn("Players"),
+    }
+
+
+def current_visit_player_column_config() -> dict[str, object]:
+    return {
+        "player_name": st.column_config.TextColumn("Player"),
+        "position": st.column_config.TextColumn("Pos"),
+        "school": st.column_config.TextColumn("School"),
+        "visit_types_display": st.column_config.TextColumn("Visit Type(s)"),
+        "visit_statuses_display": st.column_config.TextColumn("Status"),
+        "source_count": st.column_config.NumberColumn("Sources", format="%d"),
+        "source_record_count": st.column_config.NumberColumn("Source\nRows", format="%d"),
+        "is_multi_source": st.column_config.CheckboxColumn("Multi\nSource"),
+        "has_top_30_visit": st.column_config.CheckboxColumn("Top\n30"),
+        "has_workout": st.column_config.CheckboxColumn("Workout /\nPro Day"),
+        "is_scheduled_only": st.column_config.CheckboxColumn("Scheduled\nOnly"),
+        "sources": st.column_config.TextColumn("Source Mix"),
+    }
+
+
 def render_app() -> None:
     st.set_page_config(page_title="NFL Mock Consensus", layout="wide")
     st.title("NFL Mock Consensus")
@@ -2696,6 +3512,19 @@ def render_app() -> None:
     current_picks = load_current_picks()
     current_team_metadata, current_team_picks = load_current_team_mock_data()
     team_specialists = load_team_specialists()
+    (
+        current_visit_team_summary,
+        current_visit_position_summary,
+        current_visit_player_detail,
+        current_visit_type_summary,
+    ) = build_current_team_visit_views()
+    (
+        visit_team_history_summary,
+        visit_team_year_summary,
+        visit_actual_pick_history,
+        visit_position_history_summary,
+        visit_position_year_summary,
+    ) = build_team_visit_history_views()
     all_current_picks = current_picks.copy()
     all_current_team_metadata = current_team_metadata.copy()
 
@@ -2894,8 +3723,21 @@ def render_app() -> None:
         team_qualified_authors,
     )
 
-    tab_1, tab_2, tab_3, tab_4, tab_5, tab_6, tab_7, tab_8, tab_9, tab_10 = st.tabs(
-        ["Consensus Mock", "By Team", "By Pick", "By Player", "By Position", "Player Trends", "Best Mockers", "Ingestion", "Team Full Mocks", "Best Full Team Mockers"]
+    tab_1, tab_2, tab_3, tab_4, tab_5, tab_6, tab_7, tab_8, tab_9, tab_10, tab_11, tab_12 = st.tabs(
+        [
+            "Consensus Mock",
+            "By Team",
+            "By Pick",
+            "By Player",
+            "By Position",
+            "Player Trends",
+            "Best Mockers",
+            "Ingestion",
+            "Team Full Mocks",
+            "Best Full Team Mockers",
+            "Team Visit History",
+            "2026 Team Visits",
+        ]
     )
 
     with tab_1:
@@ -3951,6 +4793,426 @@ def render_app() -> None:
             if new_overrides != current_overrides:
                 st.session_state["manual_team_author_include"] = new_overrides
                 st.rerun()
+
+    with tab_11:
+        st.subheader("Team Visit History")
+        st.caption(
+            "Historical visit study using the merged visit tracker plus actual NFL draft results already stored from "
+            "NFL Mock Draft Database. This view is historical only and currently covers 2020-2025 because those are "
+            "the seasons with actual draft results on disk."
+        )
+        if (
+            visit_team_history_summary.empty
+            or visit_team_year_summary.empty
+            or visit_actual_pick_history.empty
+        ):
+            st.info(
+                "Team visit history is not available yet. Run the draft-visits scraper and make sure the historical "
+                "actual draft result CSVs exist under data/processed/<year>/actual_draft_results_<year>.csv."
+            )
+        else:
+            visit_team_options = sorted(visit_team_history_summary["team_name"].dropna().unique().tolist())
+            visit_control_col_1, visit_control_col_2 = st.columns([2, 1])
+            selected_visit_team = visit_control_col_1.selectbox(
+                "Team",
+                options=visit_team_options,
+                key="visit_history_team",
+            )
+
+            selected_team_summary = visit_team_history_summary[
+                visit_team_history_summary["team_name"] == selected_visit_team
+            ].head(1)
+            selected_team_years = visit_team_year_summary[
+                visit_team_year_summary["team_name"] == selected_visit_team
+            ].sort_values("year", ascending=False)
+            selected_team_picks = visit_actual_pick_history[
+                visit_actual_pick_history["team_name"] == selected_visit_team
+            ].sort_values(["year", "pick"], ascending=[False, True])
+            selected_team_position_history = visit_position_history_summary[
+                visit_position_history_summary["team_name"] == selected_visit_team
+            ].sort_values(
+                by=["total_visit_players", "drafted_pick_count", "position"],
+                ascending=[False, False, True],
+            )
+
+            season_options: list[object] = ["All Seasons"]
+            season_options.extend(selected_team_years["year"].dropna().astype(int).tolist())
+            selected_visit_season = visit_control_col_2.selectbox(
+                "Season Detail",
+                options=season_options,
+                key="visit_history_season",
+            )
+
+            if not selected_team_summary.empty:
+                summary_row = selected_team_summary.iloc[0]
+                metric_col_1, metric_col_2, metric_col_3, metric_col_4, metric_col_5 = st.columns(5)
+                metric_col_1.metric("Visited Player Pick Rate", f"{summary_row['drafted_visited_player_rate']:.1%}")
+                metric_col_2.metric("Visited Position Pick Rate", f"{summary_row['drafted_pick_on_visited_position_rate']:.1%}")
+                metric_col_3.metric("3+ Visit Position Pick Rate", f"{summary_row['drafted_pick_on_3plus_visit_position_rate']:.1%}")
+                metric_col_4.metric("Seasons With A Visited Pick", f"{summary_row['seasons_with_visited_player_pick_rate']:.1%}")
+                metric_col_5.metric(
+                    "Seasons Using Top Visited Pos",
+                    f"{summary_row['seasons_with_top_visited_position_drafted_rate']:.1%}",
+                )
+
+            with st.expander("Show All-Team Visit Summary", expanded=False):
+                st.dataframe(
+                    visit_team_history_summary[
+                        [
+                            "team_name",
+                            "seasons_covered",
+                            "total_visit_players",
+                            "avg_visit_players_per_year",
+                            "drafted_picks",
+                            "drafted_visited_players",
+                            "drafted_visited_player_rate",
+                            "visit_pool_conversion_rate",
+                            "drafted_pick_on_visited_position_rate",
+                            "drafted_pick_on_3plus_visit_position_rate",
+                            "seasons_with_visited_player_pick_rate",
+                            "seasons_with_top_visited_position_drafted_rate",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=visit_team_history_summary_column_config(),
+                )
+
+            st.subheader("Season By Season")
+            st.dataframe(
+                selected_team_years[
+                    [
+                        "year",
+                        "total_visit_players",
+                        "total_visit_positions",
+                        "top_visited_positions",
+                        "top_visited_position_count",
+                        "drafted_picks",
+                        "drafted_visited_players",
+                        "drafted_visited_player_rate",
+                        "drafted_picks_at_visited_positions",
+                        "drafted_pick_on_visited_position_rate",
+                        "drafted_picks_at_3plus_visit_positions",
+                        "drafted_pick_on_3plus_visit_position_rate",
+                        "drafted_positions",
+                        "visited_drafted_players",
+                    ]
+                ],
+                use_container_width=True,
+                hide_index=True,
+                column_config=visit_team_year_column_config(),
+            )
+
+            if selected_visit_season != "All Seasons":
+                selected_season_summary = selected_team_years[
+                    selected_team_years["year"] == int(selected_visit_season)
+                ].head(1)
+                if not selected_season_summary.empty:
+                    season_row = selected_season_summary.iloc[0]
+                    season_metric_col_1, season_metric_col_2, season_metric_col_3, season_metric_col_4 = st.columns(4)
+                    season_metric_col_1.metric("Season Top Visited Pos", str(season_row["top_visited_positions"] or ""))
+                    season_metric_col_2.metric("Visited Players", f"{int(season_row['total_visit_players'])}")
+                    season_metric_col_3.metric("Drafted Visited Players", f"{int(season_row['drafted_visited_players'])}")
+                    season_metric_col_4.metric(
+                        "Picks At Visited Positions",
+                        f"{int(season_row['drafted_picks_at_visited_positions'])}/{int(season_row['drafted_picks'])}",
+                    )
+
+            st.subheader("Actual Draft Picks Vs Visit Signals")
+            st.dataframe(
+                selected_team_picks[
+                    [
+                        "year",
+                        "round_number",
+                        "pick",
+                        "player_name",
+                        "player_position_norm",
+                        "college_name",
+                        "visit_match_type",
+                        "visit_types_normalized",
+                        "position_visit_player_count",
+                        "position_visit_rank",
+                        "sources",
+                    ]
+                ],
+                use_container_width=True,
+                hide_index=True,
+                column_config=visit_actual_pick_history_column_config(),
+            )
+
+            position_col_1, position_col_2 = st.columns(2)
+            with position_col_1:
+                st.subheader("Position Tendencies")
+                st.dataframe(
+                    selected_team_position_history[
+                        [
+                            "position",
+                            "seasons_with_visits",
+                            "total_visit_players",
+                            "avg_visits_per_visit_season",
+                            "max_visits_in_season",
+                            "drafted_pick_count",
+                            "drafted_seasons",
+                            "drafted_season_rate_when_visited",
+                            "drafted_when_top_visited_seasons",
+                            "drafted_when_top_3_visited_seasons",
+                            "drafted_when_3plus_visit_seasons",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=visit_position_history_column_config(),
+                )
+            with position_col_2:
+                st.subheader("Position Detail")
+                if selected_visit_season == "All Seasons":
+                    season_position_rows = visit_position_year_summary[
+                        visit_position_year_summary["team_name"] == selected_visit_team
+                    ].sort_values(
+                        by=["year", "visited_player_count", "drafted_pick_count", "position"],
+                        ascending=[False, False, False, True],
+                    )
+                else:
+                    season_position_rows = visit_position_year_summary[
+                        (visit_position_year_summary["team_name"] == selected_visit_team)
+                        & (visit_position_year_summary["year"] == int(selected_visit_season))
+                    ].sort_values(
+                        by=["visited_player_count", "drafted_pick_count", "position"],
+                        ascending=[False, False, True],
+                    )
+
+                detail_columns = [
+                    "position",
+                    "visited_player_count",
+                    "visit_rank",
+                    "visit_share",
+                    "drafted_pick_count",
+                    "drafted_players",
+                    "visited_player_names",
+                ]
+                if selected_visit_season == "All Seasons":
+                    detail_columns = ["year", *detail_columns]
+                st.dataframe(
+                    season_position_rows[detail_columns],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=visit_position_year_column_config(),
+                )
+
+    with tab_12:
+        st.subheader("2026 Team Visits")
+        st.caption(
+            "Current-cycle visit tracker merged across WalterFootball, NFLTradeRumors, and Draft Countdown. "
+            f"Refreshing this view refetches the full {CURRENT_YEAR} source pages, so older in-season visit reports "
+            "stay in the dataset instead of falling out of a rolling window."
+        )
+
+        if not read_only_mode:
+            visit_refresh_col_1, visit_refresh_col_2 = st.columns([1, 3])
+            if visit_refresh_col_1.button(
+                f"Refresh {CURRENT_YEAR} Visit Data",
+                key="refresh_current_visit_data",
+                use_container_width=True,
+            ):
+                with st.status(f"Refreshing full {CURRENT_YEAR} visit trackers...", expanded=True) as status:
+                    ok, message = refresh_current_visit_data(status.write)
+                    if ok:
+                        status.update(
+                            label=f"{CURRENT_YEAR} visit refresh complete",
+                            state="complete",
+                            expanded=True,
+                        )
+                    else:
+                        status.update(
+                            label=f"{CURRENT_YEAR} visit refresh failed",
+                            state="error",
+                            expanded=True,
+                        )
+                st.session_state["last_visit_refresh_result"] = {
+                    "ok": ok,
+                    "message": message,
+                    "title": f"{CURRENT_YEAR} visit refresh complete" if ok else f"{CURRENT_YEAR} visit refresh failed",
+                }
+                st.rerun()
+            visit_refresh_col_2.caption(
+                f"This refresh always re-pulls the full {CURRENT_YEAR} visit tracker pages and keeps the older years "
+                "already saved in the merged history files."
+            )
+
+        last_visit_refresh = st.session_state.get("last_visit_refresh_result")
+        if last_visit_refresh:
+            if last_visit_refresh.get("ok", False):
+                st.success(last_visit_refresh.get("title", "Visit refresh complete"))
+            else:
+                st.error(last_visit_refresh.get("title", "Visit refresh failed"))
+            if last_visit_refresh.get("message"):
+                with st.expander("Last Visit Refresh Details", expanded=False):
+                    st.write(last_visit_refresh["message"])
+            if st.button("Clear Visit Refresh Result", key="clear_visit_refresh_result"):
+                st.session_state.pop("last_visit_refresh_result", None)
+                st.rerun()
+
+        if (
+            current_visit_team_summary.empty
+            or current_visit_position_summary.empty
+            or current_visit_player_detail.empty
+        ):
+            st.info(
+                f"Current {CURRENT_YEAR} visit data is not available yet. Run the draft-visits scraper or use the "
+                "refresh button above to build the current-cycle visit snapshot."
+            )
+        else:
+            visit_team_options = sorted(current_visit_team_summary["team_name"].dropna().unique().tolist())
+            visit_control_col_1, visit_control_col_2, visit_control_col_3 = st.columns([2, 1, 1])
+            selected_current_team = visit_control_col_1.selectbox(
+                "Team",
+                options=visit_team_options,
+                key="current_visit_team",
+            )
+
+            selected_team_summary = current_visit_team_summary[
+                current_visit_team_summary["team_name"] == selected_current_team
+            ].head(1)
+            selected_team_positions = current_visit_position_summary[
+                current_visit_position_summary["team_name"] == selected_current_team
+            ].sort_values(
+                by=["visited_player_count", "top_30_players", "position"],
+                ascending=[False, False, True],
+            )
+            selected_team_types = current_visit_type_summary[
+                current_visit_type_summary["team_name"] == selected_current_team
+            ].sort_values(
+                by=["player_count", "visit_type_display"],
+                ascending=[False, True],
+            )
+            selected_team_players = current_visit_player_detail[
+                current_visit_player_detail["team_name"] == selected_current_team
+            ].copy()
+
+            position_filter_options = ["All Positions"]
+            position_filter_options.extend(selected_team_positions["position"].dropna().astype(str).unique().tolist())
+            selected_position_filter = visit_control_col_2.selectbox(
+                "Position Filter",
+                options=position_filter_options,
+                key="current_visit_position_filter",
+            )
+
+            visit_type_filter_options = ["All Visit Types"]
+            visit_type_filter_options.extend(selected_team_types["visit_type"].dropna().astype(str).unique().tolist())
+            selected_visit_type_filter = visit_control_col_3.selectbox(
+                "Visit Type Filter",
+                options=visit_type_filter_options,
+                format_func=lambda value: "All Visit Types" if value == "All Visit Types" else format_visit_label(str(value)),
+                key="current_visit_type_filter",
+            )
+
+            if selected_position_filter != "All Positions":
+                selected_team_players = selected_team_players[
+                    selected_team_players["position"] == selected_position_filter
+                ].copy()
+            if selected_visit_type_filter != "All Visit Types":
+                selected_team_players = selected_team_players[
+                    selected_team_players["visit_types_normalized"].map(
+                        lambda value: selected_visit_type_filter in split_pipe_values(value)
+                    )
+                ].copy()
+
+            if not selected_team_summary.empty:
+                summary_row = selected_team_summary.iloc[0]
+                metric_col_1, metric_col_2, metric_col_3, metric_col_4, metric_col_5, metric_col_6 = st.columns(6)
+                metric_col_1.metric("Visited Players", f"{int(summary_row['total_visit_players'])}")
+                metric_col_2.metric("Visited Positions", f"{int(summary_row['total_visit_positions'])}")
+                metric_col_3.metric("Top 30 Players", f"{int(summary_row['top_30_players'])}")
+                metric_col_4.metric("Workout / Pro Day", f"{int(summary_row['workout_players'])}")
+                metric_col_5.metric("Multi-Source Players", f"{int(summary_row['multi_source_players'])}")
+                metric_col_6.metric("Top Visited Position(s)", str(summary_row["top_visited_positions"] or ""))
+
+            with st.expander("Show All-Team 2026 Visit Summary", expanded=False):
+                st.dataframe(
+                    current_visit_team_summary[
+                        [
+                            "team_name",
+                            "total_visit_players",
+                            "total_visit_positions",
+                            "top_visited_positions",
+                            "top_visited_position_count",
+                            "top_30_players",
+                            "workout_players",
+                            "multi_source_players",
+                            "multi_source_rate",
+                            "scheduled_only_players",
+                            "scheduled_only_rate",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=current_visit_team_summary_column_config(),
+                )
+
+            visit_detail_col_1, visit_detail_col_2 = st.columns(2)
+            with visit_detail_col_1:
+                st.subheader("Position Focus")
+                st.dataframe(
+                    selected_team_positions[
+                        [
+                            "position",
+                            "visited_player_count",
+                            "visit_rank",
+                            "visit_share",
+                            "top_30_players",
+                            "workout_players",
+                            "multi_source_players",
+                            "scheduled_only_players",
+                            "player_names",
+                            "visit_type_mix",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=current_visit_position_column_config(),
+                )
+            with visit_detail_col_2:
+                st.subheader("Visit Type Mix")
+                st.dataframe(
+                    selected_team_types[
+                        [
+                            "visit_type_display",
+                            "player_count",
+                            "player_share",
+                            "multi_source_players",
+                            "reported_players",
+                            "scheduled_players",
+                            "player_names",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=current_visit_type_column_config(),
+                )
+
+            st.subheader("Individual Players")
+            st.caption(f"Showing {len(selected_team_players)} player rows after the active filters.")
+            st.dataframe(
+                selected_team_players[
+                    [
+                        "player_name",
+                        "position",
+                        "school",
+                        "visit_types_display",
+                        "visit_statuses_display",
+                        "source_count",
+                        "source_record_count",
+                        "is_multi_source",
+                        "has_top_30_visit",
+                        "has_workout",
+                        "is_scheduled_only",
+                        "sources",
+                    ]
+                ],
+                use_container_width=True,
+                hide_index=True,
+                column_config=current_visit_player_column_config(),
+            )
 
 
 if __name__ == "__main__":
