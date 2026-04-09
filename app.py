@@ -20,6 +20,7 @@ from scripts.scrape_nflmockdraftdatabase import (
 )
 from scripts.scrape_draft_visits import normalize_name as normalize_visit_player_name
 from scripts.scrape_draft_visits import normalize_position as normalize_visit_position
+from scripts.scrape_draft_visits import STATUS_ORDER, VISIT_TYPE_ORDER
 
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -266,6 +267,14 @@ def join_unique_text(values: pd.Series) -> str:
     return " | ".join(cleaned)
 
 
+def first_non_empty_text(values: pd.Series) -> str:
+    for value in values.dropna():
+        text = str(value).strip()
+        if text:
+            return text
+    return ""
+
+
 def safe_rate(numerator: float, denominator: float) -> float:
     if denominator in {0, 0.0} or pd.isna(denominator):
         return 0.0
@@ -281,6 +290,25 @@ def split_pipe_values(value: object) -> list[str]:
     if not text:
         return []
     return [item.strip() for item in text.split("|") if item.strip()]
+
+
+def join_pipe_unique(values: pd.Series, *, order: list[str] | None = None) -> str:
+    unique_items: list[str] = []
+    seen: set[str] = set()
+    for value in values.dropna():
+        for item in split_pipe_values(value):
+            if item not in seen:
+                seen.add(item)
+                unique_items.append(item)
+    if not unique_items:
+        return ""
+    if order:
+        order_index = {item: index for index, item in enumerate(order)}
+        unique_items = sorted(
+            unique_items,
+            key=lambda item: (order_index.get(item, len(order_index)), item),
+        )
+    return "|".join(unique_items)
 
 
 def format_visit_label(value: str | None) -> str:
@@ -700,8 +728,8 @@ def summarize_current_visit_refresh_changes(before_visits: pd.DataFrame, after_v
     after_snapshot = prepare_snapshot(after_visits)
     if after_snapshot.empty:
         return (
-            f"**Added visits:** 0 across 0 team(s)\n"
-            f"**Current-cycle {CURRENT_YEAR} visits after refresh:** 0\n\n"
+            f"**Added unique visited players:** 0 across 0 team(s)\n"
+            f"**Current-cycle {CURRENT_YEAR} unique player-team rows after refresh:** 0\n\n"
             "**Added by team**\n"
             "- None\n\n"
             "**Players added by team**\n"
@@ -742,8 +770,8 @@ def summarize_current_visit_refresh_changes(before_visits: pd.DataFrame, after_v
             updated_existing_count = int((before_compare != after_compare).any(axis=1).sum())
 
     summary_lines = [
-        f"**Added visits:** {len(added_visits)} across {added_visits['team_slug'].nunique() if not added_visits.empty else 0} team(s)",
-        f"**Current-cycle {CURRENT_YEAR} visits after refresh:** {len(after_snapshot)}",
+        f"**Added unique visited players:** {len(added_visits)} across {added_visits['team_slug'].nunique() if not added_visits.empty else 0} team(s)",
+        f"**Current-cycle {CURRENT_YEAR} unique player-team rows after refresh:** {len(after_snapshot)}",
     ]
     if updated_existing_count:
         summary_lines.append(f"**Existing visit rows updated:** {updated_existing_count}")
@@ -1607,73 +1635,105 @@ def load_historical_actual_results() -> pd.DataFrame:
     return actual
 
 
-@st.cache_data(show_spinner=False)
-def load_historical_visit_history_data() -> pd.DataFrame:
-    path = PROCESSED_DIR / "draft-visits" / "draft_visits__merged.csv"
-    if not path.exists():
-        return pd.DataFrame()
-
-    visits = pd.read_csv(path)
+def prepare_visit_player_rows(visits: pd.DataFrame) -> pd.DataFrame:
     if visits.empty:
-        return visits
+        return visits.copy()
 
-    visits["year"] = pd.to_numeric(visits["year"], errors="coerce")
-    visits = visits[visits["year"].isin(HISTORICAL_YEARS)].copy()
-    if visits.empty:
-        return visits
-
-    visits["player_norm"] = visits["player_norm"].fillna(visits["player_name"].map(normalize_visit_player_name))
-    visits["visit_position"] = (
-        visits["position_normalized"].fillna(visits["position_raw"]).map(normalize_visit_position)
-    )
-    visits["team_name"] = visits["team_name"].fillna(visits["team_slug"].map(team_name_from_slug))
-    visits["source_count"] = pd.to_numeric(visits.get("source_count"), errors="coerce").fillna(1).astype(int)
-    visits = visits.dropna(subset=["year", "team_slug", "player_norm"]).copy()
-    visits = visits.drop_duplicates(subset=["year", "team_slug", "player_norm"], keep="first").copy()
-    return visits
-
-
-@st.cache_data(show_spinner=False)
-def load_current_visit_data() -> pd.DataFrame:
-    candidate_paths = [
-        PROCESSED_DIR / "draft-visits" / f"draft_visits__current_{CURRENT_YEAR}.csv",
-        PROCESSED_DIR / "draft-visits" / "draft_visits__current_cycle.csv",
-        PROCESSED_DIR / "draft-visits" / "draft_visits__merged.csv",
-    ]
-    source_path = next((path for path in candidate_paths if path.exists()), None)
-    if source_path is None:
-        return pd.DataFrame()
-
-    visits = pd.read_csv(source_path)
-    if visits.empty:
-        return visits
-
+    visits = visits.copy()
+    for column_name in [
+        "team_slug",
+        "team_name",
+        "player_name",
+        "player_norm",
+        "position_raw",
+        "position_normalized",
+        "school",
+        "visit_types_normalized",
+        "visit_statuses",
+        "sources",
+        "source_count",
+        "source_record_count",
+        "backfilled_position",
+        "backfilled_school",
+        "backfilled_visit_type",
+        "raw_visit_codes",
+        "raw_visit_markers",
+    ]:
+        if column_name not in visits.columns:
+            visits[column_name] = None
     if "year" in visits.columns:
         visits["year"] = pd.to_numeric(visits["year"], errors="coerce")
-        visits = visits[visits["year"] == CURRENT_YEAR].copy()
     else:
         visits["year"] = CURRENT_YEAR
-    if visits.empty:
-        return visits
 
-    visits["player_norm"] = visits["player_norm"].fillna(visits["player_name"].map(normalize_visit_player_name))
+    visits["team_slug"] = visits["team_slug"].fillna("").astype(str).str.strip()
+    visits["team_name"] = visits["team_name"].fillna("").astype(str).str.strip()
+    visits["team_name"] = visits["team_name"].where(
+        visits["team_name"].ne(""),
+        visits["team_slug"].map(team_name_from_slug),
+    )
+    visits["player_name"] = visits["player_name"].fillna("").astype(str).str.strip()
+    visits["player_norm"] = visits["player_norm"].fillna(
+        visits["player_name"].map(normalize_visit_player_name)
+    ).astype(str).str.strip()
+    visits["position_raw"] = visits["position_raw"].fillna("").astype(str).str.strip()
+    visits["position_normalized"] = visits["position_normalized"].fillna("").astype(str).str.strip()
+    visits["school"] = visits["school"].fillna("").astype(str).str.strip()
+    visits["visit_types_normalized"] = visits["visit_types_normalized"].fillna("").astype(str).str.strip()
+    visits["visit_statuses"] = visits["visit_statuses"].fillna("").astype(str).str.strip()
+    visits["sources"] = visits["sources"].fillna("").astype(str).str.strip()
+    visits["source_count"] = pd.to_numeric(visits["source_count"], errors="coerce").fillna(0).astype(int)
+    visits["source_record_count"] = pd.to_numeric(
+        visits["source_record_count"],
+        errors="coerce",
+    ).fillna(visits["source_count"]).astype(int)
+    visits["backfilled_position"] = visits["backfilled_position"].map(lambda value: bool(value) if pd.notna(value) else False)
+    visits["backfilled_school"] = visits["backfilled_school"].map(lambda value: bool(value) if pd.notna(value) else False)
+    visits["backfilled_visit_type"] = visits["backfilled_visit_type"].map(
+        lambda value: bool(value) if pd.notna(value) else False
+    )
+    visits["raw_visit_codes"] = visits["raw_visit_codes"].fillna("").astype(str).str.strip()
+    visits["raw_visit_markers"] = visits["raw_visit_markers"].fillna("").astype(str).str.strip()
+    visits = visits.dropna(subset=["year"]).copy()
+    visits = visits[visits["team_slug"].ne("") & visits["player_norm"].ne("")].copy()
+
+    collapsed_rows: list[dict[str, object]] = []
+    for (year, team_slug, player_norm), group in visits.groupby(["year", "team_slug", "player_norm"], dropna=False):
+        combined_sources = join_pipe_unique(group["sources"])
+        source_count = len(split_pipe_values(combined_sources))
+        fallback_source_count = pd.to_numeric(group["source_count"], errors="coerce").fillna(0).astype(int).max()
+        collapsed_rows.append(
+            {
+                "year": int(year),
+                "team_slug": team_slug,
+                "team_name": first_non_empty_text(group["team_name"]),
+                "player_norm": player_norm,
+                "player_name": first_non_empty_text(group["player_name"]),
+                "position_raw": first_non_empty_text(group["position_raw"]),
+                "position_normalized": first_non_empty_text(group["position_normalized"]),
+                "school": first_non_empty_text(group["school"]),
+                "visit_types_normalized": join_pipe_unique(group["visit_types_normalized"], order=VISIT_TYPE_ORDER),
+                "visit_statuses": join_pipe_unique(group["visit_statuses"], order=STATUS_ORDER),
+                "sources": combined_sources,
+                "source_count": int(source_count or fallback_source_count),
+                "source_record_count": int(
+                    pd.to_numeric(group["source_record_count"], errors="coerce").fillna(0).astype(int).max()
+                ),
+                "backfilled_position": bool(group["backfilled_position"].any()),
+                "backfilled_school": bool(group["backfilled_school"].any()),
+                "backfilled_visit_type": bool(group["backfilled_visit_type"].any()),
+                "raw_visit_codes": join_pipe_unique(group["raw_visit_codes"]),
+                "raw_visit_markers": join_pipe_unique(group["raw_visit_markers"]),
+            }
+        )
+
+    visits = pd.DataFrame(collapsed_rows)
     visits["visit_position"] = (
         visits["position_normalized"].fillna(visits["position_raw"]).map(normalize_visit_position)
     )
     visits["team_name"] = visits["team_name"].fillna(visits["team_slug"].map(team_name_from_slug))
-    visits["source_count"] = pd.to_numeric(visits.get("source_count"), errors="coerce").fillna(1).astype(int)
-    visits["source_record_count"] = pd.to_numeric(
-        visits.get("source_record_count"),
-        errors="coerce",
-    ).fillna(visits["source_count"]).astype(int)
     visits["player_name"] = visits["player_name"].fillna("")
     visits["school"] = visits["school"].fillna("")
-    visits["visit_types_normalized"] = visits["visit_types_normalized"].fillna("")
-    visits["visit_statuses"] = visits["visit_statuses"].fillna("")
-    visits["sources"] = visits["sources"].fillna("")
-    visits = visits.dropna(subset=["year", "team_slug", "player_norm"]).copy()
-    visits = visits.drop_duplicates(subset=["year", "team_slug", "player_norm"], keep="first").copy()
-
     visits["has_top_30_visit"] = visits["visit_types_normalized"].map(
         lambda value: "top_30_visit" in split_pipe_values(value)
     )
@@ -1703,6 +1763,56 @@ def load_current_visit_data() -> pd.DataFrame:
     visits["is_multi_source"] = visits["source_count"] >= 2
     visits["visit_types_display"] = visits["visit_types_normalized"].map(format_pipe_visit_labels)
     visits["visit_statuses_display"] = visits["visit_statuses"].map(format_pipe_visit_labels)
+    visits["sources_display"] = visits["sources"].map(format_pipe_visit_sources)
+    return visits.sort_values(
+        by=["year", "team_name", "player_name", "player_norm"],
+        ascending=[True, True, True, True],
+    ).reset_index(drop=True)
+
+
+@st.cache_data(show_spinner=False)
+def load_historical_visit_history_data() -> pd.DataFrame:
+    path = PROCESSED_DIR / "draft-visits" / "draft_visits__merged.csv"
+    if not path.exists():
+        return pd.DataFrame()
+
+    visits = pd.read_csv(path)
+    if visits.empty:
+        return visits
+
+    visits["year"] = pd.to_numeric(visits["year"], errors="coerce")
+    visits = visits[visits["year"].isin(HISTORICAL_YEARS)].copy()
+    if visits.empty:
+        return visits
+
+    visits = prepare_visit_player_rows(visits)
+    return visits
+
+
+@st.cache_data(show_spinner=False)
+def load_current_visit_data() -> pd.DataFrame:
+    candidate_paths = [
+        PROCESSED_DIR / "draft-visits" / f"draft_visits__current_{CURRENT_YEAR}.csv",
+        PROCESSED_DIR / "draft-visits" / "draft_visits__current_cycle.csv",
+        PROCESSED_DIR / "draft-visits" / "draft_visits__merged.csv",
+    ]
+    source_path = next((path for path in candidate_paths if path.exists()), None)
+    if source_path is None:
+        return pd.DataFrame()
+
+    visits = pd.read_csv(source_path)
+    if visits.empty:
+        return visits
+
+    if "year" in visits.columns:
+        visits["year"] = pd.to_numeric(visits["year"], errors="coerce")
+        visits = visits[visits["year"] == CURRENT_YEAR].copy()
+    else:
+        visits["year"] = CURRENT_YEAR
+    if visits.empty:
+        return visits
+
+    visits = prepare_visit_player_rows(visits)
     return visits
 
 
@@ -1853,6 +1963,7 @@ def build_current_team_visit_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.Dat
             "source_count",
             "source_record_count",
             "sources",
+            "sources_display",
             "is_multi_source",
             "has_top_30_visit",
             "has_workout",
@@ -2086,9 +2197,13 @@ def build_team_visit_history_views() -> tuple[
             "team_slug",
             "player_norm",
             "visit_types_normalized",
+            "visit_types_display",
             "visit_statuses",
+            "visit_statuses_display",
             "sources",
+            "sources_display",
             "source_count",
+            "source_record_count",
             "visit_position",
             "school",
         ]
@@ -2290,6 +2405,28 @@ def build_team_visit_history_views() -> tuple[
     team_history_summary["seasons_with_top_3_visited_position_drafted_rate"] = (
         team_history_summary["seasons_with_top_3_visited_position_drafted"] / team_history_summary["seasons_covered"]
     ).fillna(0.0)
+    draft_day_rate_board = build_visit_draft_day_rate_board(draft_day_summary)
+    if not draft_day_rate_board.empty:
+        team_history_summary = team_history_summary.merge(
+            draft_day_rate_board[
+                [
+                    "team_slug",
+                    "day1_visited_player_rate",
+                    "day2_visited_player_rate",
+                    "day3_visited_player_rate",
+                ]
+            ],
+            on="team_slug",
+            how="left",
+        )
+    else:
+        team_history_summary["day1_visited_player_rate"] = 0.0
+        team_history_summary["day2_visited_player_rate"] = 0.0
+        team_history_summary["day3_visited_player_rate"] = 0.0
+    for column_name in ("day1_visited_player_rate", "day2_visited_player_rate", "day3_visited_player_rate"):
+        team_history_summary[column_name] = pd.to_numeric(
+            team_history_summary[column_name], errors="coerce"
+        ).fillna(0.0)
     team_history_summary = team_history_summary.sort_values(
         by=["drafted_visited_player_rate", "drafted_pick_on_visited_position_rate", "team_name"],
         ascending=[False, False, True],
@@ -3660,6 +3797,9 @@ def visit_team_history_summary_column_config() -> dict[str, object]:
         "drafted_picks": st.column_config.NumberColumn("Drafted\nPicks", help="Total actual draft picks for this team across the sample.", format="%d"),
         "drafted_visited_players": st.column_config.NumberColumn("Drafted\nVisited", help="How many actual picks were players the team had a recorded meeting or visit with.", format="%d"),
         "drafted_visited_player_rate": st.column_config.NumberColumn("Pick Rate:\nVisited Player", help="Share of actual draft picks that were players the team had already visited.", format="%.3f"),
+        "day1_visited_player_rate": st.column_config.NumberColumn("Day 1\nVisited Rate", help="Share of Day 1 picks that were players the team had already visited.", format="%.3f"),
+        "day2_visited_player_rate": st.column_config.NumberColumn("Day 2\nVisited Rate", help="Share of Day 2 picks that were players the team had already visited.", format="%.3f"),
+        "day3_visited_player_rate": st.column_config.NumberColumn("Day 3\nVisited Rate", help="Share of Day 3 picks that were players the team had already visited.", format="%.3f"),
         "visit_pool_conversion_rate": st.column_config.NumberColumn("Visit Pool\nConversion", help="Share of visited prospects who were eventually drafted by that team.", format="%.3f"),
         "drafted_pick_on_visited_position_rate": st.column_config.NumberColumn("Pick Rate:\nVisited Position", help="Share of actual draft picks spent on positions that had at least one recorded visit.", format="%.3f"),
         "drafted_pick_on_3plus_visit_position_rate": st.column_config.NumberColumn("Pick Rate:\n3+ Visit Pos", help="Share of actual draft picks spent on positions with at least three visited prospects that year.", format="%.3f"),
@@ -3696,10 +3836,10 @@ def visit_actual_pick_history_column_config() -> dict[str, object]:
         "player_position_norm": st.column_config.TextColumn("Pos"),
         "college_name": st.column_config.TextColumn("College"),
         "visit_match_type": st.column_config.TextColumn("Visit Match", help="Visited player means the exact drafted player was visited. Visited position means the team drafted that position after bringing in prospects there."),
-        "visit_types_normalized": st.column_config.TextColumn("Player Visit\nTypes"),
+        "visit_types_display": st.column_config.TextColumn("Player Visit\nTypes"),
         "position_visit_player_count": st.column_config.NumberColumn("Pos Visit\nCount", help="How many visited prospects this team had at the drafted player's position that season.", format="%d"),
         "position_visit_rank": st.column_config.NumberColumn("Pos Visit\nRank", help="Rank of the drafted player's position by visit volume within that team-season.", format="%d"),
-        "sources": st.column_config.TextColumn("Visit\nSources"),
+        "sources_display": st.column_config.TextColumn("Visit\nSources"),
     }
 
 
@@ -3824,12 +3964,16 @@ def current_visit_player_column_config() -> dict[str, object]:
         "visit_types_display": st.column_config.TextColumn("Visit Type(s)"),
         "visit_statuses_display": st.column_config.TextColumn("Status"),
         "source_count": st.column_config.NumberColumn("Sources", format="%d"),
-        "source_record_count": st.column_config.NumberColumn("Source\nRows", format="%d"),
+        "source_record_count": st.column_config.NumberColumn(
+            "Reported\nRows",
+            help="Underlying source rows collapsed into this one unique player/team row. This does not increase visit counts.",
+            format="%d",
+        ),
         "is_multi_source": st.column_config.CheckboxColumn("Multi\nSource"),
         "has_top_30_visit": st.column_config.CheckboxColumn("Top\n30"),
         "has_workout": st.column_config.CheckboxColumn("Workout /\nPro Day"),
         "is_scheduled_only": st.column_config.CheckboxColumn("Scheduled\nOnly"),
-        "sources": st.column_config.TextColumn("Source Mix"),
+        "sources_display": st.column_config.TextColumn("Source Mix"),
     }
 
 
@@ -5430,7 +5574,8 @@ def render_app() -> None:
         st.caption(
             "Historical visit study using the merged visit tracker plus actual NFL draft results already stored from "
             "NFL Mock Draft Database. This view is historical only and currently covers 2020-2025 because those are "
-            "the seasons with actual draft results on disk."
+            "the seasons with actual draft results on disk. All visit counts below treat each team/player pair as one "
+            "unique visited prospect even if the same player had multiple reported meetings."
         )
         if (
             visit_team_history_summary.empty
@@ -5502,6 +5647,9 @@ def render_app() -> None:
                             "drafted_picks",
                             "drafted_visited_players",
                             "drafted_visited_player_rate",
+                            "day1_visited_player_rate",
+                            "day2_visited_player_rate",
+                            "day3_visited_player_rate",
                             "visit_pool_conversion_rate",
                             "drafted_pick_on_visited_position_rate",
                             "drafted_pick_on_3plus_visit_position_rate",
@@ -5637,6 +5785,10 @@ def render_app() -> None:
                 )
 
             st.subheader("Actual Draft Picks Vs Visit Signals")
+            st.caption(
+                "Visited-player matches count unique player/team pairs. Multiple reported meetings are collapsed onto "
+                "one player row with combined visit types and sources."
+            )
             st.dataframe(
                 selected_team_picks[
                     [
@@ -5647,10 +5799,10 @@ def render_app() -> None:
                         "player_position_norm",
                         "college_name",
                         "visit_match_type",
-                        "visit_types_normalized",
+                        "visit_types_display",
                         "position_visit_player_count",
                         "position_visit_rank",
-                        "sources",
+                        "sources_display",
                     ]
                 ],
                 use_container_width=True,
@@ -5722,7 +5874,8 @@ def render_app() -> None:
         st.caption(
             "Current-cycle visit tracker merged across WalterFootball, NFLTradeRumors, and Draft Countdown. "
             f"Refreshing this view refetches the full {CURRENT_YEAR} source pages, so older in-season visit reports "
-            "stay in the dataset instead of falling out of a rolling window."
+            "stay in the dataset instead of falling out of a rolling window. All counts below are unique players per "
+            "team, not meeting totals."
         )
 
         if not read_only_mode:
@@ -5977,7 +6130,10 @@ def render_app() -> None:
                 )
 
             st.subheader("Individual Players")
-            st.caption(f"Showing {len(selected_team_players)} player rows after the active filters.")
+            st.caption(
+                f"Showing {len(selected_team_players)} unique player rows after the active filters. "
+                "If a player met with the team multiple times, the row keeps the combined visit types and source mix."
+            )
             st.dataframe(
                 selected_team_players[
                     [
@@ -5992,7 +6148,7 @@ def render_app() -> None:
                         "has_top_30_visit",
                         "has_workout",
                         "is_scheduled_only",
-                        "sources",
+                        "sources_display",
                     ]
                 ],
                 use_container_width=True,
