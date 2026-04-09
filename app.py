@@ -38,6 +38,18 @@ ROUND_CAPITAL_WEIGHTS = {
 }
 REFRESH_COOLDOWN_MINUTES = 20
 REFRESH_SLEEP_SECONDS = 1.5
+DATA_PUSH_PATHS = ["data"]
+DRAFT_DAY_BUCKET_ORDER = ["Day 1", "Day 2", "Day 3"]
+DRAFT_DAY_BUCKET_PREFIX = {
+    "Day 1": "day1",
+    "Day 2": "day2",
+    "Day 3": "day3",
+}
+VISIT_SOURCE_DISPLAY_NAMES = {
+    "draftcountdown": "Draft Countdown",
+    "nfltraderumors": "NFL Trade Rumors",
+    "walterfootball": "WalterFootball",
+}
 
 
 def is_read_only_mode() -> bool:
@@ -59,6 +71,151 @@ def is_read_only_mode() -> bool:
     return value in {"1", "true", "yes", "on"}
 
 
+def run_git_command(args: list[str]) -> tuple[bool, str]:
+    git_env = os.environ.copy()
+    git_env.setdefault("GIT_TERMINAL_PROMPT", "0")
+    git_env.setdefault("GCM_INTERACTIVE", "Never")
+    repo_safe_directory = os.fspath(ROOT_DIR.resolve())
+    try:
+        result = subprocess.run(
+            ["git", "-c", f"safe.directory={repo_safe_directory}", *args],
+            cwd=ROOT_DIR,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=120,
+            env=git_env,
+        )
+    except FileNotFoundError:
+        return False, "Git is not installed or not available on PATH."
+    except subprocess.TimeoutExpired:
+        command_text = "git " + " ".join(args)
+        return False, f"{command_text} timed out after 120 seconds."
+
+    stdout_text = result.stdout.strip()
+    stderr_text = result.stderr.strip()
+    output_parts = [part for part in [stdout_text, stderr_text] if part]
+    output_text = "\n".join(output_parts)
+    if result.returncode != 0:
+        command_text = "git " + " ".join(args)
+        return False, output_text or f"{command_text} failed with exit code {result.returncode}."
+    return True, output_text
+
+
+def default_data_push_commit_message() -> str:
+    return f"Update local app data ({datetime.now().strftime('%Y-%m-%d %H:%M')})"
+
+
+def get_data_push_preview() -> dict[str, object]:
+    ok, branch_output = run_git_command(["branch", "--show-current"])
+    if not ok:
+        return {
+            "ok": False,
+            "message": branch_output,
+            "branch": "",
+            "remote_url": "",
+            "status_lines": [],
+        }
+
+    branch = branch_output.strip()
+    if not branch:
+        return {
+            "ok": False,
+            "message": "Git did not report a current branch. Check out a named branch before pushing.",
+            "branch": "",
+            "remote_url": "",
+            "status_lines": [],
+        }
+
+    ok, remote_output = run_git_command(["remote", "get-url", "origin"])
+    if not ok:
+        return {
+            "ok": False,
+            "message": remote_output,
+            "branch": branch,
+            "remote_url": "",
+            "status_lines": [],
+        }
+
+    ok, status_output = run_git_command(["status", "--short", "--untracked-files=all", "--", *DATA_PUSH_PATHS])
+    if not ok:
+        return {
+            "ok": False,
+            "message": status_output,
+            "branch": branch,
+            "remote_url": remote_output.strip(),
+            "status_lines": [],
+        }
+
+    status_lines = [line.rstrip() for line in status_output.splitlines() if line.strip()]
+    return {
+        "ok": True,
+        "message": "",
+        "branch": branch,
+        "remote_url": remote_output.strip(),
+        "status_lines": status_lines,
+    }
+
+
+def push_data_changes_to_github(commit_message: str, status_callback=None) -> tuple[bool, str]:
+    def update_status(message: str) -> None:
+        if status_callback is not None:
+            status_callback(message)
+
+    preview = get_data_push_preview()
+    if not preview.get("ok", False):
+        return False, str(preview.get("message") or "Unable to inspect git status for data changes.")
+
+    branch = str(preview.get("branch") or "").strip()
+    status_lines = [str(line) for line in preview.get("status_lines", [])]
+    if not branch:
+        return False, "Git did not report a current branch. Check out a named branch before pushing."
+    if not status_lines:
+        return True, f"No tracked data changes are waiting to be pushed on `{branch}`."
+
+    final_commit_message = commit_message.strip() or default_data_push_commit_message()
+
+    update_status("Staging tracked and untracked data files...")
+    ok, add_output = run_git_command(["add", "--all", "--", *DATA_PUSH_PATHS])
+    if not ok:
+        return False, f"`git add` failed:\n{add_output}"
+
+    ok, staged_output = run_git_command(["diff", "--cached", "--name-only", "--", *DATA_PUSH_PATHS])
+    if not ok:
+        return False, f"Unable to inspect staged data files:\n{staged_output}"
+    staged_lines = [line.strip() for line in staged_output.splitlines() if line.strip()]
+    if not staged_lines:
+        return True, f"No staged data changes were available to commit on `{branch}`."
+
+    update_status(f"Creating a data-only commit on `{branch}`...")
+    ok, commit_output = run_git_command(["commit", "--only", "-m", final_commit_message, "--", *DATA_PUSH_PATHS])
+    if not ok:
+        lowered = commit_output.lower()
+        if "nothing to commit" in lowered or "no changes added to commit" in lowered:
+            return True, f"No new data changes were available to commit on `{branch}`."
+        return False, f"`git commit` failed:\n{commit_output}"
+
+    update_status(f"Pushing the new commit to origin/{branch}...")
+    ok, push_output = run_git_command(["push", "origin", branch])
+    if not ok:
+        return False, f"`git push origin {branch}` failed:\n{push_output}"
+
+    message_parts = [
+        f"Pushed {len(staged_lines)} data file(s) to origin/{branch}.",
+        f"Commit message: {final_commit_message}",
+        "",
+        "Files:",
+        *staged_lines[:20],
+    ]
+    if len(staged_lines) > 20:
+        message_parts.append(f"...and {len(staged_lines) - 20} more.")
+    if commit_output:
+        message_parts.extend(["", "Commit output:", commit_output])
+    if push_output:
+        message_parts.extend(["", "Push output:", push_output])
+    return True, "\n".join(message_parts)
+
+
 def ingestion_history_path() -> Path:
     year_dir = PROCESSED_DIR / str(CURRENT_YEAR)
     year_dir.mkdir(parents=True, exist_ok=True)
@@ -76,6 +233,22 @@ def round_capital_weight(round_number: object) -> float:
         return ROUND_CAPITAL_WEIGHTS.get(int(round_number), 0.0)
     except (TypeError, ValueError):
         return 0.0
+
+
+def classify_draft_day_bucket(round_number: object) -> str | None:
+    if pd.isna(round_number):
+        return None
+    try:
+        parsed_round = int(round_number)
+    except (TypeError, ValueError):
+        return None
+    if parsed_round == 1:
+        return "Day 1"
+    if parsed_round in {2, 3}:
+        return "Day 2"
+    if 4 <= parsed_round <= 7:
+        return "Day 3"
+    return None
 
 
 def mode_or_first(values: pd.Series) -> object:
@@ -117,6 +290,17 @@ def format_visit_label(value: str | None) -> str:
 
 def format_pipe_visit_labels(value: object) -> str:
     return " | ".join(format_visit_label(part) for part in split_pipe_values(value))
+
+
+def format_visit_source_name(value: str | None) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    return VISIT_SOURCE_DISPLAY_NAMES.get(text, text.replace("-", " ").replace("_", " ").title())
+
+
+def format_pipe_visit_sources(value: object) -> str:
+    return ", ".join(format_visit_source_name(part) for part in split_pipe_values(value))
 
 
 def current_cycle_archive_paths(section: str) -> tuple[Path, Path]:
@@ -458,11 +642,148 @@ def refresh_current_cycle_data(status_callback=None) -> tuple[bool, str]:
     return True, "\n\n".join(outputs) if outputs else "Refresh completed."
 
 
+def summarize_current_visit_refresh_changes(before_visits: pd.DataFrame, after_visits: pd.DataFrame) -> str:
+    snapshot_columns = [
+        "year",
+        "team_slug",
+        "team_name",
+        "player_norm",
+        "player_name",
+        "position_normalized",
+        "position_raw",
+        "school",
+        "visit_types_normalized",
+        "visit_statuses",
+        "sources",
+        "source_count",
+        "source_record_count",
+    ]
+
+    def prepare_snapshot(visits: pd.DataFrame) -> pd.DataFrame:
+        if visits is None or visits.empty:
+            return pd.DataFrame(columns=snapshot_columns + ["_visit_refresh_key", "sources_display"])
+
+        snapshot = visits.copy()
+        for column in snapshot_columns:
+            if column not in snapshot.columns:
+                snapshot[column] = ""
+
+        snapshot["year"] = pd.to_numeric(snapshot["year"], errors="coerce").fillna(CURRENT_YEAR).astype(int)
+        snapshot["team_slug"] = snapshot["team_slug"].fillna("").astype(str).str.strip()
+        snapshot["team_name"] = snapshot["team_name"].fillna("").astype(str).str.strip()
+        snapshot["team_name"] = snapshot["team_name"].where(
+            snapshot["team_name"].ne(""),
+            snapshot["team_slug"].map(team_name_from_slug),
+        )
+        snapshot["team_name"] = snapshot["team_name"].fillna(snapshot["team_slug"])
+        snapshot["player_norm"] = snapshot["player_norm"].fillna("").astype(str).str.strip()
+        snapshot["player_name"] = snapshot["player_name"].fillna("").astype(str).str.strip()
+        snapshot["player_name"] = snapshot["player_name"].where(
+            snapshot["player_name"].ne(""),
+            snapshot["player_norm"],
+        )
+        snapshot["sources"] = snapshot["sources"].fillna("").astype(str).str.strip()
+        snapshot["sources_display"] = snapshot["sources"].map(
+            lambda value: format_pipe_visit_sources(value) or "Unknown source"
+        )
+        snapshot["_visit_refresh_key"] = list(
+            zip(
+                snapshot["year"],
+                snapshot["team_slug"],
+                snapshot["player_norm"],
+            )
+        )
+        snapshot = snapshot.drop_duplicates(subset=["_visit_refresh_key"], keep="first").copy()
+        return snapshot
+
+    before_snapshot = prepare_snapshot(before_visits)
+    after_snapshot = prepare_snapshot(after_visits)
+    if after_snapshot.empty:
+        return (
+            f"**Added visits:** 0 across 0 team(s)\n"
+            f"**Current-cycle {CURRENT_YEAR} visits after refresh:** 0\n\n"
+            "**Added by team**\n"
+            "- None\n\n"
+            "**Players added by team**\n"
+            "- None"
+        )
+
+    before_keys = set(before_snapshot["_visit_refresh_key"]) if not before_snapshot.empty else set()
+    after_keys = set(after_snapshot["_visit_refresh_key"])
+    added_visits = after_snapshot[~after_snapshot["_visit_refresh_key"].isin(before_keys)].copy()
+
+    updated_existing_count = 0
+    if before_keys:
+        compare_columns = [
+            "player_name",
+            "position_normalized",
+            "position_raw",
+            "school",
+            "visit_types_normalized",
+            "visit_statuses",
+            "sources",
+            "source_count",
+            "source_record_count",
+        ]
+        common_keys = sorted(before_keys & after_keys)
+        if common_keys:
+            before_compare = (
+                before_snapshot.set_index("_visit_refresh_key")[compare_columns]
+                .reindex(common_keys)
+                .fillna("")
+                .astype(str)
+            )
+            after_compare = (
+                after_snapshot.set_index("_visit_refresh_key")[compare_columns]
+                .reindex(common_keys)
+                .fillna("")
+                .astype(str)
+            )
+            updated_existing_count = int((before_compare != after_compare).any(axis=1).sum())
+
+    summary_lines = [
+        f"**Added visits:** {len(added_visits)} across {added_visits['team_slug'].nunique() if not added_visits.empty else 0} team(s)",
+        f"**Current-cycle {CURRENT_YEAR} visits after refresh:** {len(after_snapshot)}",
+    ]
+    if updated_existing_count:
+        summary_lines.append(f"**Existing visit rows updated:** {updated_existing_count}")
+
+    summary_lines.extend(["", "**Added by team**"])
+    if added_visits.empty:
+        summary_lines.append("- None")
+    else:
+        team_counts = (
+            added_visits.groupby(["team_name", "team_slug"], dropna=False)
+            .size()
+            .reset_index(name="added_visit_count")
+            .sort_values(by=["added_visit_count", "team_name"], ascending=[False, True])
+        )
+        for row in team_counts.itertuples(index=False):
+            summary_lines.append(f"- {row.team_name}: {int(row.added_visit_count)}")
+
+    summary_lines.extend(["", "**Players added by team**"])
+    if added_visits.empty:
+        summary_lines.append("- None")
+    else:
+        added_visits = added_visits.sort_values(
+            by=["team_name", "player_name", "player_norm"],
+            ascending=[True, True, True],
+        )
+        for (team_name, _team_slug), team_rows in added_visits.groupby(["team_name", "team_slug"], dropna=False):
+            summary_lines.extend([f"**{team_name}**"])
+            for row in team_rows.itertuples(index=False):
+                summary_lines.append(f"- {row.player_name} ({row.sources_display})")
+            summary_lines.append("")
+
+    return "\n".join(summary_lines).strip()
+
+
 def refresh_current_visit_data(status_callback=None) -> tuple[bool, str]:
     def update_status(message: str) -> None:
         if status_callback is not None:
             status_callback(message)
 
+    before_visits = load_current_visit_data().copy()
     update_status(f"Refreshing full {CURRENT_YEAR} visit trackers across all configured sources...")
     command = [
         sys.executable,
@@ -491,13 +812,13 @@ def refresh_current_visit_data(status_callback=None) -> tuple[bool, str]:
         return False, error_text
 
     st.cache_data.clear()
-    output_text = result.stdout.strip()
-    if output_text:
-        output_text += (
-            f"\n\nCurrent-season visit refresh refetched the full {CURRENT_YEAR} tracker pages, "
-            "so older in-season visit entries stay in the dataset."
-        )
-    return True, output_text or f"Current-season {CURRENT_YEAR} visit refresh completed."
+    after_visits = load_current_visit_data().copy()
+    summary_text = summarize_current_visit_refresh_changes(before_visits, after_visits)
+    summary_text += (
+        f"\n\nCurrent-season visit refresh refetched the full {CURRENT_YEAR} tracker pages, "
+        "so older in-season visit reports stay in the dataset."
+    )
+    return True, summary_text
 
 
 def build_refresh_highlight_lines(message: str) -> list[str]:
@@ -1554,13 +1875,163 @@ def build_current_team_visit_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.Dat
     return team_summary, position_summary, player_detail, visit_type_summary
 
 
+def build_current_visit_position_board(team_summary: pd.DataFrame, position_summary: pd.DataFrame) -> pd.DataFrame:
+    if team_summary.empty or position_summary.empty:
+        return pd.DataFrame()
+
+    board = team_summary[
+        [
+            "team_slug",
+            "team_name",
+            "total_visit_players",
+            "top_visited_positions",
+            "top_visited_position_count",
+        ]
+    ].copy()
+    pivot = (
+        position_summary.pivot_table(
+            index=["team_slug", "team_name"],
+            columns="position",
+            values="visited_player_count",
+            aggfunc="sum",
+            fill_value=0,
+        )
+        .reset_index()
+    )
+    board = board.merge(
+        pivot,
+        on=["team_slug", "team_name"],
+        how="left",
+    )
+    position_columns = [
+        column_name
+        for column_name in board.columns
+        if column_name
+        not in {
+            "team_slug",
+            "team_name",
+            "total_visit_players",
+            "top_visited_positions",
+            "top_visited_position_count",
+        }
+    ]
+    for column_name in position_columns:
+        board[column_name] = pd.to_numeric(board[column_name], errors="coerce").fillna(0).astype(int)
+    return board.sort_values(
+        by=["total_visit_players", "top_visited_position_count", "team_name"],
+        ascending=[False, False, True],
+    ).reset_index(drop=True)
+
+
+def complete_draft_day_visit_summary(
+    summary: pd.DataFrame,
+    *,
+    team_name: str,
+    year: int | None = None,
+) -> pd.DataFrame:
+    filtered = summary[summary["team_name"] == team_name].copy()
+    if year is not None and "year" in filtered.columns:
+        filtered = filtered[filtered["year"] == year].copy()
+
+    rows: list[dict[str, object]] = []
+    indexed = filtered.set_index("draft_day_bucket", drop=False) if not filtered.empty else pd.DataFrame()
+    for bucket in DRAFT_DAY_BUCKET_ORDER:
+        if not filtered.empty and bucket in indexed.index:
+            row = indexed.loc[bucket]
+            if isinstance(row, pd.DataFrame):
+                row_dict = row.iloc[0].to_dict()
+            else:
+                row_dict = row.to_dict()
+        else:
+            row_dict = {
+                "team_name": team_name,
+                "draft_day_bucket": bucket,
+                "drafted_picks": 0,
+                "visited_player_picks": 0,
+                "visited_player_rate": 0.0,
+                "visited_player_names": "",
+            }
+            if year is not None:
+                row_dict["year"] = year
+        rows.append(row_dict)
+
+    completed = pd.DataFrame(rows)
+    if "year" in completed.columns:
+        completed["year"] = pd.to_numeric(completed["year"], errors="coerce")
+    completed["drafted_picks"] = pd.to_numeric(completed["drafted_picks"], errors="coerce").fillna(0).astype(int)
+    completed["visited_player_picks"] = (
+        pd.to_numeric(completed["visited_player_picks"], errors="coerce").fillna(0).astype(int)
+    )
+    completed["visited_player_rate"] = pd.to_numeric(
+        completed["visited_player_rate"], errors="coerce"
+    ).fillna(0.0)
+    if "visited_player_names" not in completed.columns:
+        completed["visited_player_names"] = ""
+    else:
+        completed["visited_player_names"] = completed["visited_player_names"].fillna("").astype(str)
+    return completed
+
+
+def build_visit_draft_day_rate_board(day_bucket_summary: pd.DataFrame) -> pd.DataFrame:
+    if day_bucket_summary.empty:
+        return pd.DataFrame()
+
+    rows: list[dict[str, object]] = []
+    for (team_slug, team_name), team_rows in day_bucket_summary.groupby(["team_slug", "team_name"], dropna=False):
+        row: dict[str, object] = {
+            "team_slug": team_slug,
+            "team_name": team_name,
+        }
+        team_rows = team_rows.set_index("draft_day_bucket", drop=False)
+        for bucket in DRAFT_DAY_BUCKET_ORDER:
+            prefix = DRAFT_DAY_BUCKET_PREFIX[bucket]
+            if bucket in team_rows.index:
+                bucket_row = team_rows.loc[bucket]
+                if isinstance(bucket_row, pd.DataFrame):
+                    bucket_row = bucket_row.iloc[0]
+                row[f"{prefix}_drafted_picks"] = int(bucket_row.get("drafted_picks", 0) or 0)
+                row[f"{prefix}_visited_player_picks"] = int(bucket_row.get("visited_player_picks", 0) or 0)
+                row[f"{prefix}_visited_player_rate"] = float(bucket_row.get("visited_player_rate", 0.0) or 0.0)
+            else:
+                row[f"{prefix}_drafted_picks"] = 0
+                row[f"{prefix}_visited_player_picks"] = 0
+                row[f"{prefix}_visited_player_rate"] = 0.0
+        row["all_days_drafted_picks"] = (
+            int(row["day1_drafted_picks"]) + int(row["day2_drafted_picks"]) + int(row["day3_drafted_picks"])
+        )
+        row["all_days_visited_player_picks"] = (
+            int(row["day1_visited_player_picks"])
+            + int(row["day2_visited_player_picks"])
+            + int(row["day3_visited_player_picks"])
+        )
+        row["all_days_visited_player_rate"] = safe_rate(
+            row["all_days_visited_player_picks"],
+            row["all_days_drafted_picks"],
+        )
+        rows.append(row)
+
+    board = pd.DataFrame(rows)
+    return board.sort_values(
+        by=["all_days_visited_player_rate", "day1_visited_player_rate", "team_name"],
+        ascending=[False, False, True],
+    ).reset_index(drop=True)
+
+
 @st.cache_data(show_spinner=False)
-def build_team_visit_history_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def build_team_visit_history_views() -> tuple[
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+]:
     visits = load_historical_visit_history_data()
     actual = load_historical_actual_results()
     if visits.empty or actual.empty:
         empty = pd.DataFrame()
-        return empty, empty, empty, empty, empty
+        return empty, empty, empty, empty, empty, empty, empty
 
     team_visit_totals = (
         visits.groupby(["year", "team_slug", "team_name"], dropna=False)
@@ -1672,6 +2143,52 @@ def build_team_visit_history_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.Dat
         "visit_match_type",
     ] = "Visited position"
     actual_pick_history.loc[actual_pick_history["was_visited"], "visit_match_type"] = "Visited player"
+    actual_pick_history["draft_day_bucket"] = actual_pick_history["round_number"].map(classify_draft_day_bucket)
+    actual_pick_history["visited_player_name_for_bucket"] = actual_pick_history["player_name"].where(
+        actual_pick_history["was_visited"],
+        "",
+    )
+
+    draft_day_year_summary = (
+        actual_pick_history.dropna(subset=["draft_day_bucket"])
+        .groupby(["year", "team_slug", "team_name", "draft_day_bucket"], dropna=False)
+        .agg(
+            drafted_picks=("pick", "count"),
+            visited_player_picks=("was_visited", "sum"),
+            visited_player_names=("visited_player_name_for_bucket", join_unique_text),
+        )
+        .reset_index()
+    )
+    draft_day_year_summary["visited_player_rate"] = (
+        draft_day_year_summary["visited_player_picks"] / draft_day_year_summary["drafted_picks"]
+    ).fillna(0.0)
+    draft_day_year_summary["draft_day_bucket_order"] = draft_day_year_summary["draft_day_bucket"].map(
+        {bucket: index for index, bucket in enumerate(DRAFT_DAY_BUCKET_ORDER, start=1)}
+    )
+    draft_day_year_summary = draft_day_year_summary.sort_values(
+        by=["team_name", "year", "draft_day_bucket_order"],
+        ascending=[True, True, True],
+    ).reset_index(drop=True)
+
+    draft_day_summary = (
+        draft_day_year_summary.groupby(["team_slug", "team_name", "draft_day_bucket"], dropna=False)
+        .agg(
+            seasons_covered=("year", "nunique"),
+            drafted_picks=("drafted_picks", "sum"),
+            visited_player_picks=("visited_player_picks", "sum"),
+        )
+        .reset_index()
+    )
+    draft_day_summary["visited_player_rate"] = (
+        draft_day_summary["visited_player_picks"] / draft_day_summary["drafted_picks"]
+    ).fillna(0.0)
+    draft_day_summary["draft_day_bucket_order"] = draft_day_summary["draft_day_bucket"].map(
+        {bucket: index for index, bucket in enumerate(DRAFT_DAY_BUCKET_ORDER, start=1)}
+    )
+    draft_day_summary = draft_day_summary.sort_values(
+        by=["team_name", "draft_day_bucket_order"],
+        ascending=[True, True],
+    ).reset_index(drop=True)
 
     visited_drafted_players = (
         actual_pick_history[actual_pick_history["was_visited"]]
@@ -1859,6 +2376,8 @@ def build_team_visit_history_views() -> tuple[pd.DataFrame, pd.DataFrame, pd.Dat
         actual_pick_history,
         position_history_summary,
         position_year_summary,
+        draft_day_summary,
+        draft_day_year_summary,
     )
 
 
@@ -3212,6 +3731,35 @@ def visit_position_year_column_config() -> dict[str, object]:
     }
 
 
+def visit_draft_day_summary_column_config() -> dict[str, object]:
+    return {
+        "year": st.column_config.NumberColumn("Year", format="%d"),
+        "draft_day_bucket": st.column_config.TextColumn("Draft\nDay"),
+        "drafted_picks": st.column_config.NumberColumn("Drafted\nPicks", format="%d"),
+        "visited_player_picks": st.column_config.NumberColumn("Visited\nDraft Picks", format="%d"),
+        "visited_player_rate": st.column_config.NumberColumn("Visited Pick\nRate", format="%.3f"),
+        "visited_player_names": st.column_config.TextColumn("Visited Drafted\nPlayers"),
+    }
+
+
+def visit_draft_day_board_column_config() -> dict[str, object]:
+    return {
+        "team_name": st.column_config.TextColumn("Team"),
+        "all_days_drafted_picks": st.column_config.NumberColumn("All Days\nPicks", format="%d"),
+        "all_days_visited_player_picks": st.column_config.NumberColumn("All Days\nVisited Picks", format="%d"),
+        "all_days_visited_player_rate": st.column_config.NumberColumn("All Days\nVisited Rate", format="%.3f"),
+        "day1_drafted_picks": st.column_config.NumberColumn("Day 1\nPicks", format="%d"),
+        "day1_visited_player_picks": st.column_config.NumberColumn("Day 1\nVisited", format="%d"),
+        "day1_visited_player_rate": st.column_config.NumberColumn("Day 1\nVisited Rate", format="%.3f"),
+        "day2_drafted_picks": st.column_config.NumberColumn("Day 2\nPicks", format="%d"),
+        "day2_visited_player_picks": st.column_config.NumberColumn("Day 2\nVisited", format="%d"),
+        "day2_visited_player_rate": st.column_config.NumberColumn("Day 2\nVisited Rate", format="%.3f"),
+        "day3_drafted_picks": st.column_config.NumberColumn("Day 3\nPicks", format="%d"),
+        "day3_visited_player_picks": st.column_config.NumberColumn("Day 3\nVisited", format="%d"),
+        "day3_visited_player_rate": st.column_config.NumberColumn("Day 3\nVisited Rate", format="%.3f"),
+    }
+
+
 def current_visit_team_summary_column_config() -> dict[str, object]:
     return {
         "team_name": st.column_config.TextColumn("Team"),
@@ -3226,6 +3774,19 @@ def current_visit_team_summary_column_config() -> dict[str, object]:
         "scheduled_only_players": st.column_config.NumberColumn("Scheduled-Only\nPlayers", format="%d"),
         "scheduled_only_rate": st.column_config.NumberColumn("Scheduled-Only\nRate", format="%.3f"),
     }
+
+
+def current_visit_position_board_column_config(position_columns: list[str]) -> dict[str, object]:
+    config: dict[str, object] = {
+        "team_name": st.column_config.TextColumn("Team"),
+        "selected_positions_total": st.column_config.NumberColumn("Selected Pos\nVisits", format="%d"),
+        "selected_positions_share": st.column_config.NumberColumn("Selected Pos\nShare", format="%.3f"),
+        "total_visit_players": st.column_config.NumberColumn("All Visit\nPlayers", format="%d"),
+        "top_visited_positions": st.column_config.TextColumn("Top Visited\nPosition(s)"),
+    }
+    for position_name in position_columns:
+        config[position_name] = st.column_config.NumberColumn(position_name, format="%d")
+    return config
 
 
 def current_visit_position_column_config() -> dict[str, object]:
@@ -3285,6 +3846,10 @@ def render_app() -> None:
     if st.session_state.pop("clear_pasted_mock_inputs", False):
         st.session_state["pasted_mock_url"] = ""
         st.session_state["pasted_mock_html"] = ""
+    if st.session_state.pop("reset_data_push_commit_message", False):
+        st.session_state["data_push_commit_message"] = default_data_push_commit_message()
+    elif "data_push_commit_message" not in st.session_state:
+        st.session_state["data_push_commit_message"] = default_data_push_commit_message()
 
     st.sidebar.header("Current Data")
     if read_only_mode:
@@ -3507,6 +4072,70 @@ def render_app() -> None:
                     st.session_state["uploaded_html_uploader_nonce"] += 1
                 st.rerun()
 
+        st.sidebar.divider()
+        with st.sidebar.expander("Push Local Data To GitHub", expanded=False):
+            st.caption(
+                "This commits and pushes repo-tracked changes under `data/` only. "
+                "Git-ignored raw/checkpoint files and unrelated code edits stay local."
+            )
+            data_push_preview = get_data_push_preview()
+            if not data_push_preview.get("ok", False):
+                st.error(str(data_push_preview.get("message") or "Unable to inspect git state."))
+            else:
+                data_push_branch = str(data_push_preview.get("branch") or "")
+                data_push_status_lines = [str(line) for line in data_push_preview.get("status_lines", [])]
+                st.caption(f"Target branch: `{data_push_branch}`")
+                if data_push_status_lines:
+                    st.caption(f"{len(data_push_status_lines)} data file(s) ready to commit.")
+                    st.code("\n".join(data_push_status_lines[:12]), language="text")
+                    if len(data_push_status_lines) > 12:
+                        st.caption(f"...and {len(data_push_status_lines) - 12} more.")
+                else:
+                    st.caption("No tracked data changes are waiting to be pushed right now.")
+
+                st.text_input(
+                    "Commit Message",
+                    key="data_push_commit_message",
+                    help="Leave the default or edit it before pushing your local data changes.",
+                )
+                if st.button(
+                    "Commit And Push Data To GitHub",
+                    key="commit_and_push_data_to_github",
+                    use_container_width=True,
+                    disabled=not data_push_status_lines,
+                ):
+                    with st.status("Preparing data-only git push...", expanded=True) as status:
+                        ok, message = push_data_changes_to_github(
+                            st.session_state.get("data_push_commit_message", ""),
+                            status.write,
+                        )
+                        status.update(
+                            label="Data push complete" if ok else "Data push failed",
+                            state="complete" if ok else "error",
+                            expanded=True,
+                        )
+                    st.session_state["last_git_push_result"] = {
+                        "ok": ok,
+                        "title": "Data push complete" if ok else "Data push failed",
+                        "message": message,
+                    }
+                    if ok:
+                        st.session_state["reset_data_push_commit_message"] = True
+                    st.rerun()
+
+        last_git_push = st.session_state.get("last_git_push_result")
+        if last_git_push:
+            if last_git_push.get("ok", False):
+                st.sidebar.success(last_git_push.get("title", "Data push complete"))
+            else:
+                st.sidebar.error(last_git_push.get("title", "Data push failed"))
+            if last_git_push.get("message"):
+                with st.sidebar.expander("Last Git Push Details", expanded=False):
+                    st.write(last_git_push["message"])
+            if st.sidebar.button("Clear Git Push Result", key="clear_git_push_result", use_container_width=True):
+                st.session_state.pop("last_git_push_result", None)
+                st.rerun()
+
     historical = load_historical_author_seasons()
     historical_team = load_historical_team_author_team_seasons()
     current_picks = load_current_picks()
@@ -3524,6 +4153,8 @@ def render_app() -> None:
         visit_actual_pick_history,
         visit_position_history_summary,
         visit_position_year_summary,
+        visit_draft_day_summary,
+        visit_draft_day_year_summary,
     ) = build_team_visit_history_views()
     all_current_picks = current_picks.copy()
     all_current_team_metadata = current_team_metadata.copy()
@@ -4834,6 +5465,11 @@ def render_app() -> None:
                 by=["total_visit_players", "drafted_pick_count", "position"],
                 ascending=[False, False, True],
             )
+            selected_team_draft_day_summary = complete_draft_day_visit_summary(
+                visit_draft_day_summary,
+                team_name=selected_visit_team,
+            )
+            all_team_draft_day_board = build_visit_draft_day_rate_board(visit_draft_day_summary)
 
             season_options: list[object] = ["All Seasons"]
             season_options.extend(selected_team_years["year"].dropna().astype(int).tolist())
@@ -4878,6 +5514,67 @@ def render_app() -> None:
                     column_config=visit_team_history_summary_column_config(),
                 )
 
+            st.subheader("Draft-Day Visit Hit Rates")
+            st.caption(
+                "Visited pick rate means the team had the exact drafted player in for a recorded visit before the draft."
+            )
+            draft_day_metric_columns = st.columns(3)
+            for metric_column, draft_day_bucket in zip(
+                draft_day_metric_columns,
+                DRAFT_DAY_BUCKET_ORDER,
+                strict=False,
+            ):
+                bucket_row = selected_team_draft_day_summary[
+                    selected_team_draft_day_summary["draft_day_bucket"] == draft_day_bucket
+                ].head(1)
+                if bucket_row.empty:
+                    metric_column.metric(f"{draft_day_bucket} Visited Pick Rate", "0.0%", "0/0 picks")
+                else:
+                    bucket_values = bucket_row.iloc[0]
+                    metric_column.metric(
+                        f"{draft_day_bucket} Visited Pick Rate",
+                        f"{bucket_values['visited_player_rate']:.1%}",
+                        f"{int(bucket_values['visited_player_picks'])}/{int(bucket_values['drafted_picks'])} picks",
+                    )
+
+            st.dataframe(
+                selected_team_draft_day_summary[
+                    [
+                        "draft_day_bucket",
+                        "drafted_picks",
+                        "visited_player_picks",
+                        "visited_player_rate",
+                    ]
+                ],
+                use_container_width=True,
+                hide_index=True,
+                column_config=visit_draft_day_summary_column_config(),
+            )
+
+            with st.expander("Show All-Team Day 1/2/3 Visit Rates", expanded=False):
+                st.dataframe(
+                    all_team_draft_day_board[
+                        [
+                            "team_name",
+                            "all_days_drafted_picks",
+                            "all_days_visited_player_picks",
+                            "all_days_visited_player_rate",
+                            "day1_drafted_picks",
+                            "day1_visited_player_picks",
+                            "day1_visited_player_rate",
+                            "day2_drafted_picks",
+                            "day2_visited_player_picks",
+                            "day2_visited_player_rate",
+                            "day3_drafted_picks",
+                            "day3_visited_player_picks",
+                            "day3_visited_player_rate",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=visit_draft_day_board_column_config(),
+                )
+
             st.subheader("Season By Season")
             st.dataframe(
                 selected_team_years[
@@ -4917,6 +5614,27 @@ def render_app() -> None:
                         "Picks At Visited Positions",
                         f"{int(season_row['drafted_picks_at_visited_positions'])}/{int(season_row['drafted_picks'])}",
                     )
+
+                st.caption(f"{selected_visit_team} by draft day in {int(selected_visit_season)}")
+                season_draft_day_rows = complete_draft_day_visit_summary(
+                    visit_draft_day_year_summary,
+                    team_name=selected_visit_team,
+                    year=int(selected_visit_season),
+                )
+                st.dataframe(
+                    season_draft_day_rows[
+                        [
+                            "draft_day_bucket",
+                            "drafted_picks",
+                            "visited_player_picks",
+                            "visited_player_rate",
+                            "visited_player_names",
+                        ]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=visit_draft_day_summary_column_config(),
+                )
 
             st.subheader("Actual Draft Picks Vs Visit Signals")
             st.dataframe(
@@ -5047,7 +5765,7 @@ def render_app() -> None:
                 st.error(last_visit_refresh.get("title", "Visit refresh failed"))
             if last_visit_refresh.get("message"):
                 with st.expander("Last Visit Refresh Details", expanded=False):
-                    st.write(last_visit_refresh["message"])
+                    st.markdown(last_visit_refresh["message"])
             if st.button("Clear Visit Refresh Result", key="clear_visit_refresh_result"):
                 st.session_state.pop("last_visit_refresh_result", None)
                 st.rerun()
@@ -5148,6 +5866,74 @@ def render_app() -> None:
                     hide_index=True,
                     column_config=current_visit_team_summary_column_config(),
                 )
+
+            st.subheader("Cross-Team Position Board")
+            st.caption(
+                "Choose the positions you want to compare, then scan which teams are spending the most visit volume there."
+            )
+            current_visit_position_board = build_current_visit_position_board(
+                current_visit_team_summary,
+                current_visit_position_summary,
+            )
+            position_totals = (
+                current_visit_position_summary.groupby("position", dropna=False)["visited_player_count"]
+                .sum()
+                .sort_values(ascending=False)
+            )
+            board_position_options = [str(value) for value in position_totals.index.tolist() if str(value).strip()]
+            default_board_positions = board_position_options[: min(8, len(board_position_options))]
+            board_control_col_1, board_control_col_2 = st.columns([3, 1])
+            selected_board_positions = board_control_col_1.multiselect(
+                "Positions To Compare",
+                options=board_position_options,
+                default=default_board_positions,
+                key="current_visit_position_board_positions",
+            )
+            max_board_visits = int(current_visit_team_summary["total_visit_players"].max()) if not current_visit_team_summary.empty else 0
+            min_selected_position_visits = board_control_col_2.slider(
+                "Min Selected Pos Visits",
+                min_value=0,
+                max_value=max_board_visits,
+                value=0,
+                key="current_visit_position_board_min_visits",
+            )
+            if selected_board_positions:
+                board_columns = [
+                    "team_name",
+                    "selected_positions_total",
+                    "selected_positions_share",
+                    "total_visit_players",
+                    "top_visited_positions",
+                    *selected_board_positions,
+                ]
+                board_frame = current_visit_position_board[
+                    [
+                        "team_name",
+                        "total_visit_players",
+                        "top_visited_positions",
+                        *selected_board_positions,
+                    ]
+                ].copy()
+                board_frame["selected_positions_total"] = (
+                    board_frame[selected_board_positions].sum(axis=1).astype(int)
+                )
+                board_frame["selected_positions_share"] = (
+                    board_frame["selected_positions_total"] / board_frame["total_visit_players"]
+                ).fillna(0.0)
+                board_frame = board_frame[
+                    board_frame["selected_positions_total"] >= min_selected_position_visits
+                ].sort_values(
+                    by=["selected_positions_total", "selected_positions_share", "total_visit_players", "team_name"],
+                    ascending=[False, False, False, True],
+                )
+                st.dataframe(
+                    board_frame[board_columns],
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=current_visit_position_board_column_config(selected_board_positions),
+                )
+            else:
+                st.info("Select at least one position to compare teams.")
 
             visit_detail_col_1, visit_detail_col_2 = st.columns(2)
             with visit_detail_col_1:
