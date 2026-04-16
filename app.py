@@ -8,6 +8,7 @@ import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import streamlit as st
 from scripts.scrape_nflmockdraftdatabase import (
@@ -2518,6 +2519,301 @@ def build_team_visit_history_views() -> tuple[
     )
 
 
+@st.cache_data(show_spinner=False)
+def build_visit_draft_correlation_views(selected_years: tuple[int, ...] | None = None) -> tuple[
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+]:
+    visits = load_historical_visit_history_data()
+    actual = load_historical_actual_results()
+    if visits.empty or actual.empty:
+        empty = pd.DataFrame()
+        return empty, empty, empty, empty, empty
+
+    if selected_years:
+        visits = visits[visits["year"].isin(selected_years)].copy()
+        actual = actual[actual["year"].isin(selected_years)].copy()
+        if visits.empty or actual.empty:
+            empty = pd.DataFrame()
+            return empty, empty, empty, empty, empty
+
+    # --- player-level: how many teams visited each player, by year ---
+    player_visit_counts = (
+        visits.groupby(["year", "player_norm"], dropna=False)
+        .agg(
+            player_name=("player_name", "first"),
+            visit_position=("visit_position", "first"),
+            school=("school", "first"),
+            team_visit_count=("team_slug", "nunique"),
+            total_source_records=("source_record_count", "sum"),
+            has_top_30=("has_top_30_visit", "max"),
+            has_combine=("has_combine_meeting", "max"),
+            has_workout=("has_workout", "max"),
+            has_local=("has_local_visit", "max"),
+            has_virtual=("has_virtual_meeting", "max"),
+            is_multi_source=("is_multi_source", "max"),
+            visit_types=("visit_types_normalized", join_unique_text),
+        )
+        .reset_index()
+    )
+
+    # --- match visits to actual draft results ---
+    drafted = actual[["year", "player_norm", "player_name", "player_position", "player_position_norm",
+                       "college_name", "team_slug", "team_name", "pick", "round_number"]].copy()
+    drafted["was_drafted"] = True
+
+    merged = player_visit_counts.merge(
+        drafted[["year", "player_norm", "pick", "round_number", "team_slug", "team_name", "was_drafted"]],
+        on=["year", "player_norm"],
+        how="left",
+    )
+    merged["was_drafted"] = merged["was_drafted"].fillna(False)
+    merged["draft_day_bucket"] = merged["round_number"].map(classify_draft_day_bucket)
+
+    # --- also find drafted players with zero visits ---
+    unvisited_drafted = drafted[
+        ~drafted.set_index(["year", "player_norm"]).index.isin(
+            merged[merged["was_drafted"]].set_index(["year", "player_norm"]).index
+        )
+    ].copy()
+    unvisited_drafted["team_visit_count"] = 0
+    unvisited_drafted["total_source_records"] = 0
+    unvisited_drafted["has_top_30"] = False
+    unvisited_drafted["has_combine"] = False
+    unvisited_drafted["has_workout"] = False
+    unvisited_drafted["has_local"] = False
+    unvisited_drafted["has_virtual"] = False
+    unvisited_drafted["is_multi_source"] = False
+    unvisited_drafted["visit_types"] = ""
+    unvisited_drafted["was_drafted"] = True
+    unvisited_drafted["visit_position"] = unvisited_drafted["player_position_norm"]
+    unvisited_drafted["school"] = unvisited_drafted["college_name"]
+    unvisited_drafted["draft_day_bucket"] = unvisited_drafted["round_number"].map(classify_draft_day_bucket)
+    unvisited_drafted["player_name"] = unvisited_drafted["player_name"]
+
+    all_drafted = pd.concat(
+        [
+            merged[merged["was_drafted"]],
+            unvisited_drafted[merged.columns.intersection(unvisited_drafted.columns)],
+        ],
+        ignore_index=True,
+    )
+
+    # 1) Visit count brackets vs draft position
+    visit_brackets = []
+    for label, low, high in [("0 teams", 0, 0), ("1-3 teams", 1, 3), ("4-6 teams", 4, 6),
+                              ("7-10 teams", 7, 10), ("11+ teams", 11, 999)]:
+        bracket_rows = all_drafted[
+            (all_drafted["team_visit_count"] >= low) & (all_drafted["team_visit_count"] <= high)
+        ]
+        if bracket_rows.empty:
+            continue
+        visit_brackets.append({
+            "visit_bracket": label,
+            "players_drafted": len(bracket_rows),
+            "avg_pick": round(bracket_rows["pick"].mean(), 1),
+            "median_pick": round(bracket_rows["pick"].median(), 1),
+            "min_pick": int(bracket_rows["pick"].min()),
+            "max_pick": int(bracket_rows["pick"].max()),
+            "pct_round_1": round((bracket_rows["round_number"] == 1).mean(), 3),
+            "pct_day_1_2": round((bracket_rows["round_number"].fillna(99) <= 3).mean(), 3),
+        })
+    visit_bracket_summary = pd.DataFrame(visit_brackets)
+
+    # 2) Position-level: do visits predict draft capital differently by position?
+    position_groups = []
+    for position, pos_rows in all_drafted.groupby("visit_position", dropna=False):
+        if pd.isna(position) or str(position).strip() == "" or len(pos_rows) < 5:
+            continue
+        visited = pos_rows[pos_rows["team_visit_count"] > 0]
+        unvisited = pos_rows[pos_rows["team_visit_count"] == 0]
+        position_groups.append({
+            "position": position,
+            "total_drafted": len(pos_rows),
+            "drafted_with_visits": len(visited),
+            "drafted_no_visits": len(unvisited),
+            "visit_rate": round(len(visited) / len(pos_rows), 3) if len(pos_rows) > 0 else 0.0,
+            "avg_pick_visited": round(visited["pick"].mean(), 1) if not visited.empty else None,
+            "avg_pick_unvisited": round(unvisited["pick"].mean(), 1) if not unvisited.empty else None,
+            "pick_advantage": round(
+                (unvisited["pick"].mean() - visited["pick"].mean()), 1
+            ) if not visited.empty and not unvisited.empty else None,
+            "avg_teams_visiting": round(visited["team_visit_count"].mean(), 1) if not visited.empty else 0.0,
+            "pct_round_1_visited": round(
+                (visited["round_number"] == 1).mean(), 3
+            ) if not visited.empty else 0.0,
+            "pct_round_1_unvisited": round(
+                (unvisited["round_number"] == 1).mean(), 3
+            ) if not unvisited.empty else 0.0,
+        })
+    position_visit_summary = pd.DataFrame(position_groups)
+    if not position_visit_summary.empty:
+        position_visit_summary = position_visit_summary.sort_values(
+            "pick_advantage", ascending=False, na_position="last"
+        )
+
+    # 3) Visit type signal: which visit types correlate with higher draft picks?
+    visit_type_keys = [
+        ("Top 30 Visit", "has_top_30"),
+        ("Combine Meeting", "has_combine"),
+        ("Private Workout", "has_workout"),
+        ("Local Visit", "has_local"),
+        ("Virtual Meeting", "has_virtual"),
+        ("Multi-Source", "is_multi_source"),
+    ]
+    visit_type_rows = []
+    drafted_with_visits = all_drafted[all_drafted["team_visit_count"] > 0]
+    for label, column in visit_type_keys:
+        has_type = drafted_with_visits[drafted_with_visits[column] == True]  # noqa: E712
+        without_type = drafted_with_visits[drafted_with_visits[column] == False]  # noqa: E712
+        if has_type.empty:
+            continue
+        visit_type_rows.append({
+            "visit_type": label,
+            "players_with": len(has_type),
+            "players_without": len(without_type),
+            "avg_pick_with": round(has_type["pick"].mean(), 1),
+            "avg_pick_without": round(without_type["pick"].mean(), 1) if not without_type.empty else None,
+            "pick_advantage": round(
+                without_type["pick"].mean() - has_type["pick"].mean(), 1
+            ) if not without_type.empty else None,
+            "pct_round_1_with": round((has_type["round_number"] == 1).mean(), 3),
+            "pct_round_1_without": round(
+                (without_type["round_number"] == 1).mean(), 3
+            ) if not without_type.empty else 0.0,
+            "avg_teams_visiting": round(has_type["team_visit_count"].mean(), 1),
+        })
+    visit_type_signal = pd.DataFrame(visit_type_rows)
+    if not visit_type_signal.empty:
+        visit_type_signal = visit_type_signal.sort_values("pick_advantage", ascending=False, na_position="last")
+
+    # 4) Year-over-year: how consistent is the visit signal?
+    year_rows = []
+    for year_val, year_group in all_drafted.groupby("year"):
+        visited_year = year_group[year_group["team_visit_count"] > 0]
+        unvisited_year = year_group[year_group["team_visit_count"] == 0]
+        year_rows.append({
+            "year": int(year_val),
+            "total_drafted": len(year_group),
+            "drafted_with_visits": len(visited_year),
+            "drafted_no_visits": len(unvisited_year),
+            "visit_rate": round(len(visited_year) / len(year_group), 3) if len(year_group) > 0 else 0.0,
+            "avg_pick_visited": round(visited_year["pick"].mean(), 1) if not visited_year.empty else None,
+            "avg_pick_unvisited": round(unvisited_year["pick"].mean(), 1) if not unvisited_year.empty else None,
+            "pick_advantage": round(
+                unvisited_year["pick"].mean() - visited_year["pick"].mean(), 1
+            ) if not visited_year.empty and not unvisited_year.empty else None,
+            "pct_round_1_visited": round(
+                (visited_year["round_number"] == 1).mean(), 3
+            ) if not visited_year.empty else 0.0,
+            "avg_teams_visiting": round(visited_year["team_visit_count"].mean(), 1) if not visited_year.empty else 0.0,
+        })
+    year_over_year = pd.DataFrame(year_rows)
+    if not year_over_year.empty:
+        year_over_year = year_over_year.sort_values("year", ascending=True)
+
+    # 5) Individual player detail for exploration
+    player_detail = all_drafted[[
+        "year", "player_name", "visit_position", "school", "team_visit_count",
+        "has_top_30", "has_combine", "has_workout", "is_multi_source",
+        "visit_types", "pick", "round_number", "draft_day_bucket",
+        "team_name",
+    ]].copy()
+    player_detail = player_detail.rename(columns={
+        "visit_position": "position",
+        "team_name": "drafted_by",
+        "team_visit_count": "teams_visited",
+    })
+    player_detail = player_detail.sort_values(["year", "pick"], ascending=[False, True])
+
+    return (
+        visit_bracket_summary,
+        position_visit_summary,
+        visit_type_signal,
+        year_over_year,
+        player_detail,
+    )
+
+
+def visit_draft_bracket_column_config() -> dict[str, object]:
+    return {
+        "visit_bracket": st.column_config.TextColumn("Teams Visited By"),
+        "players_drafted": st.column_config.NumberColumn("Players\nDrafted", format="%d"),
+        "avg_pick": st.column_config.NumberColumn("Avg\nPick", format="%.1f"),
+        "median_pick": st.column_config.NumberColumn("Median\nPick", format="%.1f"),
+        "min_pick": st.column_config.NumberColumn("Earliest\nPick", format="%d"),
+        "max_pick": st.column_config.NumberColumn("Latest\nPick", format="%d"),
+        "pct_round_1": st.column_config.NumberColumn("Round 1\nRate", format="%.3f"),
+        "pct_day_1_2": st.column_config.NumberColumn("Day 1-2\nRate", format="%.3f"),
+    }
+
+
+def visit_draft_position_column_config() -> dict[str, object]:
+    return {
+        "position": st.column_config.TextColumn("Position"),
+        "total_drafted": st.column_config.NumberColumn("Drafted", format="%d"),
+        "drafted_with_visits": st.column_config.NumberColumn("With\nVisits", format="%d"),
+        "drafted_no_visits": st.column_config.NumberColumn("No\nVisits", format="%d"),
+        "visit_rate": st.column_config.NumberColumn("Visit\nRate", format="%.3f"),
+        "avg_pick_visited": st.column_config.NumberColumn("Avg Pick\nVisited", format="%.1f"),
+        "avg_pick_unvisited": st.column_config.NumberColumn("Avg Pick\nUnvisited", format="%.1f"),
+        "pick_advantage": st.column_config.NumberColumn("Pick\nAdvantage", help="How many picks earlier visited players go vs unvisited. Positive = visited go earlier.", format="%.1f"),
+        "avg_teams_visiting": st.column_config.NumberColumn("Avg Teams\nVisiting", format="%.1f"),
+        "pct_round_1_visited": st.column_config.NumberColumn("Rd 1 Rate\nVisited", format="%.3f"),
+        "pct_round_1_unvisited": st.column_config.NumberColumn("Rd 1 Rate\nUnvisited", format="%.3f"),
+    }
+
+
+def visit_draft_type_column_config() -> dict[str, object]:
+    return {
+        "visit_type": st.column_config.TextColumn("Visit Type"),
+        "players_with": st.column_config.NumberColumn("Players\nWith", format="%d"),
+        "players_without": st.column_config.NumberColumn("Players\nWithout", format="%d"),
+        "avg_pick_with": st.column_config.NumberColumn("Avg Pick\nWith", format="%.1f"),
+        "avg_pick_without": st.column_config.NumberColumn("Avg Pick\nWithout", format="%.1f"),
+        "pick_advantage": st.column_config.NumberColumn("Pick\nAdvantage", help="Picks earlier for players with this visit type vs without. Positive = earlier.", format="%.1f"),
+        "pct_round_1_with": st.column_config.NumberColumn("Rd 1 Rate\nWith", format="%.3f"),
+        "pct_round_1_without": st.column_config.NumberColumn("Rd 1 Rate\nWithout", format="%.3f"),
+        "avg_teams_visiting": st.column_config.NumberColumn("Avg Teams\nVisiting", format="%.1f"),
+    }
+
+
+def visit_draft_year_column_config() -> dict[str, object]:
+    return {
+        "year": st.column_config.NumberColumn("Year", format="%d"),
+        "total_drafted": st.column_config.NumberColumn("Total\nDrafted", format="%d"),
+        "drafted_with_visits": st.column_config.NumberColumn("With\nVisits", format="%d"),
+        "drafted_no_visits": st.column_config.NumberColumn("No\nVisits", format="%d"),
+        "visit_rate": st.column_config.NumberColumn("Visit\nRate", format="%.3f"),
+        "avg_pick_visited": st.column_config.NumberColumn("Avg Pick\nVisited", format="%.1f"),
+        "avg_pick_unvisited": st.column_config.NumberColumn("Avg Pick\nUnvisited", format="%.1f"),
+        "pick_advantage": st.column_config.NumberColumn("Pick\nAdvantage", format="%.1f"),
+        "pct_round_1_visited": st.column_config.NumberColumn("Rd 1 Rate\nVisited", format="%.3f"),
+        "avg_teams_visiting": st.column_config.NumberColumn("Avg Teams\nVisiting", format="%.1f"),
+    }
+
+
+def visit_draft_player_column_config() -> dict[str, object]:
+    return {
+        "year": st.column_config.NumberColumn("Year", format="%d"),
+        "player_name": st.column_config.TextColumn("Player"),
+        "position": st.column_config.TextColumn("Pos"),
+        "school": st.column_config.TextColumn("School"),
+        "teams_visited": st.column_config.NumberColumn("Teams\nVisited", format="%d"),
+        "has_top_30": st.column_config.CheckboxColumn("Top 30"),
+        "has_combine": st.column_config.CheckboxColumn("Combine"),
+        "has_workout": st.column_config.CheckboxColumn("Workout"),
+        "is_multi_source": st.column_config.CheckboxColumn("Multi\nSource"),
+        "pick": st.column_config.NumberColumn("Pick", format="%d"),
+        "round_number": st.column_config.NumberColumn("Round", format="%d"),
+        "draft_day_bucket": st.column_config.TextColumn("Draft Day"),
+        "drafted_by": st.column_config.TextColumn("Drafted By"),
+    }
+
+
 def build_qualified_authors(
     historical: pd.DataFrame,
     *,
@@ -4498,7 +4794,7 @@ def render_app() -> None:
         team_qualified_authors,
     )
 
-    tab_1, tab_2, tab_3, tab_4, tab_5, tab_6, tab_7, tab_8, tab_9, tab_10, tab_11, tab_12 = st.tabs(
+    tab_1, tab_2, tab_3, tab_4, tab_5, tab_6, tab_7, tab_8, tab_9, tab_10, tab_11, tab_12, tab_13 = st.tabs(
         [
             "Consensus Mock",
             "By Team",
@@ -4512,6 +4808,7 @@ def render_app() -> None:
             "Best Full Team Mockers",
             "Team Visit History",
             "2026 Team Visits",
+            "Visit-Draft Analysis",
         ]
     )
 
@@ -6155,6 +6452,230 @@ def render_app() -> None:
                 hide_index=True,
                 column_config=current_visit_player_column_config(),
             )
+
+    with tab_13:
+        st.subheader("Visit-Draft Correlation Analysis")
+        st.caption(
+            "League-wide analysis of how pre-draft visits correlate with actual draft outcomes. "
+            "Each visited player is counted once per year regardless of how many teams brought them in. "
+            "'Teams visited' means the number of distinct teams that hosted that player for any recorded meeting."
+        )
+        vd_available_years = sorted(HISTORICAL_YEARS)
+        vd_selected_years = st.multiselect(
+            "Draft years",
+            options=vd_available_years,
+            default=[y for y in vd_available_years if y >= 2023],
+            key="vd_year_selector",
+        )
+        if not vd_selected_years:
+            st.warning("Select at least one year.")
+        else:
+            (
+                vd_bracket_summary,
+                vd_position_summary,
+                vd_type_signal,
+                vd_year_over_year,
+                vd_player_detail,
+            ) = build_visit_draft_correlation_views(tuple(sorted(vd_selected_years)))
+            year_label = ", ".join(str(y) for y in sorted(vd_selected_years))
+            if vd_bracket_summary.empty:
+                st.info(
+                    "Visit-draft correlation data is not available for the selected years. Make sure both the "
+                    "merged visit file and historical actual draft result CSVs exist."
+                )
+            else:
+                # --- headline metrics ---
+                all_drafted_count = vd_bracket_summary["players_drafted"].sum()
+                visited_count = vd_bracket_summary[vd_bracket_summary["visit_bracket"] != "0 teams"]["players_drafted"].sum()
+                overall_visit_rate = visited_count / all_drafted_count if all_drafted_count else 0
+                visited_avg = None
+                unvisited_avg = None
+                if not vd_bracket_summary.empty:
+                    zero_row = vd_bracket_summary[vd_bracket_summary["visit_bracket"] == "0 teams"]
+                    nonzero_rows = vd_bracket_summary[vd_bracket_summary["visit_bracket"] != "0 teams"]
+                    if not zero_row.empty:
+                        unvisited_avg = zero_row.iloc[0]["avg_pick"]
+                    if not nonzero_rows.empty:
+                        total_visited = nonzero_rows["players_drafted"].sum()
+                        if total_visited > 0:
+                            visited_avg = round(
+                                (nonzero_rows["avg_pick"] * nonzero_rows["players_drafted"]).sum() / total_visited, 1
+                            )
+
+                headline_cols = st.columns(4)
+                headline_cols[0].metric(f"Drafted Players ({year_label})", f"{all_drafted_count:,}")
+                headline_cols[1].metric("Had Pre-Draft Visit", f"{overall_visit_rate:.1%}")
+                headline_cols[2].metric("Avg Pick (Visited)", f"{visited_avg}" if visited_avg else "N/A")
+                headline_cols[3].metric(
+                    "Avg Pick (No Visits)",
+                    f"{unvisited_avg}" if unvisited_avg else "N/A",
+                    delta=f"{round(unvisited_avg - visited_avg, 1)} picks later" if visited_avg and unvisited_avg else None,
+                    delta_color="off",
+                )
+
+                # --- visit volume vs draft position ---
+                st.subheader("Visit Volume vs Draft Position")
+                st.caption(
+                    "Players grouped by how many distinct NFL teams hosted them for a visit. "
+                    "More team interest consistently correlates with higher draft capital."
+                )
+                st.dataframe(
+                    vd_bracket_summary,
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config=visit_draft_bracket_column_config(),
+                )
+
+                # --- bar chart: avg pick by bracket ---
+                if len(vd_bracket_summary) > 1:
+                    bracket_order = ["0 teams", "1-3 teams", "4-6 teams", "7-10 teams", "11+ teams"]
+                    chart_df = vd_bracket_summary.set_index("visit_bracket").reindex(
+                        [b for b in bracket_order if b in vd_bracket_summary["visit_bracket"].values]
+                    )[["avg_pick", "median_pick"]]
+                    chart_melted = chart_df.reset_index().melt(
+                        id_vars="visit_bracket", var_name="metric", value_name="pick"
+                    )
+                    chart_melted["metric"] = chart_melted["metric"].map(
+                        {"avg_pick": "Avg Pick", "median_pick": "Median Pick"}
+                    )
+                    st.bar_chart(
+                        chart_melted,
+                        x="visit_bracket",
+                        y="pick",
+                        color="metric",
+                        horizontal=False,
+                        stack=False,
+                    )
+
+                # --- scatter: teams visited vs draft pick ---
+                st.subheader("Teams Visited vs Draft Pick")
+                max_pick_val = int(vd_player_detail["pick"].dropna().max()) if not vd_player_detail.empty else 260
+                scatter_max_pick = st.slider(
+                    "Max pick shown",
+                    min_value=32,
+                    max_value=max_pick_val,
+                    value=min(150, max_pick_val),
+                    step=1,
+                    key="vd_scatter_max_pick",
+                )
+                st.caption(
+                    "Each dot is a drafted player. The x-axis is how many teams visited them; "
+                    "the y-axis is their actual draft pick (lower = drafted earlier). "
+                    "Jitter is added to the x-axis so overlapping dots are visible."
+                )
+                scatter_df = vd_player_detail[["teams_visited", "pick", "position", "player_name", "year"]].dropna(
+                    subset=["teams_visited", "pick"]
+                ).copy()
+                scatter_df = scatter_df[scatter_df["pick"] <= scatter_max_pick]
+                rng = np.random.default_rng(42)
+                scatter_df["teams_visited_jitter"] = scatter_df["teams_visited"] + rng.uniform(
+                    -0.3, 0.3, size=len(scatter_df)
+                )
+                import altair as alt
+                scatter_chart = alt.Chart(scatter_df).mark_circle(size=50, opacity=0.7).encode(
+                    x=alt.X("teams_visited_jitter:Q", title="Teams Visited", axis=alt.Axis(tickMinStep=1)),
+                    y=alt.Y("pick:Q", title="Draft Pick", scale=alt.Scale(reverse=True)),
+                    color=alt.Color("position:N", title="Position"),
+                    tooltip=[
+                        alt.Tooltip("player_name:N", title="Player"),
+                        alt.Tooltip("position:N", title="Position"),
+                        alt.Tooltip("teams_visited:Q", title="Teams Visited"),
+                        alt.Tooltip("pick:Q", title="Pick"),
+                        alt.Tooltip("year:Q", title="Year", format="d"),
+                    ],
+                ).properties(height=500).interactive()
+                st.altair_chart(scatter_chart, use_container_width=True)
+
+                # --- position breakdown ---
+                st.subheader("Position Breakdown")
+                st.caption(
+                    "Which positions show the strongest visit-to-draft signal? 'Pick advantage' is how many picks "
+                    "earlier visited players go vs unvisited at the same position. Only positions with 5+ drafted "
+                    "players are shown."
+                )
+                if not vd_position_summary.empty:
+                    st.dataframe(
+                        vd_position_summary,
+                        use_container_width=True,
+                        hide_index=True,
+                        column_config=visit_draft_position_column_config(),
+                    )
+                else:
+                    st.info("Not enough data for position breakdown.")
+
+                # --- visit type signal ---
+                st.subheader("Visit Type Signal")
+                st.caption(
+                    "Among drafted players who had any visit, which visit types correlate with higher draft picks? "
+                    "'Pick advantage' compares players with a given visit type vs drafted-visited players without it."
+                )
+                if not vd_type_signal.empty:
+                    st.dataframe(
+                        vd_type_signal,
+                        use_container_width=True,
+                        hide_index=True,
+                        column_config=visit_draft_type_column_config(),
+                    )
+                else:
+                    st.info("Not enough data for visit type signal analysis.")
+
+                # --- year-over-year consistency ---
+                st.subheader("Year-Over-Year Consistency")
+                st.caption(
+                    "How stable is the visit signal across draft classes? A consistent pick advantage suggests "
+                    "visits are a reliable indicator, not just noise."
+                )
+                if not vd_year_over_year.empty:
+                    st.dataframe(
+                        vd_year_over_year,
+                        use_container_width=True,
+                        hide_index=True,
+                        column_config=visit_draft_year_column_config(),
+                    )
+                else:
+                    st.info("Not enough data for year-over-year analysis.")
+
+                # --- player explorer ---
+                with st.expander("Player-Level Detail", expanded=False):
+                    st.caption(
+                        f"Every drafted player from the selected years ({year_label}) with their visit profile "
+                        "and actual draft outcome. Use the filters below to explore specific slices."
+                    )
+                    filter_col_1, filter_col_2, filter_col_3 = st.columns(3)
+                    vd_year_options = ["All Years"] + sorted(vd_player_detail["year"].dropna().unique().tolist(), reverse=True)
+                    vd_selected_year = filter_col_1.selectbox("Year", options=vd_year_options, key="vd_year_filter")
+
+                    vd_pos_options = ["All Positions"] + sorted(
+                        vd_player_detail["position"].dropna().unique().tolist()
+                    )
+                    vd_selected_pos = filter_col_2.selectbox("Position", options=vd_pos_options, key="vd_pos_filter")
+
+                    vd_visit_filter = filter_col_3.selectbox(
+                        "Visit Filter",
+                        options=["All Players", "Visited Only", "Unvisited Only", "Top 30 Visit", "Multi-Source"],
+                        key="vd_visit_type_filter",
+                    )
+
+                    filtered_detail = vd_player_detail.copy()
+                    if vd_selected_year != "All Years":
+                        filtered_detail = filtered_detail[filtered_detail["year"] == int(vd_selected_year)]
+                    if vd_selected_pos != "All Positions":
+                        filtered_detail = filtered_detail[filtered_detail["position"] == vd_selected_pos]
+                    if vd_visit_filter == "Visited Only":
+                        filtered_detail = filtered_detail[filtered_detail["teams_visited"] > 0]
+                    elif vd_visit_filter == "Unvisited Only":
+                        filtered_detail = filtered_detail[filtered_detail["teams_visited"] == 0]
+                    elif vd_visit_filter == "Top 30 Visit":
+                        filtered_detail = filtered_detail[filtered_detail["has_top_30"] == True]  # noqa: E712
+                    elif vd_visit_filter == "Multi-Source":
+                        filtered_detail = filtered_detail[filtered_detail["is_multi_source"] == True]  # noqa: E712
+
+                    st.dataframe(
+                        filtered_detail,
+                        use_container_width=True,
+                        hide_index=True,
+                        column_config=visit_draft_player_column_config(),
+                    )
 
 
 if __name__ == "__main__":

@@ -20,6 +20,30 @@ function Test-AppReady {
     }
 }
 
+function Test-IsOurApp {
+    param(
+        [int]$CheckPort,
+        [string]$ExpectedRoot
+    )
+
+    try {
+        $conn = Get-NetTCPConnection -LocalPort $CheckPort -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
+        if (-not $conn) { return $false }
+
+        $proc = Get-Process -Id $conn.OwningProcess -ErrorAction SilentlyContinue
+        if (-not $proc) { return $false }
+
+        $wmi = Get-CimInstance Win32_Process -Filter "ProcessId = $($proc.Id)" -ErrorAction SilentlyContinue
+        if (-not $wmi -or -not $wmi.CommandLine) { return $false }
+
+        $normalizedCmd = $wmi.CommandLine.Replace('\', '/').ToLower()
+        $normalizedRoot = $ExpectedRoot.Replace('\', '/').ToLower()
+        return $normalizedCmd.Contains($normalizedRoot)
+    } catch {
+        return $false
+    }
+}
+
 function Get-PythonCommand {
     $python = Get-Command python -ErrorAction SilentlyContinue
     if ($python) {
@@ -42,7 +66,28 @@ try {
         throw "Streamlit is not installed for $pythonCommand. Run: python -m pip install --user -r requirements.txt"
     }
 
-    if (-not (Test-AppReady -CheckPort $Port)) {
+    $portInUse = Test-AppReady -CheckPort $Port
+    $needsStart = $true
+
+    if ($portInUse) {
+        if (Test-IsOurApp -CheckPort $Port -ExpectedRoot $projectRoot) {
+            Write-Host "Mock Draft app is already running on port $Port."
+            $needsStart = $false
+        } else {
+            Write-Host "Port $Port is in use by a different app. Stopping it..."
+            try {
+                $conn = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
+                if ($conn) {
+                    Stop-Process -Id $conn.OwningProcess -Force -ErrorAction SilentlyContinue
+                    Start-Sleep -Seconds 2
+                }
+            } catch {
+                throw "Port $Port is in use by another process and could not be stopped. Try a different port: .\Open Mock Draft App.ps1 -Port 8502"
+            }
+        }
+    }
+
+    if ($needsStart) {
         Write-Host "Starting Streamlit on port $Port..."
         Push-Location $projectRoot
         try {
@@ -66,7 +111,7 @@ try {
     }
 
     if (-not $NoBrowser) {
-        Start-Process $appUrl | Out-Null
+        Start-Process "cmd.exe" -ArgumentList "/c start $appUrl" -WindowStyle Hidden
     }
 } catch {
     Write-Error $_
