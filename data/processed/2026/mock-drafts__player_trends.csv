@@ -1,67 +1,71 @@
 player_name,player_position,mock_count,unique_mocks,unique_authors,avg_round,median_round,min_round,max_round,avg_pick,median_pick,min_pick,max_pick,team_count,most_common_team,most_common_team_slug
-Fernando Mendoza,QB,159,158,151,1.0,1.0,1,1,1.0188679245283019,1.0,1,3,3,Las Vegas Raiders,las-vegas-raiders
-Jeremiyah Love,RB,159,158,151,1.0,1.0,1,1,5.540880503144654,4.0,1,18,14,Tennessee Titans,tennessee-titans
-Sonny Styles,LB,159,156,149,1.0,1.0,1,1,6.635220125786163,5.0,2,20,13,New York Giants,new-york-giants
-Carnell Tate,WR,159,158,151,1.0,1.0,1,1,7.069182389937107,7.0,2,14,12,Cleveland Browns,cleveland-browns
-David Bailey,EDGE,158,157,150,1.0,1.0,1,1,5.0,4.0,2,14,13,Arizona Cardinals,arizona-cardinals
-Caleb Downs,S,158,157,150,1.0,1.0,1,1,8.734177215189874,9.0,1,18,14,Cincinnati Bengals,cincinnati-bengals
-Arvell Reese,LB,157,156,149,1.0,1.0,1,1,2.5477707006369426,2.0,2,12,10,New York Jets,new-york-jets
-Rueben Bain,EDGE,157,156,149,1.0,1.0,1,1,7.2993630573248405,8.0,2,14,14,Kansas City Chiefs,kansas-city-chiefs
-Francis Mauigoa,OT,156,155,148,1.0,1.0,1,1,7.397435897435898,6.0,2,27,17,Arizona Cardinals,arizona-cardinals
-Makai Lemon,WR,156,153,148,1.0,1.0,1,1,13.602564102564102,13.0,6,29,15,Los Angeles Rams,los-angeles-rams
-Monroe Freeling,OT,154,152,145,1.0,1.0,1,1,12.967532467532468,13.0,4,27,17,Cleveland Browns,cleveland-browns
-Olaivavega Ioane,IOL,154,151,145,1.0,1.0,1,1,16.40909090909091,14.0,6,26,16,Baltimore Ravens,baltimore-ravens
-Mansoor Delane,CB,152,151,145,1.0,1.0,1,1,10.019736842105264,10.0,5,29,11,Kansas City Chiefs,kansas-city-chiefs
-Spencer Fano,OT,152,151,145,1.0,1.0,1,1,13.723684210526315,13.0,3,28,20,Los Angeles Rams,los-angeles-rams
-Jordyn Tyson,WR,152,151,145,1.0,1.0,1,1,15.118421052631579,14.0,5,29,18,New York Jets,new-york-jets
-Kenyon Sadiq,TE,151,150,144,1.0,1.0,1,1,17.95364238410596,19.0,8,31,18,Carolina Panthers,carolina-panthers
-Jermod McCoy,CB,149,148,142,1.0,1.0,1,1,15.100671140939598,12.0,5,32,19,Dallas Cowboys,dallas-cowboys
-Dillon Thieneman,S,149,148,142,1.0,1.0,1,1,17.953020134228186,18.0,9,32,15,Minnesota Vikings,minnesota-vikings
-Akheem Mesidor,EDGE,133,131,126,1.0,1.0,1,1,19.902255639097746,20.0,12,32,16,Tampa Bay Buccaneers,tampa-bay-buccaneers
-Keldric Faulk,EDGE,133,132,126,1.0,1.0,1,1,20.451127819548873,20.0,9,32,22,Tampa Bay Buccaneers,tampa-bay-buccaneers
-Kadyn Proctor,OT,133,132,127,1.0,1.0,1,1,21.097744360902254,21.0,6,32,18,Detroit Lions,detroit-lions
-Omar Cooper Jr.,WR,123,122,118,1.0,1.0,1,1,23.26829268292683,24.0,13,32,19,Cleveland Browns,cleveland-browns
-Avieon Terrell,CB,122,121,115,1.0,1.0,1,1,25.21311475409836,27.0,12,32,18,Kansas City Chiefs,kansas-city-chiefs
-Emmanuel McNeil-Warren,S,117,116,112,1.0,1.0,1,1,23.735042735042736,25.0,11,32,15,Chicago Bears,chicago-bears
-Caleb Lomu,OT,112,111,107,1.0,1.0,1,1,23.571428571428573,24.0,6,31,15,San Francisco 49ers,san-francisco-49ers
-Blake Miller,OT,112,111,108,1.0,1.0,1,1,25.169642857142858,27.0,6,32,15,Philadelphia Eagles,philadelphia-eagles
-Peter Woods,DL,102,101,97,1.0,1.0,1,1,23.813725490196077,25.0,10,32,18,Houston Texans,houston-texans
-T.J. Parker,EDGE,100,99,95,1.0,1.0,1,1,24.77,25.0,3,32,18,New England Patriots,new-england-patriots
-Kevin Concepcion,WR,98,97,94,1.0,1.0,1,1,25.551020408163264,26.0,13,32,14,Cleveland Browns,cleveland-browns
-Denzel Boston,WR,95,94,90,1.0,1.0,1,1,25.873684210526317,26.0,13,32,19,Cleveland Browns,cleveland-browns
-Kayden McDonald,DL,93,92,88,1.021505376344086,1.0,1,2,26.387096774193548,28.0,8,38,17,Houston Texans,houston-texans
-Colton Hood,CB,93,92,88,1.0,1.0,1,1,29.086021505376344,30.0,18,32,15,Seattle Seahawks,seattle-seahawks
-C.J. Allen,LB,79,78,75,1.0253164556962024,1.0,1,2,23.518987341772153,24.0,12,34,16,Dallas Cowboys,dallas-cowboys
-Ty Simpson,QB,75,74,74,1.0266666666666666,1.0,1,2,23.026666666666667,21.0,3,53,10,Pittsburgh Steelers,pittsburgh-steelers
-Cashius Howell,EDGE,74,73,70,1.0,1.0,1,1,26.95945945945946,27.0,15,32,15,Buffalo Bills,buffalo-bills
-Max Iheanachor,OT,61,60,59,1.0327868852459017,1.0,1,2,27.098360655737704,27.0,17,37,15,Philadelphia Eagles,philadelphia-eagles
-Caleb Banks,DL,49,48,46,1.0408163265306123,1.0,1,2,24.897959183673468,25.0,16,38,14,Chicago Bears,chicago-bears
-Zion Young,EDGE,46,45,44,1.0434782608695652,1.0,1,2,27.5,28.0,15,35,14,New England Patriots,new-england-patriots
-Brandon Cisse,CB,25,24,24,1.08,1.0,1,2,29.48,32.0,5,37,8,Seattle Seahawks,seattle-seahawks
-Emmanuel Pregnon,IOL,24,23,23,1.0833333333333333,1.0,1,2,28.041666666666668,28.0,21,46,10,Houston Texans,houston-texans
-Jadarian Price,RB,23,22,22,1.0869565217391304,1.0,1,2,33.391304347826086,32.0,30,49,3,Seattle Seahawks,seattle-seahawks
-Malachi Lawrence,EDGE,18,17,16,1.1111111111111112,1.0,1,2,26.944444444444443,26.0,15,40,8,Kansas City Chiefs,kansas-city-chiefs
-Chase Bisontis,IOL,17,16,16,1.1176470588235294,1.0,1,2,30.823529411764707,28.0,21,46,7,Houston Texans,houston-texans
-Chris Johnson,CB,17,16,16,1.1176470588235294,1.0,1,2,30.11764705882353,30.0,18,43,7,Seattle Seahawks,seattle-seahawks
-Jacob Rodriguez,LB,16,15,15,1.125,1.0,1,2,26.875,27.0,19,42,10,Dallas Cowboys,dallas-cowboys
-Christen Miller,DL,13,12,12,1.1538461538461537,1.0,1,2,30.692307692307693,28.0,26,48,8,Buffalo Bills,buffalo-bills
-R Mason Thomas,EDGE,11,10,10,1.1818181818181819,1.0,1,2,28.727272727272727,29.0,12,47,7,Dallas Cowboys,dallas-cowboys
-Lee Hunter,DL,11,10,10,1.1818181818181819,1.0,1,2,28.181818181818183,30.0,18,44,8,Denver Broncos,denver-broncos
-Anthony Hill Jr.,LB,9,8,8,1.2222222222222223,1.0,1,2,33.111111111111114,31.0,20,56,8,New England Patriots,new-england-patriots
-Chris Brazzell,WR,7,6,6,1.2857142857142858,1.0,1,2,35.142857142857146,30.0,24,56,6,Kansas City Chiefs,kansas-city-chiefs
-Chris Bell,WR,6,5,5,1.3333333333333333,1.0,1,2,35.5,30.5,26,53,4,Miami Dolphins,miami-dolphins
-Gabe Jacas,EDGE,5,4,4,1.4,1.0,1,2,39.4,31.0,29,54,4,New England Patriots,new-england-patriots
-Jake Golday,LB,5,4,4,1.4,1.0,1,2,37.2,31.0,20,59,5,Buffalo Bills,buffalo-bills
-D'angelo Ponds,CB,4,3,3,1.5,1.5,1,2,39.75,40.5,27,51,4,Carolina Panthers,carolina-panthers
-Eli Stowers,TE,4,3,3,1.75,1.5,1,3,47.5,46.5,23,74,4,Denver Broncos,denver-broncos
+Fernando Mendoza,QB,199,194,187,1.0,1.0,1,1,1.015075376884422,1.0,1,3,3,Las Vegas Raiders,las-vegas-raiders
+Jeremiyah Love,RB,199,194,187,1.0,1.0,1,1,5.50251256281407,4.0,1,18,13,Tennessee Titans,tennessee-titans
+Sonny Styles,LB,199,192,185,1.0,1.0,1,1,6.4623115577889445,5.0,2,20,14,New York Giants,new-york-giants
+Caleb Downs,S,198,193,186,1.0,1.0,1,1,8.702020202020202,9.0,1,18,14,Cincinnati Bengals,cincinnati-bengals
+Arvell Reese,LB,197,192,185,1.0,1.0,1,1,2.6751269035532994,2.0,2,12,12,New York Jets,new-york-jets
+David Bailey,EDGE,197,192,185,1.0,1.0,1,1,4.4213197969543145,3.0,2,15,13,Arizona Cardinals,arizona-cardinals
+Carnell Tate,WR,197,192,185,1.0,1.0,1,1,6.9847715736040605,6.0,2,16,13,Cleveland Browns,cleveland-browns
+Rueben Bain,EDGE,197,192,185,1.0,1.0,1,1,7.720812182741117,8.0,2,14,14,Kansas City Chiefs,kansas-city-chiefs
+Francis Mauigoa,OT,196,191,184,1.0,1.0,1,1,7.494897959183674,6.0,2,27,19,Arizona Cardinals,arizona-cardinals
+Mansoor Delane,CB,192,187,181,1.0,1.0,1,1,9.734375,9.0,5,29,12,Kansas City Chiefs,kansas-city-chiefs
+Makai Lemon,WR,192,185,180,1.0,1.0,1,1,13.411458333333334,13.0,4,29,16,Los Angeles Rams,los-angeles-rams
+Monroe Freeling,OT,191,184,177,1.0,1.0,1,1,14.015706806282722,14.0,4,27,17,Cleveland Browns,cleveland-browns
+Jermod McCoy,CB,189,184,178,1.0,1.0,1,1,14.497354497354497,12.0,5,32,20,Dallas Cowboys,dallas-cowboys
+Olaivavega Ioane,IOL,189,182,176,1.0,1.0,1,1,16.455026455026456,14.0,4,26,17,Baltimore Ravens,baltimore-ravens
+Jordyn Tyson,WR,189,184,178,1.0,1.0,1,1,15.555555555555555,16.0,5,29,19,New York Jets,new-york-jets
+Spencer Fano,OT,188,183,177,1.0,1.0,1,1,13.138297872340425,13.0,3,24,20,Detroit Lions,detroit-lions
+Kenyon Sadiq,TE,187,182,176,1.0,1.0,1,1,17.79144385026738,18.0,8,31,19,Carolina Panthers,carolina-panthers
+Dillon Thieneman,S,183,178,172,1.0,1.0,1,1,18.098360655737704,18.0,9,32,14,Minnesota Vikings,minnesota-vikings
+Kadyn Proctor,OT,171,166,161,1.0,1.0,1,1,20.228070175438596,20.0,6,32,17,Detroit Lions,detroit-lions
+Keldric Faulk,EDGE,168,164,158,1.0,1.0,1,1,20.476190476190474,20.0,9,32,21,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Akheem Mesidor,EDGE,167,163,158,1.0,1.0,1,1,20.461077844311376,20.0,12,32,18,Tampa Bay Buccaneers,tampa-bay-buccaneers
+Omar Cooper Jr.,WR,157,154,150,1.0,1.0,1,1,22.579617834394906,23.0,12,31,20,Cleveland Browns,cleveland-browns
+Emmanuel McNeil-Warren,S,148,143,139,1.0,1.0,1,1,23.527027027027028,25.0,11,32,16,Chicago Bears,chicago-bears
+Blake Miller,OT,144,141,138,1.0,1.0,1,1,24.743055555555557,24.5,6,32,15,New England Patriots,new-england-patriots
+Caleb Lomu,OT,139,137,133,1.0,1.0,1,1,24.223021582733814,24.0,6,32,17,San Francisco 49ers,san-francisco-49ers
+Avieon Terrell,CB,129,126,120,1.0,1.0,1,1,25.72093023255814,29.0,12,32,20,Kansas City Chiefs,kansas-city-chiefs
+Kevin Concepcion,WR,127,123,120,1.0,1.0,1,1,24.606299212598426,24.0,13,32,16,Cleveland Browns,cleveland-browns
+T.J. Parker,EDGE,121,117,113,1.0,1.0,1,1,25.454545454545453,26.0,3,32,19,Chicago Bears,chicago-bears
+Peter Woods,DL,113,111,107,1.0,1.0,1,1,23.646017699115045,25.0,10,32,19,Houston Texans,houston-texans
+Colton Hood,CB,113,112,108,1.0,1.0,1,1,29.141592920353983,30.0,18,32,16,Kansas City Chiefs,kansas-city-chiefs
+Denzel Boston,WR,111,110,106,1.0,1.0,1,1,25.46846846846847,25.0,8,32,19,Cleveland Browns,cleveland-browns
+Kayden McDonald,DL,111,109,105,1.018018018018018,1.0,1,2,26.306306306306308,28.0,8,38,16,Houston Texans,houston-texans
+Cashius Howell,EDGE,93,91,88,1.0,1.0,1,1,26.419354838709676,27.0,14,32,16,Buffalo Bills,buffalo-bills
+Max Iheanachor,OT,93,90,89,1.021505376344086,1.0,1,2,27.204301075268816,28.0,17,37,15,New England Patriots,new-england-patriots
+C.J. Allen,LB,87,86,83,1.0229885057471264,1.0,1,2,23.908045977011493,25.0,12,34,18,Dallas Cowboys,dallas-cowboys
+Ty Simpson,QB,86,84,84,1.0232558139534884,1.0,1,2,23.348837209302324,21.0,3,53,9,Arizona Cardinals,arizona-cardinals
+Zion Young,EDGE,55,54,53,1.0363636363636364,1.0,1,2,27.78181818181818,29.0,15,35,15,New England Patriots,new-england-patriots
+Caleb Banks,DL,48,47,45,1.0416666666666667,1.0,1,2,25.5625,25.0,18,38,14,Chicago Bears,chicago-bears
+Chris Johnson,CB,38,35,35,1.0526315789473684,1.0,1,2,29.31578947368421,30.0,16,43,10,Seattle Seahawks,seattle-seahawks
+Chase Bisontis,IOL,33,32,32,1.0606060606060606,1.0,1,2,28.484848484848484,28.0,21,46,8,Houston Texans,houston-texans
+Emmanuel Pregnon,IOL,31,29,29,1.064516129032258,1.0,1,2,27.161290322580644,27.0,21,46,10,Houston Texans,houston-texans
+Malachi Lawrence,EDGE,27,24,23,1.0740740740740742,1.0,1,2,27.037037037037038,26.0,15,40,10,Buffalo Bills,buffalo-bills
+Jadarian Price,RB,25,24,24,1.08,1.0,1,2,33.36,32.0,32,49,2,Seattle Seahawks,seattle-seahawks
+Brandon Cisse,CB,24,23,23,1.0833333333333333,1.0,1,2,30.041666666666668,32.0,5,37,7,Seattle Seahawks,seattle-seahawks
+Jacob Rodriguez,LB,21,20,20,1.0952380952380953,1.0,1,2,27.095238095238095,28.0,19,42,9,Dallas Cowboys,dallas-cowboys
+Christen Miller,DL,15,14,14,1.1333333333333333,1.0,1,2,30.266666666666666,28.0,26,48,8,Houston Texans,houston-texans
+R Mason Thomas,EDGE,13,12,12,1.1538461538461537,1.0,1,2,29.076923076923077,31.0,12,47,7,New England Patriots,new-england-patriots
+Anthony Hill Jr.,LB,10,9,9,1.2,1.0,1,2,32.4,30.5,20,56,10,Atlanta Falcons,atlanta-falcons
+Lee Hunter,DL,8,7,7,1.25,1.0,1,2,30.25,30.0,19,44,6,Denver Broncos,denver-broncos
+Chris Brazzell,WR,7,6,6,1.2857142857142858,1.0,1,2,34.285714285714285,29.0,24,56,5,Cleveland Browns,cleveland-browns
+Eli Stowers,TE,7,6,6,1.4285714285714286,1.0,1,3,40.0,31.0,23,74,5,New England Patriots,new-england-patriots
+Jake Golday,LB,6,5,5,1.3333333333333333,1.0,1,2,36.166666666666664,31.0,20,59,5,New England Patriots,new-england-patriots
+Chris Bell,WR,5,4,4,1.4,1.0,1,2,37.4,31.0,30,53,4,Miami Dolphins,miami-dolphins
+Gabe Jacas,EDGE,5,4,4,1.4,1.0,1,2,38.4,31.0,26,54,5,Buffalo Bills,buffalo-bills
+Mike Washington Jr.,RB,5,4,4,1.8,1.0,1,3,54.6,32.0,32,96,2,Seattle Seahawks,seattle-seahawks
+D'angelo Ponds,CB,4,3,3,1.5,1.5,1,2,39.25,39.5,27,51,4,Carolina Panthers,carolina-panthers
+Treydan Stukes,CB,4,3,3,2.0,2.0,1,3,48.75,49.0,27,70,4,Chicago Bears,chicago-bears
+Keylan Rutledge,IOL,4,3,3,2.0,2.0,1,3,49.25,50.0,28,69,2,Houston Texans,houston-texans
 A.J. Haulcy,S,3,2,2,1.6666666666666667,2.0,1,2,47.666666666666664,58.0,25,60,2,Chicago Bears,chicago-bears
 Josiah Trotter,LB,3,2,2,1.6666666666666667,2.0,1,2,48.333333333333336,59.0,25,61,3,Chicago Bears,chicago-bears
 Antonio Williams,WR,3,2,2,1.6666666666666667,2.0,1,2,52.0,63.0,29,64,3,Kansas City Chiefs,kansas-city-chiefs
-Keylan Rutledge,IOL,3,2,2,2.3333333333333335,3.0,1,3,56.333333333333336,69.0,31,69,2,Houston Texans,houston-texans
+Connor Lew,IOL,3,2,2,2.3333333333333335,3.0,1,3,57.333333333333336,76.0,14,82,3,Baltimore Ravens,baltimore-ravens
 Romello Height,EDGE,3,2,2,2.3333333333333335,3.0,1,3,63.666666666666664,80.0,29,82,3,Baltimore Ravens,baltimore-ravens
-Mike Washington Jr.,RB,3,2,2,2.3333333333333335,3.0,1,3,69.66666666666667,81.0,32,96,2,Seattle Seahawks,seattle-seahawks
 Kaleb Proctor,DL,3,2,2,3.0,4.0,1,4,86.33333333333333,102.0,17,140,3,Detroit Lions,detroit-lions
+Drew Allar,QB,3,2,2,3.3333333333333335,4.0,1,5,92.0,107.0,28,141,2,Cleveland Browns,cleveland-browns
 Billy Schrauth,IOL,3,2,2,3.0,4.0,1,4,93.33333333333333,122.0,32,126,3,Atlanta Falcons,atlanta-falcons
+Cole Payton,QB,3,2,2,3.3333333333333335,4.0,1,5,115.0,137.0,30,178,2,Philadelphia Eagles,philadelphia-eagles
 Keionte Scott,CB,2,1,1,2.0,2.0,2,2,55.0,55.0,55,55,1,Los Angeles Chargers,los-angeles-chargers
 Derrick Moore,EDGE,2,1,1,2.0,2.0,2,2,55.5,55.5,54,57,2,Chicago Bears,chicago-bears
 Gennings Dunker,OT,2,1,1,2.0,2.0,2,2,56.0,56.0,51,61,2,Carolina Panthers,carolina-panthers
@@ -71,7 +75,6 @@ Dani Dennis-Sutton,EDGE,2,1,1,2.0,2.0,2,2,61.5,61.5,60,63,2,Chicago Bears,chicag
 Zachariah Branch,WR,2,1,1,2.5,2.5,2,3,64.5,64.5,62,67,2,Denver Broncos,denver-broncos
 Domonique Orange,DL,2,1,1,3.0,3.0,3,3,66.0,66.0,65,67,2,Arizona Cardinals,arizona-cardinals
 Caleb Tiernan,OT,2,1,1,3.0,3.0,3,3,66.5,66.5,65,68,2,Arizona Cardinals,arizona-cardinals
-Treydan Stukes,CB,2,1,1,3.0,3.0,3,3,68.0,68.0,66,70,2,Cleveland Browns,cleveland-browns
 Malachi Fields,WR,2,1,1,3.0,3.0,3,3,68.5,68.5,66,71,2,Tennessee Titans,tennessee-titans
 Kamari Ramsey,S,2,1,1,3.0,3.0,3,3,71.0,71.0,70,72,2,Cincinnati Bengals,cincinnati-bengals
 Max Klare,TE,2,1,1,3.0,3.0,3,3,71.0,71.0,68,74,2,Kansas City Chiefs,kansas-city-chiefs
@@ -80,7 +83,6 @@ Davison Igbinosun,CB,2,1,1,3.0,3.0,3,3,74.0,74.0,71,77,2,Tampa Bay Buccaneers,ta
 Elijah Sarratt,WR,2,1,1,3.0,3.0,3,3,74.5,74.5,73,76,2,New Orleans Saints,new-orleans-saints
 Ted Hurst,WR,2,1,1,3.0,3.0,3,3,77.0,77.0,75,79,2,Atlanta Falcons,atlanta-falcons
 Kyle Louis,LB,2,1,1,3.0,3.0,3,3,77.5,77.5,77,78,2,Indianapolis Colts,indianapolis-colts
-Connor Lew,IOL,2,1,1,3.0,3.0,3,3,79.0,79.0,76,82,2,Minnesota Vikings,minnesota-vikings
 Joshua Josephs,EDGE,2,1,1,3.0,3.0,3,3,79.0,79.0,78,80,2,Baltimore Ravens,baltimore-ravens
 Genesis Smith,S,2,1,1,3.0,3.0,3,3,80.5,80.5,75,86,2,Los Angeles Chargers,los-angeles-chargers
 Skyler Bell,WR,2,1,1,3.0,3.0,3,3,83.0,83.0,79,87,2,Atlanta Falcons,atlanta-falcons
@@ -123,7 +125,6 @@ Michael Trigg,TE,2,1,1,4.0,4.0,4,4,119.5,119.5,109,130,2,Kansas City Chiefs,kans
 Hezekiah Masses,CB,2,1,1,4.0,4.0,4,4,122.0,122.0,121,123,2,Los Angeles Chargers,los-angeles-chargers
 Justin Joly,TE,2,1,1,4.0,4.0,4,4,122.0,122.0,119,125,2,Carolina Panthers,carolina-panthers
 Chris McClellan,DL,2,1,1,4.0,4.0,4,4,123.5,123.5,123,124,2,Jacksonville Jaguars,jacksonville-jaguars
-Drew Allar,QB,2,1,1,4.5,4.5,4,5,124.0,124.0,107,141,1,Cleveland Browns,cleveland-browns
 DeMonte Capehart,DL,2,1,1,4.0,4.0,4,4,124.5,124.5,120,129,2,Chicago Bears,chicago-bears
 Bryce Boettcher,LB,2,1,1,4.0,4.0,4,4,125.0,125.0,121,129,2,Chicago Bears,chicago-bears
 Kaleb Elarms-Orr,LB,2,1,1,4.0,4.0,4,4,125.0,125.0,119,131,2,Carolina Panthers,carolina-panthers
@@ -155,7 +156,6 @@ Matt Gulbin,IOL,2,1,1,5.0,5.0,5,5,154.0,154.0,153,155,2,Philadelphia Eagles,phil
 Caden Curry,EDGE,2,1,1,5.0,5.0,5,5,155.0,155.0,152,158,2,Carolina Panthers,carolina-panthers
 Parker Brailsford,IOL,2,1,1,5.0,5.0,5,5,155.5,155.5,146,165,2,Buffalo Bills,buffalo-bills
 Beau Stephens,IOL,2,1,1,5.0,5.0,5,5,157.0,157.0,146,168,2,Buffalo Bills,buffalo-bills
-Cole Payton,QB,2,1,1,4.5,4.5,4,5,157.5,157.5,137,178,1,Philadelphia Eagles,philadelphia-eagles
 J.C. Davis,OT,2,1,1,5.0,5.0,5,5,157.5,157.5,155,160,2,Green Bay Packers,green-bay-packers
 Kaytron Allen,RB,2,1,1,5.0,5.0,5,5,158.5,158.5,157,160,2,Detroit Lions,detroit-lions
 Eli Raridon,TE,2,1,1,5.0,5.0,5,5,161.0,161.0,153,169,2,Kansas City Chiefs,kansas-city-chiefs
